@@ -1,0 +1,41 @@
+/* Table page */
+.tables a.table-action-deletelink{color:blue;text-decoration:none;}
+.tables tr.row_selected{
+	-moz-transform: scale(1.01) scaleY(1.02);
+	-webkit-transform: scale(1.01) scaleY(1.02);
+	-o-transform: scale(1.01) scaleY(1.02);
+	-ms-transform: scale(1.01) scaleY(1.02);
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	-ms-transition: all 0.2s ease-in-out 0s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), inset 0 4px 6px 5px rgba(255,255,255,.5);
+	-moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), inset 0 4px 6px 5px rgba(255,255,255,.5);
+	-o-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), inset 0 4px 6px 5px rgba(255,255,255,.5);
+	-webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), inset 0 4px 6px 5px rgba(255,255,255,.5);
+	-ms-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), inset 0 4px 6px 5px rgba(255,255,255,.5);}
+.tables tr{font-size:13px;}
+.tables tr.odd{background:#F5F5F5;border-top:1px solid #bbb;border-bottom:1px solid #bbb;}
+.tables td{padding:5px; overflow: hidden;text-overflow: ellipsis;max-width:80px;height:20px;text-align:center;white-space:nowrap;}
+.tables th{vertical-align:middle;padding:8px 0;}
+.tables .even tr{background:white}
+.tables .langFilter{padding:0 10px; cursor:pointer}
+.tables tr:hover td{background:#9FAFD1}
+.tables #grid_processing{background:green;color:grey}
+.tables .top, .bottom{height:30px;padding: 7px 5px}
+.tables .top{border-radius:8px 8px 0 0;}
+.tables .bottom{border-radius:0 0 5px 5px;margin-bottom:20px;}
+.tables #grid{border:1px solid #ccc;}
+.tables #btnAddNewRow{margin-left:.5em;display:inline;}
+.tables #wrap{display: block; margin: 0 auto;width: 98%;}
+.tables #custom_modal .modal_head{padding:0 10px;width:200px;display:inline-block;}
+.tables #custom_modal .modal_data{width:300px;}
+.tables #custom_modal{display:block;margin:0 auto;}
+.tables #custom_modal div{padding:5px;border-bottom:1px solid #bbb;}
+.tables #custom_modal div:nth-child(even){background:#F5F5F5;}
+.tables #custom_modal div:nth-child(odd){background:white;}
+.tables table{width:100%;}
+.tables .dataTables_length select{width:50px;}
+.tables .header h3 b{text-transform:uppercase;}
+.tables #grid_wrapper{margin-top:10px;}
+.tables #grid_processing{padding:8px 0;background:#eee;font-weight:bold;border:#ddd 1px solid;box-shadow:0 0 5px rgba(0,0,0,.5);}
