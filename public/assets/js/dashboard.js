@@ -1,27 +1,27 @@
-$(document).ready(function(){
-	/*
-	// moving the stats to display russian an taiwanese
-	*/
+/*
+// moving the stats to display russian an taiwanese
+*/
+$(document).keydown(function(e){
 	var height =  $("div.grid_6").height();
 	$("#stats_container").css({"height":parseInt(height)+5, "overflow":"hidden"});
-	$(document).keydown(function(e){
-		el = $("div.en, div.cn");
-		position = el.position();
-		//is Down
-		if(e.keyCode == 40){
-			e.preventDefault();
-			$("div.grid_6").removeClass("isInitialPosition").css({"-moz-transform":"translateY(-"+height+"px)", "-webkit-transform":"translateY(-"+height+"px)", "-o-transform":"translateY(-"+height+"px)", "-ms-transform":"translateY(-"+height+"px)"});
-			
-		}
-		//is up
-		else if(e.keyCode == 38){
-			e.preventDefault();
-			$("div.grid_6").addClass("isInitialPosition").removeAttr("style");
-			
-		}
-	});
+	el = $("div.en, div.cn");
+	position = el.position();
+	//is Down
+	if(e.keyCode == 40){
+		e.preventDefault();
+		$("div.grid_6").removeClass("isInitialPosition").css({"-moz-transform":"translateY(-"+height+"px)", "-webkit-transform":"translateY(-"+height+"px)", "-o-transform":"translateY(-"+height+"px)", "-ms-transform":"translateY(-"+height+"px)"});
+		
+	}
+	//is up
+	else if(e.keyCode == 38){
+		e.preventDefault();
+		$("div.grid_6").addClass("isInitialPosition").removeAttr("style");
+		
+	}
+});
 
-
+$(document).ready(function(){
+	
 	$('#accordion').accordion();
 	$(window).resize();
 

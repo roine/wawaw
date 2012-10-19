@@ -41,10 +41,9 @@
 			'sprite.forms.css',
 			'ie.fixes.css',
 			'font-awesome.css',
+			'sidebar.css',
+			'sprite.lists.css',
 			));
-		
-		echo isset($css) ? html_entity_decode($css) : '';
-		echo isset($less) ? html_entity_decode($less) : '';
 			?>
 		<?php
 		echo Asset::js(array(
@@ -55,14 +54,12 @@
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>
-	
-	<div class="row">
+		<div class="row">
 				<div class="span16">
 					<?php if (Session::get_flash('success')): ?>
 						<div class="alert success no-margin top slide">
 							<p>
 							<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
-							<a href='#' class='hide'>hide</a>
 							</p>
 						</div>
 					<?php endif; ?>
@@ -70,26 +67,64 @@
 						<div class="alert error  no-margin top slide">
 							<p>
 							<?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
-							<a href='#' class='hide'>hide</a>
 							</p>
 						</div>
 					<?php endif; ?>
 				</div>
 			</div>
-	<div id="height-wrapper">
-	<?php echo render('regions/_header'); ?>
+		<!-- Begin of #height-wrapper -->
+		<div id="height-wrapper">
+			<!-- Begin of header -->
+			<?php echo render('regions/_header'); ?>
+			<div role="main" class="container_12" id="content-wrapper">
+				<!-- Start of the sidebar -->
+				<aside>
+					<div id="sidebar_top">
+						<div class="userinfo">
+							<div class="info">
+								<div class="avatar">
+									<img src="/assets/img/sprites/userinfo/avatar.png" width="80" height="80" alt="">
+								</div>
+								<a href="#">0 Messages</a>
+							</div>
+							<ul class="links">
+								<li>
+									<strong class='capitalize'><?php echo Html::anchor('users/view/'.$current_user->id, e(ucwords($current_user->username))); ?></strong>
+								</li>
+								<li>
+									<?php echo Html::anchor('settings', 'Settings'); ?>
+								</li>
+								<li>
+									<?php echo Html::anchor('admin/logout', 'Logout'); ?>
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div id="sidebar_content">
+						<h2>Information</h2>
+						<p>Time in China:<br> <?php echo \Date::time('Asia/Shanghai')->format("<span class='time running local'>%a, %d %b %Y <span>%H</span><span>%M</span><span>%S</span></span>"); ?><br />
+						</p>
+						<p>Time in USA:<br /> <?php echo Date::time('America/Mexico_City')->format("<span class='time running us'>%a, %d %b %Y <span>%H</span><span>%M</span><span>%S</span></span>"); ?><br />
+						</p>
+					</div>
+				</aside><!-- End of the sidebar-->
 			
-			<div id='content-wrapper' class='container_12' role='main'>
-				<div id="main_content" >
-					<?php echo $content; ?>
+			<div id="main_content">
+				<?php echo $content; ?>
+			</div>
+			<div class="push clear"></div>
 				</div>
-				<div class='clear'></div>
-			</div>
-			<div class="clear push"></div>
-			
+				
+				
 			<a href="#top" id="top-link" title='click to go to the top'><i class="icon-upload-alt"></i></a>
-			</div>
-			<footer>
+
+			<div class="clear"></div>
+			<div class="push"></div> <!-- BUGFIX if problems with sidebar in Chrome -->
+				
+		</div> <!-- End of #height-wrapper -->
+			
+<footer>
 				<div class="container_12">
 				<?php if(Sentry::user()->has_access('speed_loading_read')): ?>
 				Page rendered in {exec_time}s using {mem_usage}mb of memory.
@@ -109,25 +144,42 @@
 				</div>
 
 			</footer>
-		
-
+			
+			
 		<!-- JavaScript at the bottom for fast page loading -->
-			<!-- Grab Google CDN's jQuery + jQueryUI, with a protocol relative URL; fall back to local -->		
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
-			<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.js"><\/script>')</script>
-			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-			<script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.16.min.js"><\/script>')</script>
-
-			<?php  echo isset($js) ? html_entity_decode($js) : ''; ?>
-			<?php echo Asset::js(array('mylibs/jquery.scrollTo-min.js')); ?>
-				<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to
-			support IE 6.
-			chromium.org/developers/how-tos/chrome-frame-getting-started -->
-			<!--[if lt IE 7 ]>
-			<script defer
-			src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-			<script
-			defer>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-			<![endif]-->
+		<!-- Grab Google CDN's jQuery + jQueryUI, with a protocol relative URL; fall back to local -->		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+		<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.js"><\/script>')</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.16.min.js"><\/script>')</script>
+		<?php
+		echo Asset::js(array(
+			'plugins.js',
+			'mylibs/jquery.ba-resize.js',
+			'mylibs/jquery.easing.1.3.js',
+			'mylibs/jquery.ui.touch-punch.js',
+			'mylibs/jquery.validate.js',
+			'script.js',
+			'dashboard.js',
+			'mylibs/jquery.scrollTo-min.js'	
+			));
+			?>
+		<!-- end scripts -->
+		<script>
+			$(window).load(function() {
+				$('#accordion').accordion();
+				$(window).resize();
+			});
+		</script>
+		
+		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to
+		support IE 6.
+		chromium.org/developers/how-tos/chrome-frame-getting-started -->
+		<!--[if lt IE 7 ]>
+		<script defer
+		src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+		<script
+		defer>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+		<![endif]-->
 	</body>
-</html>
+	</html>

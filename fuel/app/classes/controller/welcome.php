@@ -2,29 +2,22 @@
 
 class Controller_Welcome extends Controller_Base
 {
-
+	
 	
 	public function action_index()
 	{
 		if(!Sentry::check())
 			Response::redirect('login');
-
+		$data['less'] = Asset::less('custom.less');
+		$this->template = \View::forge('dashboard');
 		$this->template->title = $data['data']['title'] = 'Welcome to IKON backoffice';
-		$this->template->css = Asset::css(array('sidebar.css', 'sprite.lists.css'));
-		$this->template->js = Asset::js(array(
-			'plugins.js',
-			'mylibs/jquery.ba-resize.js',
-			'mylibs/jquery.easing.1.3.js',
-			'mylibs/jquery.ui.touch-punch.js',
-			'mylibs/jquery.validate.js',
-			'script.js',
-			'dashboard.js'		
-			));
+
 		$this->template->content = View::forge('welcome/index', $data);
 	}
 
 	public function action_login(){
-		// Auth::create_user('jonathan', '123456', 'jonathan@ikonfx.com', 200);
+
+		
 		$vars = array(
     	'email'    => 'jonathan@ikonfx.com',
     	'password' => '123456',
@@ -40,6 +33,8 @@ class Controller_Welcome extends Controller_Base
 
 		if(Sentry::check())
 			Response::redirect('');
+
+		$this->template = \View::forge('login');
 
 		if(Input::post()){
 			if(Sentry::user_exists(Input::post('username'))){
@@ -61,7 +56,7 @@ class Controller_Welcome extends Controller_Base
 				}
 				else{
 					// max attempts reached
-					Session::set_flash('error', 'You\'ve reached your max attempts and will have to wait for 15 minutes');
+					Session::set_flash('error', 'You\'ve reached your max attempts and will have to wait for '.Sentry::attempts(Input::post('username'))->get_time().' minutes');
 				}
 			}
 		    else{
@@ -71,17 +66,9 @@ class Controller_Welcome extends Controller_Base
 			
 
 		}
-		$this->template->css = Asset::css('special-page.css');
 		$this->template->title = $data['title'] = 'Welcome to IKON backoffice';
-		$this->template->js = Asset::js(array(
-			'plugins.js',
-			'mylibs/jquery.validate.js',
-			'mylibs/jquery.jgrowl.js',
-			'mylibs/jquery.checkbox.js',
-			'script.js',
-			'login.js',
-			));
-		$this->template->custom_class = 'special_page login';
+
+		$this->template->custom_class = 'special_page';
 		$this->template->content = View::forge('welcome/login', $data);
 	}
 

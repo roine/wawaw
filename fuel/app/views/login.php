@@ -41,10 +41,9 @@
 			'sprite.forms.css',
 			'ie.fixes.css',
 			'font-awesome.css',
+			'special-page.css'
 			));
-		
 		echo isset($css) ? html_entity_decode($css) : '';
-		echo isset($less) ? html_entity_decode($less) : '';
 			?>
 		<?php
 		echo Asset::js(array(
@@ -54,15 +53,14 @@
 		// echo Asset::less('custom.less');
 		?>
 	</head>
-	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>
-	
+	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>
+	' data-view='<?php echo Request::active()->action; ?>'>
 	<div class="row">
 				<div class="span16">
 					<?php if (Session::get_flash('success')): ?>
 						<div class="alert success no-margin top slide">
 							<p>
 							<?php echo implode('</p><p>', e((array) Session::get_flash('success'))); ?>
-							<a href='#' class='hide'>hide</a>
 							</p>
 						</div>
 					<?php endif; ?>
@@ -70,47 +68,12 @@
 						<div class="alert error  no-margin top slide">
 							<p>
 							<?php echo implode('</p><p>', e((array) Session::get_flash('error'))); ?>
-							<a href='#' class='hide'>hide</a>
 							</p>
 						</div>
 					<?php endif; ?>
 				</div>
 			</div>
-	<div id="height-wrapper">
-	<?php echo render('regions/_header'); ?>
-			
-			<div id='content-wrapper' class='container_12' role='main'>
-				<div id="main_content" >
-					<?php echo $content; ?>
-				</div>
-				<div class='clear'></div>
-			</div>
-			<div class="clear push"></div>
-			
-			<a href="#top" id="top-link" title='click to go to the top'><i class="icon-upload-alt"></i></a>
-			</div>
-			<footer>
-				<div class="container_12">
-				<?php if(Sentry::user()->has_access('speed_loading_read')): ?>
-				Page rendered in {exec_time}s using {mem_usage}mb of memory.
-			<?php else: ?>
-				Copyright &copy; 2011 IKON Group, all rights reserved.	
-			<?php endif; ?>
-			<div id="button_bar">
-						<ul>
-							<li>
-								<span><?php echo Html::anchor('/', 'Dashboard'); ?></span>
-							</li>
-							<li>
-								<span><?php echo Html::anchor('settings', 'Settings'); ?></span>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-			</footer>
-		
-
+	<?php echo $content; ?>
 		<!-- JavaScript at the bottom for fast page loading -->
 			<!-- Grab Google CDN's jQuery + jQueryUI, with a protocol relative URL; fall back to local -->		
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
@@ -118,8 +81,16 @@
 			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 			<script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.16.min.js"><\/script>')</script>
 
-			<?php  echo isset($js) ? html_entity_decode($js) : ''; ?>
-			<?php echo Asset::js(array('mylibs/jquery.scrollTo-min.js')); ?>
+			<?php 
+			echo Asset::js(array(
+				'plugins.js',
+				'mylibs/jquery.validate.js',
+				'mylibs/jquery.jgrowl.js',
+				'mylibs/jquery.checkbox.js',
+				'script.js',
+				'login.js',
+			));
+			 ?>
 				<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to
 			support IE 6.
 			chromium.org/developers/how-tos/chrome-frame-getting-started -->

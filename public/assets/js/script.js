@@ -142,7 +142,7 @@ if(Function.prototype.bind == null) {
 		 * Error labels
 		 */
 		$('input, textarea').bind('labeled', function() {
-			$(this).parent().find('label.error').css('width', parseFloat($(this).css('widthExact')) - 10 + 'px');
+			$(this).parent().find('label.error').css('width', parseFloat($(this).css('innerWidth')) - 10 + 'px');
 		});
 		/*
 		 * Custom form elements
@@ -233,8 +233,9 @@ if(Function.prototype.bind == null) {
 		 * Hide the alert boxes
 		 */
 		// .alert .hide
-		$(".alert").find(".hide").click(function() {
-			$(this).parent().slideUp();
+		$(".alert").find(".hide").click(function(e) {
+			e.preventDefault();
+			$(this).parent().parent().slideUp();
 		});
 		/*
 		 * Show/hide the boxes
@@ -245,7 +246,6 @@ if(Function.prototype.bind == null) {
 			var $box = $this.parents('.box');
 			var $content = $box.find('.content');
 			var $actions = $box.find('.actions');
-			alert('df')
 			// .box .content:visible
 			if($content.is(':visible')) {
 				$content.slideToggle('normal', 'easeInOutCirc', function() {
@@ -598,10 +598,9 @@ if(Function.prototype.bind == null) {
 		 */
 		$('.toolbar_large').each(function() {
 			var $toolbar = $(this), $dropdown = $toolbar.find('.dropdown');
-			$toolbar.find('.toolcaption').css('min-width', $dropdown.width() - 2 + 'px');
-			
+			$toolbar.find('.toolcaption').css('min-width', $dropdown.innerWidth() - 2 + 'px');
 			$toolbar.find('.toolcaption').click(function(e) {
-				$dropdown.css('width', parseFloat($toolbar.find('.toolcaption').css('width')) + 2 + "px");
+				$dropdown.css('width', parseFloat($toolbar.find('.toolcaption').css('width')) + 12 + "px");
 
 				noPropagation(e);
 				$(this).toggleClass('active');
@@ -649,7 +648,7 @@ if(Function.prototype.bind == null) {
 	 * ================================================== */
 	$(document).ready(function(){
 		if($('.alert.slide').length > 0)
-		setTimeout(function(){$('.alert.slide').slideToggle(800)}, 1500);
+		setTimeout(function(){$('.alert.slide').slideUp(800)}, 3000);
 
 
 	/* ==================================================
@@ -677,10 +676,8 @@ if(Function.prototype.bind == null) {
 			$('#nav_main ul').find("."+pos).addClass('current');
 		}
 		
+	});
 
-	
-
-});
 
 	/* ==================================================
 	 * Plugin for scroll to top button
@@ -714,5 +711,40 @@ if(Function.prototype.bind == null) {
   });
 
 
+	/* ==================================================
+	 * ban and unban with ajax
+	 * ================================================== */
+	$('.Controller_Users #grid input[type=checkbox]').change(function(e){
+		block = e.currentTarget.checked;
+		var $username = $(this).parent().parent().find('.username');
+		if(block){
+			// block the user
+			$username.wrapInner('<span class="blocked" title="user blocked" />')
+			$.ajax({
+				url:'ajax/block',
+				data:{username:$username.find('.blocked').text()},
+				type:'POST',
+				success:function(d){
+					$.jGrowl("User <b>"+$username.find('.blocked').text()+"</b> has been successfuly blocked", {
+						theme : 'success'
+					});
+				}
+			});
+		}
+		else{
+			// unblock the user
+			$username.find('.blocked').contents().unwrap();
+			$.ajax({
+				url:'ajax/unblock',
+				data:{username:$username.text()},
+				type:'POST',
+				success:function(d){
+					$.jGrowl("User <b>"+$username.text()+"</b> has been successfuly unblocked", {
+						theme : 'success'
+					});
+				}
+			});
+		}
+	});
 
 })(jQuery);

@@ -55,6 +55,31 @@ class Controller_Ajax extends Controller_Base
 		$this->template->content = View::forge('ajax/view', $data);
 	}
 
+	public function action_block(){
+		if(!Input::post() || !Sentry::user()->has_access('users_unblock')) Response::redirect('');
+		$user = Sentry::user(Input::post('username'));
+		try
+		{
+			$data['json'] = Sentry::attempts(Input::post('username'), $user->get('ip_address'))->suspend_with_ajax();
+		}
+		catch(SentryAttemptsException $e){
+			echo $e->getMessage();
+		}
+		$this->template->content = View::forge('ajax/view', $data);
+	}
+
+	public function action_unblock(){
+		if(!Input::post() || !Sentry::user()->has_access('users_unblock')) Response::redirect('');
+		try
+		{
+			$data['json'] = Sentry::attempts(Input::post('username'))->clear();
+		}
+		catch(SentryAttemptsException $e){
+			echo $e->getMessage();
+		}
+		$this->template->content = View::forge('ajax/view', $data);
+	}
+
 	public function action_statistics()
 	{
 		$this->template->title = 'Ajax &raquo; Statistics';

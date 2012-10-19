@@ -6,7 +6,7 @@ class Controller_Users extends Controller_Base
 	public function before(){
 		parent::before();
 		if(!Sentry::check()) Response::redirect('login');
-		$this->template->js = Asset::js(array('plugins.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
+		$this->template->js = Asset::js(array('mylibs/jquery.jgrowl.js', 'plugins.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
 
 		$this->current_user = self::current_user();
 		// View::set_global('profile_fields', unserialize($user->profile_fields));
@@ -19,7 +19,7 @@ class Controller_Users extends Controller_Base
 			Session::set_flash('error', 'You DO NOT have access to the user list');
 			Response::redirect('');
 		} 
-
+		$this->template->less = Asset::less('customic.less');
 		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js'));
 		$this->template->css = Asset::css(array('sprite.tables.css'));
 

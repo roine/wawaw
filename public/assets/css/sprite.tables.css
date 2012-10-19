@@ -134,7 +134,7 @@
 .dataTables_filter input {
 	display: inline-block;
 	float: right;
-    margin: 5px 0 0 10px;
+    margin: 5px 0 5px 10px;
 }
 
 .dataTables_processing {
@@ -347,7 +347,7 @@
  * ================================================== */
 
 .paginate_button, .paginate_active {
-	background-color: #ebebeb;
+	background: linear-gradient(to bottom, #E3E3E3 0%, #D2D2D2 80%, #E4E4E4 100%) repeat scroll 0 0 transparent;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #ffffff #b5b5b5 #b5b5b5 #ffffff;
@@ -361,8 +361,10 @@
 }
 
 .paginate_active {
-	background-color: #2D5580;
+	background: #2D5580;
 	border-color: #123458;
+	box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset,
+              -5px 0 5px -3px rgba(0, 0, 0, .2) inset;
 }    
 
 .first {

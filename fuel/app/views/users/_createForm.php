@@ -1,11 +1,11 @@
-<?php echo Form::open(array('class' => 'form-stacked')); ?>
+<?php echo Form::open(array('class' => 'form-stacked validate')); ?>
 
 		<div class="content no-padding with-actions">
 
 			<div class="section _100">
 				<?php echo Form::label('Username', 'username'); ?>
 				<div>
-				<?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : ''), array('class' => '_100')); ?>
+				<?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : ''), array('class' => '_100 required')); ?>
 				</div>
 			</div>
 

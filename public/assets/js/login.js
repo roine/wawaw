@@ -13,7 +13,7 @@ $(window).load(function(){
 				$('.box .content').alertBox(message, {type: 'warning', icon: true, noMargin: false});
 				$('.box .content .alert').css({
 					width: '',
-					margin: '0',
+					margin: '0 0 5px',
 					borderLeft: 'none',
 					borderRight: 'none',
 					borderRadius: 0
@@ -35,4 +35,6 @@ $(window).load(function(){
 				});
 		}
 	});
+
+	$('.beforeLoading').removeClass('beforeLoading');
 });

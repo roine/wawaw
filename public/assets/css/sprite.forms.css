@@ -51,13 +51,13 @@
 }
 
 input:hover, input:active, input:focus, textarea:hover, textarea:active, textarea:focus {
-	border: 1px solid #a3a3a3;
+	/*border: 1px solid #a3a3a3;*/
 }
 
 input:active, input:focus, textarea:active, textarea:focus  {
-	-webkit-box-shadow: inset 0px 2px 3px 0px rgba(18, 16, 11, 0.13), 0px 0px 5px 0px rgba(58, 111, 163, 0.75);
+	/*-webkit-box-shadow: inset 0px 2px 3px 0px rgba(18, 16, 11, 0.13), 0px 0px 5px 0px rgba(58, 111, 163, 0.75);
 	-moz-box-shadow: inset 0px 2px 3px 0px rgba(18, 16, 11, 0.13), 0px 0px 5px 0px rgba(58, 111, 163, 0.75);
-	box-shadow: inset 0px 2px 3px 0px rgba(18, 16, 11, 0.13), 0px 0px 5px 0px rgba(58, 111, 163, 0.75);
+	box-shadow: inset 0px 2px 3px 0px rgba(18, 16, 11, 0.13), 0px 0px 5px 0px rgba(58, 111, 163, 0.75);*/
 }
 
 label, .label, .chzn-container {
@@ -70,10 +70,9 @@ label, .label, .chzn-container {
 }
 
 input.error, textarea.error {
-	box-shadow: none;
-	border-radius: 5px 5px 0 0;
-	border: 1px solid #870d0d;
-	margin-bottom: 0;
+	border-radius: 5px 5px 0 0!important;
+	border: 1px solid #870d0d!important;
+	margin-bottom: 0!important;
 }
 
 label.error.red {
@@ -143,6 +142,7 @@ form .section > div {
 	width: 75%;
 	padding: 0 1%;
 	padding-right: 10px;
+  position:relative;
 }/* ==================================================
  * 3) Placeholders
  * ================================================== */
@@ -828,3 +828,22 @@ input[type=color] {
 .customfile-ext-mp3, .customfile-ext-wav, .customfile-ext-mid, .customfile-ext-aif, .customfile-ext-mid, .customfile-ext-m4a, .customfile-ext-mpa, .customfile-ext-ra, .customfile-ext-wma { background-image: url(../img/icons/packs/fugue/16x16/blue-document-music.png); }
 .customfile-ext-mp4, .customfile-ext-mov, .customfile-ext-swf, .customfile-ext-m4v  , .customfile-ext-3g2, .customfile-ext-3gp, .customfile-ext-avi, .customfile-ext-flv, .customfile-ext-mpg, .customfile-ext-mpeg, .customfile-ext-rm, .customfile-ext-vob, .customfile-ext-wmv { background-image: url(../img/icons/packs/fugue/16x16/blue-document-film.png); }
 .customfile-ext-zip, .customfile-ext-tar, .customfile-ext-sit , .customfile-ext-7z, .customfile-ext-deb, .customfile-ext-gz, .customfile-ext-pkg, .customfile-ext-rar, .customfile-ext-rpm, .customfile-ext-sitx { background-image: url(../img/icons/packs/fugue/16x16/blue-document-zipper.png); }
+
+/*input{*/
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+
+    width: 100%;
+    padding: 10px 18px 10px 45px;
+  margin:0;
+    border: none; 
+    box-shadow: 
+        inset 0 0 5px rgba(0,0,0,0.1),
+        inset 0 3px 2px rgba(0,0,0,0.1);
+    border-radius: 3px;
+    background: #f9f9f9;
+    color: #777;
+    transition: color 0.3s ease-out;
+}

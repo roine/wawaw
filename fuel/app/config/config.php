@@ -214,6 +214,7 @@ return array(
 		'packages'  => array(
 			'orm',
 			'sentry',
+			'less',
 		),
 
 		/**

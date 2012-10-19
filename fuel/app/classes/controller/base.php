@@ -4,8 +4,21 @@ class Controller_Base extends Controller_Template{
 
 	public function before(){
 		parent::before();
+
 		
+
 		View::set_global('current_user', self::current_user());
+		if(Sentry::check()){
+			// logout if banned
+			$current_user = self::current_user();
+			if(Sentry::attempts($current_user->username)->get() == Sentry::attempts()->get_limit()){
+				Session::set_flash('Your account has been blocked');
+				Sentry::logout();
+				Response::redirect('login');
+			} 
+		}
+		
+
 		View::set_global('site_title', 'IKON Backend');
 		View::set_global('separator', '/');
 		$this->tables = array(
@@ -55,6 +68,8 @@ class Controller_Base extends Controller_Template{
 				'url' => 'cmg',
 				'table' => 'cmginfo'));
 		View::set_global('tables', $this->tables);
+
+
 	}
 
 	public function current_user(){

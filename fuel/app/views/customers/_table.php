@@ -1,6 +1,4 @@
-<div id="content-wrapper" class="container_12" role="main">
 	<div id="modal"></div>
-	<div id="main_content">
 	<h2 class="grid_12"><?php echo $current_table['CleanName']; ?></h2>
 		<div class="clean"></div>
 		<div class="grid_12">
@@ -26,7 +24,7 @@
 	<?php endif; ?>
 	</div>
 	<div class='clear'></div>
-			<div class="box">
+			<div class="box effect1">
 				<div class="header">
 					<img src="/assets/img/icons/packs/fugue/16x16/shadeless/table-excel.png" width="16" height="16">
 					<h3>Datatables :: <b><?php echo $current_table['CleanName']; ?></b></h3><span></span>
@@ -57,11 +55,7 @@
 			<!-- end box -->
 		</div>
 		<!-- end grid_12 -->
-	</div>
-	<!-- end main_content -->
-</div>
-<!-- end content-wrapper -->
-
+		<div class="clean"></div>
 <script>
 	var canEdit = '<?php echo Sentry::user()->has_access("customers_update"); ?>';
 	var canDelete = '<?php echo Sentry::user()->has_access("customers_delete"); ?>'

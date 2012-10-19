@@ -62,7 +62,7 @@ $(document).ready(function (){
 			"iFixedColumns": 0	
 		},
 		"aLengthMenu": [[5, 10, 25, 50, 100, 200], [5, 10, 25, 50, 100, 200]], 
-		"iDisplayLength": 25, 
+		"iDisplayLength": 10, 
 		"sPaginationType": "full_numbers",
 		// "bJQueryUI":true,
 		"oTableTools": {
@@ -186,68 +186,6 @@ $(document).ready(function (){
 		}
 	} );
 
-	/* ==================================================
-	 * datepicker configuration
-	 * ================================================== */
-	$.datepicker._gotoToday = function(id) {
-		var target = $(id);
-		var inst = this._getInst(target[0]);
-		if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
-			inst.selectedDay = inst.currentDay;
-			inst.drawMonth = inst.selectedMonth = inst.currentMonth;
-			inst.drawYear = inst.selectedYear = inst.currentYear;
-		}
-		else {
-			var date = new Date();
-			inst.selectedDay = date.getDate();
-			inst.drawMonth = inst.selectedMonth = date.getMonth();
-			inst.drawYear = inst.selectedYear = date.getFullYear();
-			this._setDateDatepicker(target, date);
-			this._selectDate(id, this._getDateDatepicker(target));
-		}
-		this._notifyChange(inst);
-		this._adjustDate(target);
-	}
-
-	$('#min').datepicker({
-		dateFormat: 'yy-mm-dd', 
-		showButtonPanel:true,
-		firstDay:1,
-		showAnim:'slide',
-		maxDate:'0',
-		showOtherMonths: true,
-        selectOtherMonths: true,
-		onSelect: function( selectedDate ) {
-            $( "#max" ).datepicker( "option", "minDate", selectedDate );
-            oTable.fnDraw();
-        },
-        beforeShowDay: highlightDays,
-	}).on("click", function(){
-		$("#ui-datepicker-div").css({"z-index":"1001"});
-	});
-
-	$('#max').datepicker({
-		dateFormat: 'yy-mm-dd', 
-		showButtonPanel:true,
-		firstDay:1,
-		showAnim:'slide',
-		maxDate:'0',
-		showOtherMonths: true,
-        selectOtherMonths: true,
-		onSelect: function( selectedDate ) {
-            $( "#min" ).datepicker( "option", "maxDate", selectedDate );
-            oTable.fnDraw();
-        },
-        beforeShowDay: highlightDays,
-	}).on("click", function(){
-		$("#ui-datepicker-div").css({"z-index":"1001"});
-	});
-
-	function highlightDays(date){
-	 console.log(date)
-      return [true, '']; 
-
-	}
 
 	/* ==================================================
 	 * Details about users, select a user by clicking on the row and press D on keyboard
@@ -333,4 +271,66 @@ $(document).ready(function (){
 		});
 	}
 
+});
+
+/* ==================================================
+ * datepicker configuration
+ * ================================================== */
+ $(document).on('focus', '#min:not(.hasDatepicker), #max:not(.hasDatepicker)', function(){
+ 	$.datepicker._gotoToday = function(id) {
+		var target = $(id);
+		var inst = this._getInst(target[0]);
+		if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
+			inst.selectedDay = inst.currentDay;
+			inst.drawMonth = inst.selectedMonth = inst.currentMonth;
+			inst.drawYear = inst.selectedYear = inst.currentYear;
+		}
+		else {
+			var date = new Date();
+			inst.selectedDay = date.getDate();
+			inst.drawMonth = inst.selectedMonth = date.getMonth();
+			inst.drawYear = inst.selectedYear = date.getFullYear();
+			this._setDateDatepicker(target, date);
+			this._selectDate(id, this._getDateDatepicker(target));
+		}
+		this._notifyChange(inst);
+		this._adjustDate(target);
+	}
+ })
+
+$(document).on('focus', '#min:not(.hasDatepicker)', function(){
+	$('#min').datepicker({
+		dateFormat: 'yy-mm-dd', 
+		showButtonPanel:true,
+		firstDay:1,
+		showAnim:'slide',
+		maxDate:'0',
+		showOtherMonths: true,
+        selectOtherMonths: true,
+		onSelect: function( selectedDate ) {
+            $( "#max" ).datepicker( "option", "minDate", selectedDate );
+            oTable.fnDraw();
+        },
+	}).on("click", function(){
+		$("#ui-datepicker-div").css({"z-index":"1001"});
+	});
+});
+
+$(document).on('focus', '#max:not(.hasDatepicker)', function(){
+	$('#max').datepicker({
+		dateFormat: 'yy-mm-dd', 
+		showButtonPanel:true,
+		firstDay:1,
+		showAnim:'slide',
+		maxDate:'0',
+		showOtherMonths: true,
+        selectOtherMonths: true,
+		onSelect: function( selectedDate ) {
+            $( "#min" ).datepicker( "option", "maxDate", selectedDate );
+            oTable.fnDraw();
+        },
+
+	}).on("click", function(){
+		$("#ui-datepicker-div").css({"z-index":"1001"});
+	});
 });

@@ -63,7 +63,7 @@ class Controller_Customers extends Controller_Base
 		View::set_global('columns', array('id', 'Full Name', 'Gender', 'Country', 'State', 'Telephone', 'Mobile Phone', 'E-mail', 'Clients', 'Position', 'Interested In', 'business website', 'referer', 'language spoken', 'question', 'from', 'website', 'created_at', 'ip'));
 
 		$this->template->title = 'Customers &raquo; Introducing brokers';
-		$this->template->content = View::forge('customers/introducing_brokers');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_franchise_scheme()
@@ -73,7 +73,7 @@ class Controller_Customers extends Controller_Base
 		View::set_global('columns', array('id', 'full name', 'company', 'country', 'state', 'telephone', 'mobile phone', 'e-mail', 'position', 'business website', 'question', 'from', 'website', 'created_at', 'ip'));
 
 		$this->template->title = 'Customers &raquo; Franchise scheme';
-		$this->template->content = View::forge('customers/franchise_scheme');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_white_label()
@@ -82,7 +82,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array('id', 'full name', 'company', 'country', 'state', 'telephone', 'mobile phone', 'e-mail', 'clients', 'position', 'business website', 'question', 'from', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; White label';
-		$this->template->content = View::forge('customers/white_label');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_senior_partners()
@@ -91,7 +91,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array('id', 'full name', 'company', 'country', 'state', 'telephone', 'mobile phone', 'e-mail', 'position', 'business website', 'question', 'from', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; Senior partners';
-		$this->template->content = View::forge('customers/senior_partners');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_callback()
@@ -100,7 +100,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array('id', 'send to', 'first name', 'lastname', 'country', 'state', 'city', 'telephone', 'mobile phone', 'e-mail', 'language spoken', 'previous visit', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; Callback';
-		$this->template->content = View::forge('customers/callback');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_inquiry()
@@ -109,7 +109,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array('id', 'send to', 'full name', 'e-mail', 'country', 'state', 'city', 'mobile phone', 'telephone', 'inquiry', 'from', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; Inquiry';
-		$this->template->content = View::forge('customers/inquiry');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_small_registration()
@@ -118,7 +118,7 @@ class Controller_Customers extends Controller_Base
 		
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('small_registration')));
 		$this->template->title = 'Customers &raquo; Small registration';
-		$this->template->content = View::forge('customers/small_registration');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_forexblog()
@@ -127,7 +127,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('forexblog_ib_registration')));
 		$this->template->title = 'Customers &raquo; Forexblog';
-		$this->template->content = View::forge('customers/forexblog');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_promotions()
@@ -136,7 +136,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('promotions')));
 		$this->template->title = 'Customers &raquo; Promotions';
-		$this->template->content = View::forge('customers/promotions');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_video_conference()
@@ -145,7 +145,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('videoconference')));
 		$this->template->title = 'Customers &raquo; Video conference';
-		$this->template->content = View::forge('customers/video_conference');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_demo_account()
@@ -163,7 +163,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('fb_home')));
 		$this->template->title = 'Customers &raquo; Facebook';
-		$this->template->content = View::forge('customers/facebook');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_pay_order()
@@ -172,7 +172,7 @@ class Controller_Customers extends Controller_Base
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('pay_order_info')));
 		$this->template->title = 'Customers &raquo; Pay order';
-		$this->template->content = View::forge('customers/pay_order');
+		$this->template->content = View::forge('customers/view');
 	}
 
 	public function action_cmg()

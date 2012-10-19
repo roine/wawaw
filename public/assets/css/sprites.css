@@ -692,7 +692,7 @@ div.jGrowl div.saved .jGrowl-message { background-image: url("../img/icons/packs
 }
 
 .icon-user {
-    background: url('../img/icons/25x25/dark/users-2.png');
+    /*background: url('../img/icons/25x25/dark/users-2.png');*/
 }
 
 .icon-warning {
