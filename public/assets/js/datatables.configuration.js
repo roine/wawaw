@@ -204,37 +204,46 @@ $(document).ready(function (){
 	});
 
 
-	$('.details').live('click', function(){
-
+	$('.details').live('click', function(e){
+		e.preventDefault();
 		// bug auto add row_selected to the parent
-		if($(this).hasClass('row_selected')){
-			$(this).addClass('row_selected').parent().removeClass('row_selected');
-			$(this).next().addClass('row_selected');
-		}
-		
-
+		$(this).addClass('row_selected').parent().removeClass('row_selected');
+		$(this).next().addClass('row_selected');
 		showInfoBox()
 	});
 
-	$('.delete').live('click', function(){
-		var data = {id:selected_data[0], table:table}
-
+	$('.delete').live('click', function(e){
+		e.preventDefault();
+		var data = {id:selected_data[0], table:table};
 		// bug auto add row_selected to the parent
 		$(this).addClass('row_selected').parent().removeClass('row_selected');
 		$(this).nextUntil('tr').next().addClass('row_selected');
-		$.ajax({
-			url:'/ajax/deleteData',
-			data:data,
-			type:'POST',
-			success:function(data){
-				if(data == 1){
-					$.jGrowl("Row #"+selected_data[0]+" in "+table+" successfully deleted, please be careful when deleting row there is no rollback", {
-						theme : 'information'
-					});
-				oTable.fnDraw();
+		
+		var clicked = function(){
+			$.ajax({
+				url:'/ajax/deleteData',
+				data:data,
+				type:'POST',
+				success:function(data){
+					if(data == 1){
+						$.jGrowl("Row #"+selected_data[0]+" in "+table+" successfully deleted, please be careful when deleting row there is no rollback", {
+							theme : 'information'
+						});
+					oTable.fnDraw();
+					}
 				}
-			}
-		})
+			});
+			$.fallr('hide')
+		}
+		// alert message
+		$.fallr('show', {
+			buttons : {
+			button1 : {text: 'Yes', danger: true, onclick: clicked},
+			button2 : {text: 'Cancel', onclick: function(){$.fallr('hide')}}
+			},
+			content : '<p>You are going to delete user #'+data.id+'?</p>',
+			icon : 'error'
+		}); 
 
 	});
 

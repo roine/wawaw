@@ -7,7 +7,7 @@ class Controller_Customers extends Controller_Base
 	public function before(){
 
 		// check right accesses
-		if(!Sentry::check() || !Sentry::user()->has_access('customers_index')) self::no_access();
+		if(!Sentry::user()->has_access('customers_index')) self::no_access();
 
 		// inherit parent
 		parent::before();
@@ -19,6 +19,7 @@ class Controller_Customers extends Controller_Base
 			'mylibs/jquery.easing.1.3.js', 
 			'mylibs/jquery.ui.touch-punch.js',
 			'/mylibs/jquery.jgrowl.js',
+			'mylibs/jquery-fallr-1.2.js',
 			'script.js',
 			// datatables libs, plugins, config
 			'mylibs/jquery.dataTables.1.9.4.min.js', 
@@ -36,10 +37,13 @@ class Controller_Customers extends Controller_Base
 			'ColVis.css',
 			'TableTools.css',
 			// 'prettyCheckable.css',
-			'sprite.tables.css', 
-			'custom.css',
+			'sprite.tables.css',
 			));
+		$this->template->less = Asset::less(array('customic.less'));
+		// set the global to get the table url, name, clean name
 		View::set_global('current_table',$this->current_table(Request::active()->action));
+		$current_table = $this->current_table(Request::active()->action);
+		$this->template->h2 = $current_table['CleanName'];
 		
 	}
 

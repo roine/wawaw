@@ -28,10 +28,6 @@ html, body {
 	min-height: 100%;
 	background-color: #fafafa;
 }
-body.Controller_Customers{
-	background-image:url("../img/grey.png");
-}
-
 
 /* Fill the window but let some space for the footer */
 #height-wrapper {
@@ -40,7 +36,9 @@ body.Controller_Customers{
 	margin: 0 auto -38px;
 	min-height: 100%;
 }
-
+.Controller_Customers #height-wrapper{
+	background-image:url("../img/grey.png");
+}
 #content-wrapper {
 	height: 100%;
 	position: relative;
@@ -73,7 +71,7 @@ body.Controller_Customers{
  * ================================================== */
 #main_content {
 	padding: 20px;
-
+	position:relative;
 	overflow: hidden;
 }
 .Controller_Customers #main_content{
@@ -541,3 +539,4 @@ select.styled{
 }
 #top-link:hover{opacity:1;}
 #main_content > header{display:none;}
+.Controller_Message.to .alert{display:none;}

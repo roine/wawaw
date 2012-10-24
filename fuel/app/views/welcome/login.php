@@ -16,7 +16,7 @@
 					<?php echo Form::open(); ?>
 						<div class="content" style='padding:10px 0'>
 							<div class=" _100" style='position:relative;margin-bottom:10px'>
-									<?php echo Form::input('username', isset($username) ? $username : '', array('class' => 'required', 'id' => 'username', 'placeholder' => 'Username')); ?>
+									<?php echo Form::input('username', isset($username) ? $username : '', array('class' => 'required', 'id' => 'username', 'placeholder' => 'Username', 'autofocus')); ?>
 									 <i class="icon-user icon-large"></i>
 
 							</div>

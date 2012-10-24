@@ -2,6 +2,19 @@
  * Function.prototype.bind for IE
  * @see http://webreflection.blogspot.com/2010/02/functionprototypebind.html
  */
+// add the ability to save an object
+if(localStorage){
+	
+	Storage.prototype.setObj = function(key, obj) {
+		return this.setItem(key, JSON.stringify(obj))
+	}
+	Storage.prototype.getObj = function(key) {
+		return JSON.parse(this.getItem(key))
+	}
+}
+
+
+
 if(Function.prototype.bind == null) {
 
 	Function.prototype.bind = ( function(slice) {
@@ -746,5 +759,48 @@ if(Function.prototype.bind == null) {
 			});
 		}
 	});
+
+
+	/* ==================================================
+	 * save message locally
+	 * ================================================== */
+
+	 // check whether browser support localstorage
+	$('button.save').click(function(e){
+		e.preventDefault();
+		if(!window.localStorage){
+			alert('localStorage not supported');
+		}
+		else{
+			var $form = $(this).parent().parent().parent();
+		 	var subject = $form.find('#form_subject').val();
+		 	var content = $form.find('#form_content').val();
+		 	var to = $('.message').data('to');
+		 	var current = localStorage.getObj('message');
+
+		 	var messages = new Array();
+		 	
+		 	if(current != null)
+			 	messages = current;
+			 
+			 var push = false;
+			 for(i in messages){
+			 	message = messages[i];
+			 	if(message.to == to){
+			 		messages[i] = {to:to, content:content,subject:subject,date:new Date()};
+			 		push = !push;
+			 	}
+			 }
+			 if(!push)
+				messages.push({to:to, content:content,subject:subject,date:new Date()});
+
+			localStorage.setObj('message', messages);
+			$.jGrowl("Your message has been successfuly saved locally", {
+				theme : 'success'
+			});
+		}
+ 	
+	});
+
 
 })(jQuery);

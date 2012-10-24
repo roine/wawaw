@@ -5,7 +5,6 @@ class Controller_Groups extends Controller_Base
 	public function before(){
 		parent::before();
 
-		if(!Sentry::check()) Response::redirect('login');
 		$this->template->js = Asset::js(array('plugins.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
 
 		$this->current_user = self::current_user();
@@ -26,7 +25,8 @@ class Controller_Groups extends Controller_Base
 
 		$data['groups'] = Sentry::group()->all();
 
-		$this->template->title = "List of groups";
+		$this->template->title = "Groups &raquo; index";
+		$this->template->h2 = 'List of groups';
 		$this->template->content = View::forge('groups/index', $data);
 	}
 
@@ -37,7 +37,8 @@ class Controller_Groups extends Controller_Base
 
 		$data['group'] = Sentry::group(intval($id))->get(array('name', 'permissions'));
 		$data['users'] = Sentry::group(intval($id))->users();
-		$this->template->title = "List of groups";
+		$this->template->h2 = ucwords($data['group']['name']).' Group';
+		$this->template->title = 'Groups &raquo; view';
 		$this->template->content = View::forge('groups/view', $data);
 	}
 
@@ -50,7 +51,8 @@ class Controller_Groups extends Controller_Base
 
 		}
 
-		$this->template->title = 'Create user';
+		$this->template->title = 'Groups &raquo; Create';
+		$this->template->h2 = 'Create a group';
 		$this->template->js .= Asset::js(array('mylibs/jquery.validate.js', 'script.js'));
 		$this->template->content = View::forge('groups/create');
 	}

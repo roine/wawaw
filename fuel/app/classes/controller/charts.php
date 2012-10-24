@@ -3,12 +3,7 @@
 class Controller_Charts extends Controller_Base
 {
 
-	public function before(){
-		parent::before();
-		if(!Sentry::check()){
-			Response::redirect('/');
-		}
-	}
+
 
 	public function action_index(){
 		$data['id'] = '';

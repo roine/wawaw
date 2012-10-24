@@ -1,9 +1,61 @@
 /*
 // moving the stats to display russian an taiwanese
 */
-$(document).keydown(function(e){
+
+
+// time running like digital clock
+var run = function(){
+	var $time = $('.time.running');
+	var $hour = $time.find('span:nth-child(1)');
+	var $minute = $time.find('span:nth-child(2)');
+	var $second = $time.find('span:nth-child(3)');
+	var current_second = parseInt($time.find('span:nth-child(3)').text(),10);
+	var current_minute = parseInt($time.find('span:nth-child(2)').text(),10);
+	// increment the seconds
+	$second.text(function(e,val){
+		str = parseInt(val, 10) + 1;
+		if(str > 0 && str < 10)
+			str = '0'+str;
+		else if(str >= 60){
+			str = '00';
+		}
+		return str;
+	});
+	// increment the minutes
+	if(current_second == 0){
+		$minute.text(function(e,val){
+		str = parseInt(val, 10) + 1;
+		if(str > 0 && str < 10)
+			str = '0'+str;
+		else if(str >= 60){
+			str = '00';
+		}
+		return str;
+	});
+	}
+	// increment the hours
+	if(current_minute == 0 && current_second == 0){
+		$hour.text(function(e,val){
+		str = parseInt(val, 10) + 1;
+		if(str > 0 && str < 10)
+			str = '0'+str;
+		else if(str >= 24){
+			str = '00';
+		}
+		return str;
+	});
+	}
+	setTimeout("run()", 1000);
+}
+
+$(document).ready(function(){
+
+	run();
+
 	var height =  $("div.grid_6").height();
 	$("#stats_container").css({"height":parseInt(height)+5, "overflow":"hidden"});
+	$(document).keydown(function(e){
+	
 	el = $("div.en, div.cn");
 	position = el.position();
 	//is Down
@@ -19,9 +71,6 @@ $(document).keydown(function(e){
 		
 	}
 });
-
-$(document).ready(function(){
-	
 	$('#accordion').accordion();
 	$(window).resize();
 

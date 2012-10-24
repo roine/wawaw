@@ -1,1 +1,131 @@
-header{background:blue;}
+@import 'elements.less';
+
+
+.Controller_Customers{
+	#grid_processing{
+		padding:30px 0;
+		background:#eee;
+		font-weight:bold;
+		border:#ddd 1px solid;
+		box-shadow:0 0 5px rgba(0,0,0,.5);
+		height:auto;
+		z-index:300;
+	}
+	.table {
+		.row_selected td{
+			.gradient(#366FAC, #184B82, #366FAC);
+			color:white;
+			text-shadow:0 1px black;
+		}
+		tbody{
+			tr{
+				&:hover{background:#9FAFD1}
+			}
+			span.delete, span.details{
+				position:absolute;
+				.gradient(#366FAC,#184B82,#366FAC);
+				color:white;	
+				text-shadow:none;
+				width:55px;
+				.box-sizing();
+				padding:5px;
+				margin-top:2px;
+				cursor:pointer;
+				.box-shadow(0 1px 0 rgba(0, 0, 0, 0.3), 0 2px 2px -1px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3) inset);
+			}
+			span.delete{
+				left:-55px;
+				border-radius: 5px 0 0 5px;
+			}
+			span.details{
+				right:-55px;
+				border-radius: 0 5px 5px 0;
+			}
+		}
+		td{
+			.box-sizing();
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width:80px;
+			height:20px;
+			text-align:center;
+			white-space:nowrap;
+		}
+		
+		
+	}
+	#custom_modal{
+		display:block;
+		margin:0 auto;
+		.modal_head{
+			padding:0 10px;
+			width:200px;
+			display:inline-block;
+		}
+		.modal_data{
+			width:300px;
+		}
+		div{
+			padding:5px;
+			border-bottom:1px solid #bbb;
+		}
+		div:nth-child(even){
+			background:#F5F5F5;
+		}
+		div:nth-child(odd){
+			background:white;
+		}
+	}
+}
+	
+.drop-shadow {
+   position:relative;
+   width:90%;
+   &:before, &:after{
+	   content:"";
+	   position:absolute;
+	   z-index:-1;
+	   bottom:15px;
+	   left:10px;
+	   width:50%;
+	   height:20%;
+	   max-width:300px;
+	   .box-shadow(0 15px 10px rgba(0, 0, 0, 0.7));
+   }
+   &:after{
+	   right:10px;
+	   left:auto;
+	   -webkit-transform:rotate(3deg);
+	   -moz-transform:rotate(3deg);
+	   -o-transform:rotate(3deg);
+	   transform:rotate(3deg);
+	}
+}
+
+.lifted {
+    -moz-border-radius:4px;
+    border-radius:4px;
+    &:before,&:after{
+     	bottom:15px;
+	    left:10px;
+	    width:50%;
+	    height:20%;
+	    max-width:300px;
+	    max-height:100px;
+	    .box-shadow(0 15px 10px rgba(0, 0, 0, 0.7));
+	    .rotate(-3deg);
+	}
+	&:after{
+		right:10px;
+	    left:auto;
+	    .rotate(3deg);
+	}
+}
+
+
+.ui-datepicker-week-end a{
+	background:rgba(0,0,0,0.2)!important;
+}
+
+
+

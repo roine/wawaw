@@ -50,7 +50,7 @@
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		// echo Asset::less('custom.less');
+		echo Asset::less('customic.less');
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>

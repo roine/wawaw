@@ -5,10 +5,10 @@ class Controller_Users extends Controller_Base
 
 	public function before(){
 		parent::before();
-		if(!Sentry::check()) Response::redirect('login');
+
 		$this->template->js = Asset::js(array('mylibs/jquery.jgrowl.js', 'plugins.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
 
-		$this->current_user = self::current_user();
+		// $this->current_user = self::current_user();
 		// View::set_global('profile_fields', unserialize($user->profile_fields));
 	}
 
@@ -19,12 +19,13 @@ class Controller_Users extends Controller_Base
 			Session::set_flash('error', 'You DO NOT have access to the user list');
 			Response::redirect('');
 		} 
-		$this->template->less = Asset::less('customic.less');
+		$this->template->less = Asset::less(array('customic.less'));
 		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js'));
 		$this->template->css = Asset::css(array('sprite.tables.css'));
 
 		$data['users'] = Sentry::user()->all();
 
+		$this->template->h2 = 'List of users';
 		$this->template->title = 'User &raquo; Index';
 		$this->template->content = View::forge('users/index', $data);
 	}
@@ -72,7 +73,8 @@ class Controller_Users extends Controller_Base
 		}
 
 		View::set_global('groups', Sentry::group()->all());
-		$this->template->title = 'Create user';
+		$this->template->h2 = 'Create a user';
+		$this->template->title = 'User &raquo; Create';
 		$this->template->js .= Asset::js(array('mylibs/jquery.validate.js', 'script.js'));
 		$this->template->content = View::forge('users/create');
 	}
@@ -85,8 +87,8 @@ class Controller_Users extends Controller_Base
 		}
 		$data['user'] = Sentry::user(intval($id));
 		is_null($id) and Response::redirect('users');
-		
-		$this->template->title = isset($data['user']['username']) ? $data['user']['username'] : 'User not found';
+
+		$this->template->h2 = $this->template->title = isset($data['user']['username']) ? ucwords($data['user']['username']).'\'s Profile' : 'User not found';
 		$this->template->content = View::forge('users/view', $data);
 	}
 
@@ -132,7 +134,7 @@ class Controller_Users extends Controller_Base
 			}
 		}
 
-		$this->template->title = isset($user['username']) ? 'Editing '.$user['username'].'\'s profile' : 'User not found';
+		$this->template->h2 = $this->template->title = isset($user['username']) ? 'Editing '.ucwords($user['username']).'\'s profile' : 'User not found';
 
 		$this->template->content = View::forge('users/edit');
 	}

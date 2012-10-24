@@ -6,9 +6,8 @@ class Controller_Welcome extends Controller_Base
 	
 	public function action_index()
 	{
-		if(!Sentry::check())
-			Response::redirect('login');
-		$data['less'] = Asset::less('custom.less');
+			
+		$data['less'] = Asset::less('customic.less');
 		$this->template = \View::forge('dashboard');
 		$this->template->title = $data['data']['title'] = 'Welcome to IKON backoffice';
 
@@ -16,7 +15,6 @@ class Controller_Welcome extends Controller_Base
 	}
 
 	public function action_login(){
-
 		
 		$vars = array(
     	'email'    => 'jonathan@ikonfx.com',
@@ -46,7 +44,6 @@ class Controller_Welcome extends Controller_Base
 				    if ($valid_login){
 				    	Session::set_flash('success', 'Successfuly connected');
 				    	Response::redirect('');
-				       
 				    }
 				    else{
 				       	$data['username'] = Input::post('username');

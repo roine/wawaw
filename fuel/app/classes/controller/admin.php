@@ -3,13 +3,6 @@
 class Controller_Admin extends Controller_Template
 {
 
-	public function before(){
-		parent::before();
-		if(!Sentry::check()){
-			Response::redirect('login');
-		}
-	}
-
 	public function action_index()
 	{
 

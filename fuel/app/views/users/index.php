@@ -1,5 +1,4 @@
-	<h2 class="grid_12">List of users</h2>
-		<div class="clean"></div>
+
 	<table class='table' id='grid'>
 		<thead>
 		<?php if(Sentry::user()->has_access('users_unblock')): ?>

@@ -1,3 +1,137 @@
-header {
-  background: blue;
+.Controller_Customers #grid_processing {
+  padding: 30px 0;
+  background: #eee;
+  font-weight: bold;
+  border: #ddd 1px solid;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  height: auto;
+  z-index: 300;
+}
+.Controller_Customers .table .row_selected td {
+  background: #366FAC;
+  background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#184B82),color-stop(1,#366FAC));
+  background: -ms-linear-gradient(bottom,#184B82,#366FAC);
+  background: -moz-linear-gradient(center bottom,#184B82 0%,#366FAC 100%);
+  color: white;
+  text-shadow: 0 1px black;
+}
+.Controller_Customers .table tbody tr:hover {
+  background: #9FAFD1;
+}
+.Controller_Customers .table tbody span.delete,
+.Controller_Customers .table tbody span.details {
+  position: absolute;
+  background: #366FAC;
+  background: -webkit-gradient(linear,left bottom,left top,color-stop(0,#184B82),color-stop(1,#366FAC));
+  background: -ms-linear-gradient(bottom,#184B82,#366FAC);
+  background: -moz-linear-gradient(center bottom,#184B82 0%,#366FAC 100%);
+  color: white;
+  text-shadow: none;
+  width: 55px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.Controller_Customers .table tbody span.delete {
+  left: -55px;
+  border-radius: 5px 0 0 5px;
+}
+.Controller_Customers .table tbody span.details {
+  right: -55px;
+  border-radius: 0 5px 5px 0;
+}
+.Controller_Customers .table td {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+  height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+.Controller_Customers #custom_modal {
+  display: block;
+  margin: 0 auto;
+}
+.Controller_Customers #custom_modal .modal_head {
+  padding: 0 10px;
+  width: 200px;
+  display: inline-block;
+}
+.Controller_Customers #custom_modal .modal_data {
+  width: 300px;
+}
+.Controller_Customers #custom_modal div {
+  padding: 5px;
+  border-bottom: 1px solid #bbb;
+}
+.Controller_Customers #custom_modal div:nth-child(even) {
+  background: #F5F5F5;
+}
+.Controller_Customers #custom_modal div:nth-child(odd) {
+  background: white;
+}
+.drop-shadow {
+  position: relative;
+  width: 90%;
+}
+.drop-shadow:before,
+.drop-shadow:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  height: 20%;
+  max-width: 300px;
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+  box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+}
+.drop-shadow:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+.lifted {
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.lifted:before,
+.lifted:after {
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  height: 20%;
+  max-width: 300px;
+  max-height: 100px;
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+  box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.lifted:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+.ui-datepicker-week-end a {
+  background: rgba(0,0,0,0.2) !important;
 }

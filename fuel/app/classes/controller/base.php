@@ -5,13 +5,15 @@ class Controller_Base extends Controller_Template{
 	public function before(){
 		parent::before();
 
-		
+		if(Request::active()->action != 'login' && !Sentry::check())
+			Response::redirect('login');
 
+		$this->current_user = self::current_user();
 		View::set_global('current_user', self::current_user());
 		if(Sentry::check()){
 			// logout if banned
-			$current_user = self::current_user();
-			if(Sentry::attempts($current_user->username)->get() == Sentry::attempts()->get_limit()){
+			
+			if(Sentry::attempts($this->current_user->username)->get() == Sentry::attempts()->get_limit()){
 				Session::set_flash('Your account has been blocked');
 				Sentry::logout();
 				Response::redirect('login');

@@ -10,7 +10,7 @@
 	<head>
 		<meta charset="utf-8">
 		<!-- DNS prefetch -->
-		<link rel=dns-prefetch href="//fonts.googleapis.com">
+		<link rel=dns-prefetch async href="//fonts.googleapis.com">
 		<!-- Use the .htaccess and remove these lines to avoid edge case issues.
 		More info: h5bp.com/b/378 -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -42,7 +42,7 @@
 			'ie.fixes.css',
 			'font-awesome.css',
 			));
-		
+
 		echo isset($css) ? html_entity_decode($css) : '';
 		echo isset($less) ? html_entity_decode($less) : '';
 			?>
@@ -51,7 +51,7 @@
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		// echo Asset::less('custom.less');
+		echo Asset::less('customic.less');
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>
@@ -81,6 +81,8 @@
 			
 			<div id='content-wrapper' class='container_12' role='main'>
 				<div id="main_content" >
+				<h2 class="grid_12"><?php echo isset($h2) ? $h2 : ''; ?></h2>
+				<div class="clean"></div>
 					<?php echo $content; ?>
 				</div>
 				<div class='clear'></div>
