@@ -28,7 +28,7 @@ footer {
 	float: left;
 	position: relative;
 	z-index: 101;
-	
+	box-shadow:0 -5px 4px -4px rgba(0, 0, 0, 0.4);
 	border-bottom: 1px solid #353535;
 	/* The black gradient */
 	background: #353535; /* Old browsers */

@@ -374,12 +374,12 @@ input:-moz-placeholder {
 /* ==================================================
  * 14) Sprite: Buttons
  * ================================================== */
-button, input[type="submit"], a.button {
+button:not(.over), input[type="submit"]:not(.over), a.button:not(.over) {
 	color: #58646d;
 	font-size: 12px;
 }
 
-button:hover, input[type="submit"]:hover, a.button:hover, .customfile-hover button {
+button:hover:not(.over), input[type="submit"]:hover:not(.over), a.button:hover:not(.over), .customfile-hover button:not(.over) {
 	color: #fff;
 	text-shadow: 0px 1px 0px #12100b;
 	filter: shadow(color=#12100b, direction: 180, strength: 1);
@@ -390,7 +390,7 @@ button.red, input[type="reset"], a.button.red {
 }
 
 
-button:hover.red, button:active.red, input[type="reset"]:hover, input[type="reset"]:active, a.button.red:hover, a.button.red:active {
+button:hover.red:not(.over), button:active.red:not(.over), input[type="reset"]:hover:not(.over), input[type="reset"]:active:not(.over), a.button.red:hover:not(.over), a.button.red:active:not(.over) {
 	color: #fafafa;
 	text-shadow: 0px 1px 1px rgba(18, 16, 11, 0.5);
 	filter: dropshadow(color=#8812100b, offx=0, offy=1);

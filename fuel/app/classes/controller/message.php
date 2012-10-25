@@ -22,12 +22,30 @@ class Controller_Message extends Controller_Base
 			Response::redirect('');
 		}
 
-		if(Input::method() == 'POST'){
-			
-		}
-
 		$data['user'] = Sentry::user(intval($id));
 		$data['messages'] = Model_Message::messageWith($data['user'], $this->current_user);
+
+		if(Input::method() == 'POST'){
+			$message = Model_Message::forge(array(
+					'subject' => Input::post('subject'),
+					'content' => Input::post('content'),
+					'to' => $data['user']->id,
+					'from' => $this->current_user->id,
+					'parent_id' => '',
+					'read' => 0,
+					'from_delete' => 0,
+					'to_delete' => 0
+				));
+			if($message and $message->save()){
+				Session::set_flash('success', 'Message successfuly sent to '.$data['user']->username);
+				Response::redirect('message');
+			}
+			else{
+				Session::set_flash('error', 'Could not send the message.');
+			}
+		}
+
+		
 		$this->template->h2 = 'Send Message to '.$data['user']->username;
 		$this->template->title = 'Message &raquo; to';
 		$this->template->content = View::forge('message/to', $data);

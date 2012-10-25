@@ -30,10 +30,9 @@
 					</ul>
 				</div> <!-- End of .content -->
 				<div class="actions">
-					<div class="actions-left"></div>
-					<div class="actions-right">
-						<a class="button" href="statistics.php">Go to stats &raquo;</a>
-					</div>
+
+						<?php echo Html::anchor('charts', 'Go to stats &raquo;',array('class' => 'button over color blue', 'style' => 'width:100%;border-radius:0 0 3px 3px')); ?>
+
 				</div> <!-- End of .actions -->
 				<div class="clear"></div>
 			</div> <!-- End of .box -->

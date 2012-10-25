@@ -145,7 +145,7 @@
 
 .special_page .box {
 	z-index: 110;
-	margin: 0 auto;
+	margin: 5px auto;
 	position: relative;
 	-webkit-transition:all 1s ease;
 	-moz-transition:all 1s ease;

@@ -52,6 +52,8 @@ $(document).ready(function(){
 
 	run();
 
+	
+
 	var height =  $("div.grid_6").height();
 	$("#stats_container").css({"height":parseInt(height)+5, "overflow":"hidden"});
 	$(document).keydown(function(e){

@@ -9,10 +9,15 @@ var restaureData = function(message, $form){
 	date = date.toString('dddd, MMMM ,yyyy')
 	$restaured.text('Message restaured from '+date);
 	$restaured.parent().slideToggle();
-
 }
 
+var clearStorage = function(to = null){
+	console.log(to)
+}
 
+$('form').submit(function(){
+	
+});
 
 var getMessage = function(to){
 	messages = localStorage.getObj('message');

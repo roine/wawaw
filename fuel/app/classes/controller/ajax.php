@@ -5,9 +5,9 @@ class Controller_Ajax extends Controller_Base
 	public function before(){
 		parent::before();
 		$this->languages = array('en', 'cn', 'tw', 'ru');
-		// if(!Input::is_ajax()){
-		// 	Response::redirect('');
-		// }
+		if(!Input::is_ajax()){
+			Response::redirect('');
+		}
 
 	}
 
@@ -78,6 +78,20 @@ class Controller_Ajax extends Controller_Base
 			echo $e->getMessage();
 		}
 		$this->template->content = View::forge('ajax/view', $data);
+	}
+
+	public function action_message(){
+		
+		$data['json'] = Model_Ajax::messages($this->current_user);
+		$this->template->content = View::forge('ajax/view', $data);
+	}
+
+	public function action_charts($type = 'daily'){
+		if($type == 'daily'){
+			Model_Ajax::chartsDaily();
+		}
+		if(!Sentry::user()->has_access('charts_view'))
+			$data['json'] = null;
 	}
 
 	public function action_statistics()

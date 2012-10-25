@@ -28,9 +28,7 @@
 							</div>
 						</div>
 						<div class="actions">
-							<div class="actions-right">
-								<input type="submit" value="Login"/>
-							</div>
+								<input type="submit" value="Login" class='button color blue over large' style='border-radius:0 0 3px 3px' />
 						</div>
 				</div>
 				<div class="shadow"></div>

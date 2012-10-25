@@ -5,45 +5,7 @@
 						<h1 class="grid_8"><?php echo $site_title; ?></h1>
 						<!-- Start of right part -->
 						<div class="grid_4">
-							<!-- A small toolbar button -->
-							<div class="toolbar_small">
-								<div class="toolbutton">
-									<span>3</span>
-									<img src="/assets/img/icons/16x16/mail.png" width="16" height="16" alt="mail" >
-								</div>
-								<div class="toolbox" >
-									<span class="arrow"></span>
-									<h3>Your Messages</h3>
-									<ul class="mail">
-										<li>
-											<a href="#"> <strong>10:15</strong>Need your Help!
-											<small>
-												From: John
-											</small> </a>
-										</li>
-										<li>
-											<a href="#"> <strong>9:55</strong>New comment on you theme
-											<small>
-												From: themeforest
-											</small></a>
-										</li>
-										<li>
-											<a href="#"> <strong>Yest.</strong>Successfull backup
-											<small>
-												From: System
-											</small></a>
-										</li>
-										<li class="read">
-											<a href="#"> <strong>2 days</strong>Bug report
-											<small>
-												From: Jane
-											</small></a>
-										</li>
-									</ul>
-									<a class="inbox" href="#">Go to inbox &raquo;</a>
-								</div>
-							</div> <!-- End of small toolbar button -->
-							
+						
 							<!-- A large toolbar button -->
 							<div class="toolbar_large">
 								<div class="toolbutton">
@@ -136,7 +98,7 @@
 							</li>
 							<?php endif; ?>
 							<?php if(Sentry::user()->has_access('charts_index')): ?>
-							<li>
+							<li class='charts'>
 								<a href="#">
 								<img src="/assets/img/icons/25x25/dark/chart-3.png" width=25 height=25 alt="">
 								Charts</a>

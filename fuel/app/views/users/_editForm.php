@@ -79,10 +79,10 @@
 </div>
 <div class="actions">
 		<div class="actions-left">
-			<?php echo Form::reset('reset', 'Reset'); ?>
+			<?php echo Form::reset('reset', 'Reset', array('class' => 'over button color red small')); ?>
 		</div>
 		<div class="actions-right">
-			<?php echo Form::submit('submit', 'Save', array('class' => 'btn primary')); ?>
+			<?php echo Form::submit('submit', 'Save', array('class' => 'over button color green')); ?>
 		</div>
 	</div> 
 

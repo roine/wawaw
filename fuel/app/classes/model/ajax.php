@@ -331,4 +331,22 @@ class Model_Ajax extends Model
 		if($query)
 			return $value;	
 	}
+
+
+	public static function messages($user){
+		$query =  DB::select(DB::expr('messages.*, sentry_users.username'))->from('messages')
+			->join('sentry_users')
+			->on('sentry_users.id', '=', 'messages.from')
+			->where_open()
+			->where('to', intval($user->id))
+			->and_where('read', 0)
+			->and_where('to_delete', 0)
+			->where_close()->execute()->as_array();
+		return $query;
+	}
+
+
+	public static function chartsDaily(){
+		
+	}
 }

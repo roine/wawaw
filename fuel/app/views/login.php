@@ -50,7 +50,7 @@
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		// echo Asset::less('custom.less');
+		echo isset($less) ? html_entity_decode($less) : '';
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>

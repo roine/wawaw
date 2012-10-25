@@ -175,10 +175,12 @@ if(Function.prototype.bind == null) {
 		 */
 		if($.fn.chosen) {
 			$('select').chosen();
+			$('.chzn-container').addClass('_100');
 			$(window).resize(function(){
 				$('.chzn-container').each(function(){
 					var $chzn = $(this), $select = $('#' + $chzn.attr('id').replace('_chzn', ''));
 					$chzn.css('width', parseFloat($select.show().css('widthExact')) + 3 + 'px');
+					
 					$select.hide();
 				});
 			});
@@ -664,30 +666,39 @@ if(Function.prototype.bind == null) {
 		setTimeout(function(){$('.alert.slide').slideUp(800)}, 3000);
 
 
-	/* ==================================================
-	 * Current for menu
-	 * ================================================== */
+		/* ==================================================
+		 * Current for menu
+		 * ================================================== */
+		 // Users
 		if($('.Controller_Users, .Controller_Groups').length > 0){
 			$('#nav_main .users').addClass('current').find('ul').show();
 			if($('.Controller_Users.index').length > 0)
 				$('#nav_main .users ul li:nth-child(1)').addClass('current');
 			if($('.Controller_Users.create').length > 0)
 				$('#nav_main .users ul li:nth-child(2)').addClass('current');
-
+			// Groups
 			if($('.Controller_Groups.index').length > 0)
 				$('#nav_main .users ul li:nth-child(3)').addClass('current');
 			if($('.Controller_Groups.create').length > 0)
 				$('#nav_main .users ul li:nth-child(4)').addClass('current');
 		}
-
+		// Dashboard
 		else if($('.Controller_Welcome ').length > 0)
 			$('#nav_main .dashboard').addClass('current');
-
+		// Customers
 		else if($('.Controller_Customers').length > 0){
 			$('#nav_main .customers').addClass('current').find('ul').show();
 			var pos = $('.Controller_Customers').attr('data-view');
 			$('#nav_main ul').find("."+pos).addClass('current');
 		}
+		// Charts
+		else if($('.Controller_Charts').length > 0){
+			$('#nav_main .charts').addClass('current').find('ul').show();
+			if($('.Controller_Charts.index').length > 0)
+				$('#nav_main .charts ul li:nth-child(1)').addClass('current');
+		}
+
+		
 		
 	});
 
@@ -782,7 +793,7 @@ if(Function.prototype.bind == null) {
 		 	
 		 	if(current != null)
 			 	messages = current;
-			 
+
 			 var push = false;
 			 for(i in messages){
 			 	message = messages[i];
@@ -801,6 +812,7 @@ if(Function.prototype.bind == null) {
 		}
  	
 	});
+
 
 
 })(jQuery);

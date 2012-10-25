@@ -122,7 +122,7 @@
  * 2) Buttons
  * ================================================== */
 
-button, input[type="submit"], input[type="reset"], a.button {
+button:not(.over), input[type="submit"]:not(.over), input[type="reset"]:not(.over), a.button:not(.over) {
 	display: block;
 	/* Setting the height */
 	height: 25px;
@@ -149,7 +149,7 @@ button, input[type="submit"], input[type="reset"], a.button {
 	overflow: hidden;
 }
 
-button:hover, button:active, input[type="submit"]:hover, input[type="submit"]:active, input[type="reset"]:hover, input[type="reset"]:active, a.button:hover, a.button:active, .customfile-hover button {
+button:hover:not(.over), button:active:not(.over), input[type="submit"]:hover:not(.over), input[type="submit"]:active:not(.over), input[type="reset"]:hover:not(.over), input[type="reset"]:active:not(.over), a.button:hover:not(.over), a.button:active:not(.over), .customfile-hover button:not(.over) {
 	border-color: #2462a0;
 	background-image: url(../img/sprites/buttons/hover/bg.png);
 	-webkit-box-shadow: 0 1px 1px 0 rgba(18, 16, 11, 0.1), inset 0px 0px 1px 0px rgba(255, 255, 255, 0.42);
@@ -157,11 +157,11 @@ button:hover, button:active, input[type="submit"]:hover, input[type="submit"]:ac
 	box-shadow: 0 1px 1px 0 rgba(18, 16, 11, 0.1), inset 0px 0px 1px 0px rgba(255, 255, 255, 0.42);
 }
 
-button:active, input[type="submit"]:active, a.button:active , .customfile-focus button{
+button:active:not(.over), input[type="submit"]:active:not(.over), a.button:active:not(.over) , .customfile-focus button:not(.over){
 	background: url(../img/sprites/buttons/active/bg.png);
 }
 
-a.button {
+a.button:not(.over) {
 	height: 23px;
 }
 
@@ -178,11 +178,11 @@ button[disabled], input[type="submit"][disabled], input[type="reset"][disabled],
  * ================================================== */
 
 
-button.red, input[type="reset"], a.button.red {
+button.red:not(.over), input[type="reset"]:not(.over), a.button.red:not(.over) {
 	color: #952a2a;
 }
 
-button:hover.red, button:active.red, input[type="reset"]:hover, input[type="reset"]:active, a.button.red:hover, a.button.red:active {
+button:hover.red:not(.over), button:active.red, input[type="reset"]:hover:not(.over), input[type="reset"]:active:not(.over), a.button.red:hover:not(.over), a.button.red:active:not(.over){
 	border-color: #870d0d;
 	background-image: url(../img/sprites/buttons/hover/bg-red.png);
 }

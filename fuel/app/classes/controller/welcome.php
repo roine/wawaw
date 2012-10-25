@@ -7,7 +7,7 @@ class Controller_Welcome extends Controller_Base
 	public function action_index()
 	{
 			
-		$data['less'] = Asset::less('customic.less');
+		$this->template->less = Asset::less('customic.less');
 		$this->template = \View::forge('dashboard');
 		$this->template->title = $data['data']['title'] = 'Welcome to IKON backoffice';
 
@@ -15,6 +15,7 @@ class Controller_Welcome extends Controller_Base
 	}
 
 	public function action_login(){
+		
 		
 		$vars = array(
     	'email'    => 'jonathan@ikonfx.com',
@@ -64,16 +65,16 @@ class Controller_Welcome extends Controller_Base
 
 		}
 		$this->template->title = $data['title'] = 'Welcome to IKON backoffice';
-
+		$this->template->less = Asset::less('customic.less');
 		$this->template->custom_class = 'special_page';
 		$this->template->content = View::forge('welcome/login', $data);
 	}
 
 	public function action_404()
 	{
+		$this->template = \View::forge('404');
 		$this->template->title = 'Page not found';
 		$this->template->custom_class = 'special_page 404';
 		$this->template->css = Asset::css(array('special-page.css'));
-		$this->template->content = View::forge('welcome/404');
 	}
 }

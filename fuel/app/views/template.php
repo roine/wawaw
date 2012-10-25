@@ -89,7 +89,7 @@
 			</div>
 			<div class="clear push"></div>
 			
-			<a href="#top" id="top-link" title='click to go to the top'><i class="icon-upload-alt"></i></a>
+			<a href="#top" id="top-link"><i class="icon-upload-alt"></i></a>
 			</div>
 			<footer>
 				<div class="container_12">

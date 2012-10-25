@@ -50,7 +50,7 @@
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		echo Asset::less('customic.less');
+		echo isset($less) ? $less : '';
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>
@@ -85,7 +85,7 @@
 								<div class="avatar">
 									<img src="/assets/img/sprites/userinfo/avatar.png" width="80" height="80" alt="">
 								</div>
-								<a href="#">0 Messages</a>
+								<?php echo Html::anchor('users/view/'.$current_user->id, e(ucwords($current_user->username))); ?>
 							</div>
 							<ul class="links">
 								<li>
@@ -117,7 +117,7 @@
 				</div>
 				
 				
-			<a href="#top" id="top-link" title='click to go to the top'><i class="icon-upload-alt"></i></a>
+			<a href="#top" id="top-link" ><i class="icon-upload-alt"></i></a>
 
 			<div class="clear"></div>
 			<div class="push"></div> <!-- BUGFIX if problems with sidebar in Chrome -->

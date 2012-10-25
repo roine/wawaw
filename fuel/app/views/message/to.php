@@ -9,7 +9,7 @@
 
 		<div class="content with-actions">
 
-			<div class="alert warning no-margin top">
+			<div class="alert info no-margin top">
 				<span class="icon"></span><span class='restaured'></span>
 			</div>
 
@@ -26,7 +26,7 @@
 
 		<div class="actions">
 			<div class="actions-left">
-				<?php echo Form::button('save', 'Save', array('class' => 'save')); ?>
+				<?php //echo Form::button('save', 'Save', array('class' => 'save')); ?>
 			</div>
 			<div class="actions-right">
 				<?php echo Form::submit('submit', 'Send', array('class' => 'btn primary')); ?>
