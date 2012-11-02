@@ -1,4 +1,4 @@
-<?php echo Form::open(array('class' => 'form-stacked validate')); ?>
+<?php echo Form::open(array('class' => 'form-stacked validate', 'autocomplete' => 'on')); ?>
 
 		<div class="content no-padding with-actions">
 

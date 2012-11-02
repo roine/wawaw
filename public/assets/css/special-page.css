@@ -147,6 +147,7 @@
 	z-index: 110;
 	margin: 5px auto;
 	position: relative;
+	top:0;
 	-webkit-transition:all 1s ease;
 	-moz-transition:all 1s ease;
 	-o-transition:all 1s ease;
@@ -206,6 +207,7 @@
     -moz-transition: color 0.5s ease-out;
     -ms-transition: color 0.5s ease-out;
     -o-transition: color 0.5s ease-out;
+    transition: color 0.5s ease-out;
     pointer-events: none;
 }
 .special_page input[type=text],.special_page input[type=password]{
@@ -224,6 +226,10 @@
     border-radius: 3px;
     background: #f9f9f9;
     color: #777;
+    -webkit-transition: color 0.5s ease-out;
+    -moz-transition: color 0.5s ease-out;
+    -ms-transition: color 0.5s ease-out;
+    -o-transition: color 0.5s ease-out;
     transition: color 0.5s ease-out;
 }
 
@@ -240,4 +246,124 @@
 .special_page input[type=text]:focus,
 .special_page input[type=password]:focus{
     outline: none;
+}
+.enrolled{
+	-webkit-transform:perspective(800px) rotateX(-90deg);
+	-moz-transform:perspective(800px) rotateX(90deg);
+	-ms-transform:perspective(800px) rotateX(90deg);
+	-o-transform:perspective(800px) rotateX(90deg);
+	transform:perspective(800px) rotateX(90deg);
+}
+
+
+.derolled{
+	-webkit-transform-origin:50% 0%;
+	-webkit-animation: 2s open ease-in-out;
+
+	-moz-transform-origin:50% 0%;
+	-moz-animation: 2s open ease-in-out;
+
+	-ms-transform-origin:50% 0%;
+	-ms-animation: 2s open ease-in-out;
+
+	-o-transform-origin:50% 0%;
+	-o-animation: 2s open ease-in-out;
+
+	transform-origin:50% 0%;
+	animation: 2s open ease-in-out;
+
+}
+/*
+*	My keyframe cross browser
+*
+*/
+@-webkit-keyframes open{
+	0%{
+		-webkit-transform:perspective(800px) rotateX(-90deg);
+	}
+	40%{
+		-webkit-transform:perspective(800px) rotateX(30deg);
+	}
+	70%{
+		-webkit-transform:perspective(800px) rotateX(-10deg);
+	}
+	80%{
+		-webkit-transform:perspective(800px) rotateX(5deg);
+	}
+	100%{
+		-webkit-transform:perspective(800px) rotateX(0deg);
+	}
+
+}
+@-moz-keyframes open{
+	0%{
+		-moz-transform:perspective(800px) rotateX(-90deg);
+	}
+	40%{
+		-moz-transform:perspective(800px) rotateX(30deg);
+	}
+	70%{
+		-moz-transform:perspective(800px) rotateX(-10deg);
+	}
+	80%{
+		-moz-transform:perspective(800px) rotateX(5deg);
+	}
+	100%{
+		-moz-transform:perspective(800px) rotateX(0deg);
+	}
+
+}
+@-ms-keyframes open{
+	0%{
+		-ms-transform:perspective(800px) rotateX(-90deg);
+	}
+	40%{
+		-ms-transform:perspective(800px) rotateX(30deg);
+	}
+	70%{
+		-ms-transform:perspective(800px) rotateX(-10deg);
+	}
+	80%{
+		-ms-transform:perspective(800px) rotateX(5deg);
+	}
+	100%{
+		-ms-transform:perspective(800px) rotateX(0deg);
+	}
+
+}
+@-o-keyframes open{
+	0%{
+		-o-transform:perspective(800px) rotateX(-90deg);
+	}
+	40%{
+		-o-transform:perspective(800px) rotateX(30deg);
+	}
+	70%{
+		-o-transform:perspective(800px) rotateX(-10deg);
+	}
+	80%{
+		-o-transform:perspective(800px) rotateX(5deg);
+	}
+	100%{
+		-o-transform:perspective(800px) rotateX(0deg);
+	}
+
+}
+@keyframes open{
+	0%{
+		transform:perspective(800px) rotateX(-90deg);
+	}
+	40%{
+		transform:perspective(800px) rotateX(30deg);
+	}
+	70%{
+		transform:perspective(800px) rotateX(-10deg);
+	}
+	80%{
+		transform:perspective(800px) rotateX(5deg);
+	}
+	100%{
+		transform:perspective(800px) rotateX(0deg);
+	}
+
 }

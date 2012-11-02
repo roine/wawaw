@@ -28,7 +28,7 @@
 				text-shadow:none;
 				width:55px;
 				.box-sizing();
-				padding:5px;
+				padding:9px 5px;
 				margin-top:2px;
 				cursor:pointer;
 				.box-shadow(0 1px 0 rgba(0, 0, 0, 0.3), 0 2px 2px -1px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3) inset);
@@ -59,11 +59,13 @@
 		margin:0 auto;
 		.modal_head{
 			padding:0 10px;
-			width:200px;
+			width:20%;
 			display:inline-block;
 		}
 		.modal_data{
-			width:300px;
+			width:80%;
+			display:inline-block;
+			text-overflow:ellipsis;
 		}
 		div{
 			padding:5px;
@@ -185,4 +187,28 @@
   right: -6px; left: -6px;
   background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0));
   }
+}
+
+a[href^='tel']{
+	color:#FF6347;
+	&:before{
+		content: "\260E";
+	    display: block;
+	    margin-right: 0.5em;
+	}
+}
+
+a[href^='mailto']{
+	color:#254467;
+	&:before {
+	font-family: FontAwesome;
+    content: "\f003";
+    display: block;
+    margin-right: 0.5em;
+	}
+}
+
+.ui-dialog .ui-dialog-content{
+	// in customers pages
+	padding:0;
 }

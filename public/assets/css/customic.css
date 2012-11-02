@@ -33,7 +33,7 @@
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 9px 5px;
   margin-top: 2px;
   cursor: pointer;
 }
@@ -64,11 +64,13 @@
 }
 .Controller_Customers #custom_modal .modal_head {
   padding: 0 10px;
-  width: 200px;
+  width: 20%;
   display: inline-block;
 }
 .Controller_Customers #custom_modal .modal_data {
-  width: 300px;
+  width: 80%;
+  display: inline-block;
+  text-overflow: ellipsis;
 }
 .Controller_Customers #custom_modal div {
   padding: 5px;
@@ -174,4 +176,24 @@
   right: -6px;
   left: -6px;
   background: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0));
+}
+a[href^='tel'] {
+  color: #FF6347;
+}
+a[href^='tel']:before {
+  content: "\260E";
+  display: block;
+  margin-right: 0.5em;
+}
+a[href^='mailto'] {
+  color: #254467;
+}
+a[href^='mailto']:before {
+  font-family: FontAwesome;
+  content: "\f003";
+  display: block;
+  margin-right: 0.5em;
+}
+.ui-dialog .ui-dialog-content {
+  padding: 0;
 }

@@ -1,4 +1,13 @@
+<div class="grid_12" >
+	<div class="box effect1">
+		<div class="header">
+			<img width="16" height="16" alt="" src="/assets/img/icons/packs/fugue/16x16/ui-text-field-format.png">
+			<h3>List of users(<?php echo count($users)?>)</h3>
+			<span></span>
+		</div>
 
+<div class='content'>
+		<div role="grid" class="dataTables_wrapper" id="grid_wrapper" style="position: relative;">
 	<table class='table' id='grid'>
 		<thead>
 		<?php if(Sentry::user()->has_access('users_unblock')): ?>
@@ -62,6 +71,10 @@
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+</div>
+</div>
 
-
-
+			<div class="clear"></div>
+		</div>
+		<!-- end box -->
+	</div>

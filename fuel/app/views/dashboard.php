@@ -117,7 +117,7 @@
 				</div>
 				
 				
-			<a href="#top" id="top-link" ><i class="icon-upload-alt"></i></a>
+			<a href="#top" id="top-link" ><i class="icon-hand-up"></i></a>
 
 			<div class="clear"></div>
 			<div class="push"></div> <!-- BUGFIX if problems with sidebar in Chrome -->

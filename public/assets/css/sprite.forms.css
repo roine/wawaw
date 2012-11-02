@@ -84,7 +84,7 @@ label.error.red {
 	border-radius: 0 0 5px 5px;
 	border: 1px solid #870d0d;
 	/* The red gradient + white inset shadow*/
-	background: url(../img/sprites/forms/bg-error.png) repeat-x #b13636;
+	background: url(/assets/img/sprites/forms/bg-error.png) repeat-x #b13636;
 }
 
 input[type=date], input[type=datetime], input[type=time] {
@@ -168,7 +168,7 @@ form fieldset p.inline-label, form fieldset p.inline-medium-label, form fieldset
 }
 
 form fieldset legend {
-	background: url(../img/sprites/forms/bg-legend.png) repeat-x scroll top left #dcdcdc;
+	background: url(/assets/img/sprites/forms/bg-legend.png) repeat-x scroll top left #dcdcdc;
 	padding: 5px 10px;
 	line-height: 16px;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
@@ -188,7 +188,7 @@ form fieldset legend {
 .checkbox img {
 	height: 18px;
 	width: 18px;
-	background: transparent url(../img/sprites/forms/checkboxes/unchecked/normal.png) no-repeat;
+	background: transparent url(/assets/img/sprites/forms/checkboxes/unchecked/normal.png) no-repeat;
 }
 
 /* Unchecked */

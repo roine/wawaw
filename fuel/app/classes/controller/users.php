@@ -115,21 +115,51 @@ class Controller_Users extends Controller_Base
 			}
 			else{
 				// valid data
+				if(Input::post('email') && Input::post('group')){
 
-				// remove the user from is actual group
-				if(!empty($group[0]['name']))
-					$user->remove_from_group($group[0]['name']);
-				// set a new group for the user
-				$user->add_to_group(Input::post('group'));
-				$update = $user->update(array(
-			        'password' => 'somenewpassword',
-			        'email' => Input::post('email'),
-			        'metadata' => array(
-			            'first_name' => Input::post('first_name'),
-			            'last_name'  => Input::post('last_name'),
-			            'department' => Input::post('department'),
-			        )
-			    ));
+					// remove the user from is actual group
+					if(!empty($group[0]['name'])){
+						$remove = $user->remove_from_group($group[0]['name']);
+						if(!$remove)
+							Session::set_flash('error', 'Couldn\'t remove the user from his group.');
+					}
+					// set a new group for the user
+					$add = $user->add_to_group(Input::post('group'));
+					if(!$add)
+						Session::set_flash('error', 'Couldn\'t add the user to the new group.');
+
+
+					// update the other informations
+					$update = $user->update(array(
+				        'email' => Input::post('email'),
+				        'metadata' => array(
+				            'first_name' => Input::post('first_name'),
+				            'last_name'  => Input::post('last_name'),
+				            'department'  => Input::post('department'),
+				        )
+				    ));
+				    if(!$update){
+				    	Session::set_flash('error', 'Couldn\'t update the user.' );
+				    }
+				    else{
+				    	Session::set_flash('success', 'Successfully updated '.$user->username.'.' );
+				    	Response::redirect('users');
+				    }
+				}
+				// update the passwords
+				else if(Input::post('new_password') || Input::post('c_new_password') || Input::post('old_password')){
+					if(Input::post('new_password') != Input::post('c_new_password'))
+						Session::set_flash('error', 'Please repeat the same password');
+					else if(Input::post('old_password') == '')
+						Session::set_flash('error', 'Please enter your previous password');
+					else if(!$user->check_password(Input::post('old_password')))
+						Session::set_flash('error', 'Old password is incorrect');
+					else{
+						$user->change_password(Input::post('new_password'), Input::post('old_password'));
+						Session::set_flash('success', $user->username.' password has been successfuly changed');
+					}
+				}
+
 				
 			}
 		}

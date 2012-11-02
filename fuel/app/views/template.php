@@ -51,7 +51,6 @@
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		echo Asset::less('customic.less');
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>
@@ -89,7 +88,7 @@
 			</div>
 			<div class="clear push"></div>
 			
-			<a href="#top" id="top-link"><i class="icon-upload-alt"></i></a>
+			<a href="#top" id="top-link"><i class="icon-hand-up"></i></a>
 			</div>
 			<footer>
 				<div class="container_12">

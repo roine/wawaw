@@ -5,7 +5,7 @@ class Controller_Groups extends Controller_Base
 	public function before(){
 		parent::before();
 
-		$this->template->js = Asset::js(array('plugins.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
+		$this->template->js = Asset::js(array('plugins.js', 'mylibs/jquery.checkbox.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
 
 		$this->current_user = self::current_user();
 	}

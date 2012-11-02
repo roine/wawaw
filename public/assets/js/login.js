@@ -37,4 +37,5 @@ $(window).load(function(){
 	});
 
 	$('.beforeLoading').removeClass('beforeLoading');
+	$('.enrolled').removeClass('enrolled').addClass('derolled')
 });

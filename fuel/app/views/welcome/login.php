@@ -13,7 +13,7 @@
 						<img src="/assets/img/icons/packs/fugue/16x16/lock.png" width="16" height="16">
 						<h3>Login</h3>
 					</div>
-					<?php echo Form::open(); ?>
+					<?php echo Form::open(array('autocomplate' => 'on')); ?>
 						<div class="content" style='padding:10px 0'>
 							<div class=" _100" style='position:relative;margin-bottom:10px'>
 									<?php echo Form::input('username', isset($username) ? $username : '', array('class' => 'required', 'id' => 'username', 'placeholder' => 'Username', 'autofocus')); ?>
@@ -27,7 +27,7 @@
 
 							</div>
 						</div>
-						<div class="actions">
+						<div class="actions enrolled">
 								<input type="submit" value="Login" class='button color blue over large' style='border-radius:0 0 3px 3px' />
 						</div>
 				</div>

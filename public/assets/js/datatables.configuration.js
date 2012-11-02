@@ -44,9 +44,6 @@ $(document).ready(function (){
 		"oColVis": {
 			"bRestore": true,
 		},
-		"fnServerParams": function ( aoData ) {
-			aoData.push( { "name": "more_data", "value": "my_value" } );
-		},
 		"aoColumnDefs": [
 		 { "sClass": "read_only", "aTargets": [ 0 ] },
 		 { "bVisible": false, "aTargets": col[table].hide }
@@ -192,7 +189,7 @@ $(document).ready(function (){
 	 * ================================================== */
 	// trigger on click on row
 	var selected_data='';
-	$("tbody tr").live("click", function(){
+	$("#grid tbody tr").live("click", function(){
 			selected_data = oTable.fnGetData(this);
 
 			$('span.details, span.delete').remove();
@@ -256,7 +253,8 @@ $(document).ready(function (){
 	var showInfoBox = function(){
 		var row_data = selected_data;
 		var row_head = new Array();
-
+		// list of phone title
+		var phones = ['Telephone', 'Mobile Phone', 'Phone', 'Mphone'];
 		for(i=0;i<oTable.fnSettings().aoColumns.length;i++)
 			row_head[i] = oTable.fnSettings().aoColumns[i].sTitle;
 
@@ -264,10 +262,14 @@ $(document).ready(function (){
 
 		for(i = 0; i < row_data.length-1; i++){
 			formatted += "<div><span class='modal_head'>"+row_head[i]+"</span>";
+			formatted += "<span class='modal_data'>";
 			if(row_head[i] == 'E-mail')
-				formatted += "<span class='modal_data'><a href='mailto:"+row_data[i]+"'>"+row_data[i]+"</a></span></div>";
+				formatted += "<a href='mailto:"+row_data[i]+"'>"+row_data[i]+"</a>";
+			else if($.inArray(row_head[i], phones) != -1)
+				formatted += "<a href='tel:"+row_data[i]+"'>"+row_data[i]+"</a>";
 			else
-				formatted += "<span class='modal_data'>"+row_data[i]+"</span></div>";
+				formatted += row_data[i];
+			formatted += "</span></div>";
 		}
 		formatted += "</div>"; 
 
@@ -280,66 +282,67 @@ $(document).ready(function (){
 		});
 	}
 
-});
-
-/* ==================================================
- * datepicker configuration
- * ================================================== */
- $(document).on('focus', '#min:not(.hasDatepicker), #max:not(.hasDatepicker)', function(){
- 	$.datepicker._gotoToday = function(id) {
-		var target = $(id);
-		var inst = this._getInst(target[0]);
-		if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
-			inst.selectedDay = inst.currentDay;
-			inst.drawMonth = inst.selectedMonth = inst.currentMonth;
-			inst.drawYear = inst.selectedYear = inst.currentYear;
+	/* ==================================================
+	 * datepicker configuration
+	 * ================================================== */
+	 $(document).on('focus', '#min:not(.hasDatepicker), #max:not(.hasDatepicker)', function(){
+	 	$.datepicker._gotoToday = function(id) {
+			var target = $(id);
+			var inst = this._getInst(target[0]);
+			if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
+				inst.selectedDay = inst.currentDay;
+				inst.drawMonth = inst.selectedMonth = inst.currentMonth;
+				inst.drawYear = inst.selectedYear = inst.currentYear;
+			}
+			else {
+				var date = new Date();
+				inst.selectedDay = date.getDate();
+				inst.drawMonth = inst.selectedMonth = date.getMonth();
+				inst.drawYear = inst.selectedYear = date.getFullYear();
+				this._setDateDatepicker(target, date);
+				this._selectDate(id, this._getDateDatepicker(target));
+			}
+			this._notifyChange(inst);
+			this._adjustDate(target);
 		}
-		else {
-			var date = new Date();
-			inst.selectedDay = date.getDate();
-			inst.drawMonth = inst.selectedMonth = date.getMonth();
-			inst.drawYear = inst.selectedYear = date.getFullYear();
-			this._setDateDatepicker(target, date);
-			this._selectDate(id, this._getDateDatepicker(target));
-		}
-		this._notifyChange(inst);
-		this._adjustDate(target);
-	}
- })
+	 });
 
-$(document).on('focus', '#min:not(.hasDatepicker)', function(){
-	$('#min').datepicker({
-		dateFormat: 'yy-mm-dd', 
-		showButtonPanel:true,
-		firstDay:1,
-		showAnim:'slide',
-		maxDate:'0',
-		showOtherMonths: true,
-        selectOtherMonths: true,
-		onSelect: function( selectedDate ) {
-            $( "#max" ).datepicker( "option", "minDate", selectedDate );
-            oTable.fnDraw();
-        },
-	}).on("click", function(){
-		$("#ui-datepicker-div").css({"z-index":"1001"});
+	$(document).on('focus', '#min:not(.hasDatepicker)', function(){
+		$('#min').datepicker({
+			dateFormat: 'yy-mm-dd', 
+			showButtonPanel:true,
+			firstDay:1,
+			showAnim:'slide',
+			maxDate:'0',
+			showOtherMonths: true,
+	        selectOtherMonths: true,
+			onSelect: function( selectedDate ) {
+	            $( "#max" ).datepicker( "option", "minDate", selectedDate );
+	            oTable.fnDraw();
+	        },
+		}).on("click", function(){
+			$("#ui-datepicker-div").css({"z-index":"1001"});
+		});
 	});
+
+	$(document).on('focus', '#max:not(.hasDatepicker)', function(){
+		$('#max').datepicker({
+			dateFormat: 'yy-mm-dd', 
+			showButtonPanel:true,
+			firstDay:1,
+			showAnim:'slide',
+			maxDate:'0',
+			showOtherMonths: true,
+	        selectOtherMonths: true,
+			onSelect: function( selectedDate ) {
+	            $( "#min" ).datepicker( "option", "maxDate", selectedDate );
+	            oTable.fnDraw();
+	        },
+
+		}).on("click", function(){
+			$("#ui-datepicker-div").css({"z-index":"1001"});
+		});
+	});
+
 });
 
-$(document).on('focus', '#max:not(.hasDatepicker)', function(){
-	$('#max').datepicker({
-		dateFormat: 'yy-mm-dd', 
-		showButtonPanel:true,
-		firstDay:1,
-		showAnim:'slide',
-		maxDate:'0',
-		showOtherMonths: true,
-        selectOtherMonths: true,
-		onSelect: function( selectedDate ) {
-            $( "#min" ).datepicker( "option", "maxDate", selectedDate );
-            oTable.fnDraw();
-        },
-
-	}).on("click", function(){
-		$("#ui-datepicker-div").css({"z-index":"1001"});
-	});
-});
