@@ -896,3 +896,5 @@ form .name{
 	display: block;
 	float: none;
 } 
+
+.Controller_Groups label{text-transform:capitalize;}
