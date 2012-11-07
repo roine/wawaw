@@ -812,7 +812,8 @@ if(Function.prototype.bind == null) {
 		}
  	
 	});
-
-
+	
 
 })(jQuery);
+
+

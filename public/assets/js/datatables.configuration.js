@@ -345,4 +345,3 @@ $(document).ready(function (){
 	});
 
 });
-

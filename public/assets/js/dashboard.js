@@ -108,5 +108,9 @@ $(document).ready(function(){
 				$("#"+language+"_stat .info").html(text);
 			}
 		}
-	})
-})
+	});
+});
+
+
+
+

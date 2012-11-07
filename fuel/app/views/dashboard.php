@@ -159,17 +159,23 @@
 			'mylibs/jquery.easing.1.3.js',
 			'mylibs/jquery.ui.touch-punch.js',
 			'mylibs/jquery.validate.js',
-			'script.js',
+			'mylibs/jquery.jgrowl.js',
 			'dashboard.js',
-			'mylibs/jquery.scrollTo-min.js'	
+			'mylibs/jquery.scrollTo-min.js',
+			'sprintf.js',
+			'script.js',
+			'live-notification.js'
 			));
 			?>
 		<!-- end scripts -->
+
 		<script>
+
 			$(window).load(function() {
 				$('#accordion').accordion();
 				$(window).resize();
 			});
+
 		</script>
 		
 		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to
