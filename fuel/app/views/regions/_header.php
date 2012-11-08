@@ -54,7 +54,7 @@
 								Customers</a>
 								<ul>
 									<?php foreach($tables as $k => $v): ?>
-										<?php if(Sentry::user()->has_access($v['table'].'_read') || Sentry::user()->has_access('all_tables_read')): ?>
+										<?php if(Sentry::user()->has_access($v['table'].'_read') || Sentry::user()->has_access('all_read')): ?>
 										<li class='<?php echo $v['url']; ?>'>
 											<?php echo Html::anchor('customers/'.$v['url'], $v['CleanName']); ?>
 										</li>
@@ -72,25 +72,25 @@
 								<ul>
 
 									<?php if(Sentry::user(null, true)->has_access('users_index')): ?>
-									<li>
+									<li class='users_index'>
 										<?php echo Html::anchor('users', 'User List'); ?>
 									</li>
 									<?php endif; ?>
 
 									<?php if(Sentry::user(null, true)->has_access('users_create')): ?>
-									<li>
+									<li class='users_create'>
 										<?php echo Html::anchor('users/create', 'User Create'); ?>
 									</li>
 									<?php endif; ?>
 
 									<?php if(Sentry::user(null, true)->has_access('groups_index')): ?>
-									<li>
-										<?php echo Html::anchor('groups', 'Group List'); ?>
+									<li class='groups_index'>
+										<?php echo Html::anchor('groups', 'Group List', array('class' => 'groups_index')); ?>
 									</li>
 									<?php endif; ?>
 
 									<?php if(Sentry::user(null, true)->has_access('groups_create')): ?>
-									<li>
+									<li class='groups_create'>
 										<?php echo Html::anchor('groups/create', 'Group Create'); ?>
 									</li>
 									<?php endif; ?>

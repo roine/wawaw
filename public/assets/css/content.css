@@ -35,8 +35,11 @@ html, body {
 	height: 100%;
 	margin: 0 auto -38px;
 	min-height: 100%;
+	position: relative;
+	z-index: 1;
 }
 .Controller_Customers #height-wrapper{
+	
 	background-image:url("../img/grey.png");
 }
 #content-wrapper {
@@ -72,11 +75,12 @@ html, body {
 #main_content {
 	padding: 20px;
 	position:relative;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
-.Controller_Customers #main_content{
-	overflow:visible;
+.Controller_Welcome #main_content{
+	overflow:hidden;
 }
+
 
 .container{height:0;}
 #main_content h2 {
@@ -85,6 +89,54 @@ html, body {
 	margin-bottom: 4px;
 	width: 100%;
 	background: url(../img/main_content/title-underline.png) repeat-x bottom;
+	color:#343434;
+	line-height:40px;
+	font-family:'Orienta', sans-serif;
+	text-transform:capitalize;
+	text-shadow:0 1px white, 0 2px #777;
+	font-weight:normal;
+	letter-spacing:1px;
+}
+
+#main_content h1 {
+	margin-top: 0;
+	padding-bottom: 6px;
+	margin-bottom: 10px;
+	width: auto;
+	color: white;
+	line-height: 40px;
+	font-family: 'Orienta', sans-serif;
+	text-transform: capitalize;
+	font-weight: normal;
+	font-size: 29px;
+	background: -webkit-linear-gradient(top, rgba(54,111,172,1) 0%,rgba(24,75,130,1) 100%);
+	padding: 0 20px 6px;
+	border-radius: 0 5px 5px 0;
+	min-width:30%;
+	text-shadow:0 3px rgba(0,0,0,.5), 0 4px rgba(255,255,255,.2);
+}
+
+#main_content h1::before {
+	position: absolute;
+	right: 5px;
+	bottom: 8px;
+	height: 100%;
+	width: 300px;
+	content: '';
+	-webkit-transform: perspective(800px) rotateZ(2deg) skew(-7deg);
+	box-shadow: 0 14px 5px -3px rgba(0,0,0,.4);
+	color: transparent;
+	z-index: -12;
+	-webkit-transform-origin: 50% 50%;
+}
+#main_content h1::after {
+	background: -webkit-linear-gradient(top, rgba(54,111,172,1) 0%,rgba(24,75,130,1) 100%);
+	position: absolute;
+	top: 0;
+	left: -150px;
+	height: 100%;
+	width: 150px;
+	content: '';
 }
 
 /* ==================================================

@@ -19,6 +19,7 @@ class Controller_Groups extends Controller_Base
 		if(!Sentry::user()->has_access('groups_index')){
 			self::no_access();
 		} 
+		$data['total'] = count(Config::get('sentry.permissions.rules'));
 
 		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js'));
 		$this->template->css = Asset::css(array('sprite.tables.css'));
@@ -146,7 +147,7 @@ class Controller_Groups extends Controller_Base
 
 			// customers view control
 			$var[] = array('access' => 'full_view', 'text' => 'Can read all the informations about customers', 'start' => array('is_start' => 1, 'text' => 'Customers View Control'));
-			$var[] = array('access' => 'all_tables_read', 'text' => 'Can read all the tables');
+			$var[] = array('access' => 'all_read', 'text' => 'Can read all the tables');
 			$var[] = array('access' => 'ib_read', 'text' => 'can read Introducing Brokers');
 			$var[] = array('access' => 'franchisescheme_read', 'text' => 'can read Franchise Scheme');
 			$var[] = array('access' => 'whitelabel_read', 'text' => 'can read white label');

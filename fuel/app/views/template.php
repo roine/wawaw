@@ -46,6 +46,7 @@
 		echo isset($css) ? html_entity_decode($css) : '';
 		echo isset($less) ? html_entity_decode($less) : '';
 			?>
+		<link href="http://fonts.googleapis.com/css?family=Ultra|Orienta" rel="stylesheet" type="text/css">
 		<?php
 		echo Asset::js(array(
 			'libs/modernizr-2.0.6.min.js',
@@ -80,7 +81,7 @@
 			
 			<div id='content-wrapper' class='container_12' role='main'>
 				<div id="main_content" >
-				<h2 class="grid_12"><?php echo isset($h2) ? $h2 : ''; ?></h2>
+				<h1 class="grid_12"><?php echo isset($h2) ? $h2 : ''; ?></h1>
 				<div class="clean"></div>
 					<?php echo $content; ?>
 				</div>

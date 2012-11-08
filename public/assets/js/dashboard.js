@@ -75,10 +75,17 @@ $(document).ready(function(){
 });
 	$('#accordion').accordion();
 	$(window).resize();
+	toPull = new Array();
 
+	$('#stats_container .en .stats-list a').each(function(){
+		if(typeof $(this).attr('id') != 'undefined'){
+			toPull.push($(this).attr('id'));
+		}
+	});
 	$.ajax({
 		url:'/ajax/dashboard',
 		type:'POST',
+		data:{values:toPull},
 		success:function(data){
 			window.p = data;
 			var lang = ["en", "cn", "ru", "tw"];
@@ -99,7 +106,7 @@ $(document).ready(function(){
 					total += data[language][stat][0].day != null ? parseInt(data[language][stat][0].day) : 0;
 					trend = (anteday > day) ? 'down' : (anteday < day) ? 'up' : 'equal';
 					$("#stats_container ."+language+" #"+stat+" span:nth-child(1)").addClass(trend).html(day+'<small>'+anteday+'</small>');
-					trend = (anteweek > week) ? 'down' : (week < anteweek) ?'up' : 'equal';
+					trend = (anteweek > week) ? 'down' : (anteweek < week) ?'up' : 'equal';
 					$("#stats_container ."+language+" #"+stat+" span:nth-child(2)").addClass(trend).html(week+'<small>'+anteweek+'</small>');
 					trend = (antemonth > month) ? 'down' : (antemonth < month) ? 'up' : 'equal';
 					$("#stats_container ."+language+" #"+stat+" span:nth-child(3)").addClass(trend).html(month+'<small>'+antemonth+'</small>');

@@ -73,7 +73,7 @@ class Controller_Users extends Controller_Base
 		}
 
 		View::set_global('groups', Sentry::group()->all());
-		$this->template->h2 = 'Create a user';
+		$this->template->h2 = 'Create a new user';
 		$this->template->title = 'User &raquo; Create';
 		$this->template->js .= Asset::js(array('mylibs/jquery.validate.js', 'script.js'));
 		$this->template->content = View::forge('users/create');

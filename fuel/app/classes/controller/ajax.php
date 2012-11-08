@@ -5,9 +5,9 @@ class Controller_Ajax extends Controller_Base
 	public function before(){
 		parent::before();
 		$this->languages = array('en', 'cn', 'tw', 'ru');
-		if(!Input::is_ajax()){
-			Response::redirect('');
-		}
+		// if(!Input::is_ajax()){
+		// 	Response::redirect('');
+		// }
 
 	}
 
@@ -19,7 +19,8 @@ class Controller_Ajax extends Controller_Base
 			Session::set_flash('error', 'You do not have right acces there');
 			Response::redirect('/');
 		}
-		$data['json'] = Model_Ajax::dashboard($this->tables, $this->languages);
+
+		$data['json'] = Model_Ajax::dashboard(Input::post('values'), $this->languages);
 		$this->template->title = 'Ajax &raquo; Dashboard';
 		$this->template->content = View::forge('ajax/view', $data);
 	}

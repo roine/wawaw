@@ -673,14 +673,14 @@ if(Function.prototype.bind == null) {
 		if($('.Controller_Users, .Controller_Groups').length > 0){
 			$('#nav_main .users').addClass('current').find('ul').show();
 			if($('.Controller_Users.index').length > 0)
-				$('#nav_main .users ul li:nth-child(1)').addClass('current');
+				$('#nav_main .users ul li.users_index').addClass('current');
 			if($('.Controller_Users.create').length > 0)
-				$('#nav_main .users ul li:nth-child(2)').addClass('current');
+				$('#nav_main .users ul li.users_create').addClass('current');
 			// Groups
 			if($('.Controller_Groups.index').length > 0)
-				$('#nav_main .users ul li:nth-child(3)').addClass('current');
+				$('#nav_main .users ul li.groups_index').addClass('current');
 			if($('.Controller_Groups.create').length > 0)
-				$('#nav_main .users ul li:nth-child(4)').addClass('current');
+				$('#nav_main .users ul .groups_create').addClass('current');
 		}
 		// Dashboard
 		else if($('.Controller_Welcome ').length > 0)

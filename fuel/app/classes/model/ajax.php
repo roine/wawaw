@@ -24,8 +24,9 @@ class Model_Ajax extends Model
 	 * Display number of ppl register today(yesterday), this week(last week),this month(last month) in controller welcome
 	 * =================================================================================================================== */
 	public static function dashboard($tables, $languages){
+
 		foreach($tables as $table){
-			$table = $table['table'];
+			
 			if($table == 'all') continue;
 			foreach($languages as $lang){
 
