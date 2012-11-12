@@ -27,7 +27,8 @@
 		mathiasbynens.be/notes/touch-icons -->
 		<!-- CSS -->
 		<?php
-		echo Asset::css(array(
+
+		Casset::add_group('css', 'dashboard_css', array(
 			'960gs/fluid.css', 
 			'h5bp/normalize.css', 
 			'h5bp/non-semantic.helper.classes.css', 
@@ -38,19 +39,20 @@
 			'typographics.css',
 			'content.css',
 			'footer.css',
-			'sprite.forms.css',
 			'ie.fixes.css',
 			'font-awesome.css',
 			'sidebar.css',
 			'sprite.lists.css',
 			));
+
+		echo Casset::render_css();
+		echo isset($less) ? $less : '';
 			?>
 		<?php
 		echo Asset::js(array(
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		echo isset($less) ? $less : '';
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>' data-view='<?php echo Request::active()->action; ?>'>
@@ -153,7 +155,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 		<script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.16.min.js"><\/script>')</script>
 		<?php
-		echo Asset::js(array(
+		Casset::add_group('js', 'dashboard_js',array(
 			'plugins.js',
 			'mylibs/jquery.ba-resize.js',
 			'mylibs/jquery.easing.1.3.js',
@@ -166,6 +168,7 @@
 			'script.js',
 			'live-notification.js'
 			));
+		echo Casset::render_js();
 			?>
 		<!-- end scripts -->
 

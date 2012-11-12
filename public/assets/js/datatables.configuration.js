@@ -73,7 +73,7 @@ $(document).ready(function (){
 			aoData.push(  {"name": "min", "value":  $('#min').val() } );
 			aoData.push(  {"name": "max", "value":  $('#max').val() } );
 		},
-		"fnDrawCallback": function(nRow, aData, iDisplayIndex ) {
+		fnDrawCallback: function(nRow, aData, iDisplayIndex ) {
         },
         fnInitComplete: function ( oSettings ){
     		

@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 });
 // doc: http://api.highcharts.com/highcharts
+var charts;
 var options = {
 	chart: {
 		renderTo: 'daily',
@@ -9,8 +10,9 @@ var options = {
 		plotBackgroundColor: '#FFFFFF',
 		plotShadow: true,
 		zoomType: 'x',
+		height: 700,
 		animation: {
-			duration: 2000
+			duration: 1000
 		},
 		theme: {
 			fill: 'white',stroke: '#bbbbbb',r: 5,states: {
@@ -35,24 +37,24 @@ var options = {
 	plotOptions: {
 		series: {
 			events: {
-				legendItemClick: function(event) {
-					if (!this.visible)
-					return true;
+				// legendItemClick: function(event) {
+				// 	if (!this.visible)
+				// 	return true;
 
-					var seriesIndex = this.index;
-					var series = this.chart.series;
+				// 	var seriesIndex = this.index;
+				// 	var series = this.chart.series;
 
-					for (var i = 0; i < series.length; i++)
-					{
-						if (series[i].index != seriesIndex)
-						{
+				// 	for (var i = 0; i < series.length; i++)
+				// 	{
+				// 		if (series[i].index != seriesIndex)
+				// 		{
 
-							series[i].visible ? series[i].hide() : series[i].show();
-						}
-					}
+				// 			series[i].visible ? series[i].hide() : series[i].show();
+				// 		}
+				// 	}
 
-					return false;
-				}
+				// 	return false;
+				// }
 			}
 		}
 	},
@@ -72,20 +74,9 @@ var options = {
 				font: 'normal 13px Verdana, sans-serif'
 			}
 		},
-		dateTimeLabelFormats: { // don't display the dummy year
-		month: '%e. %b',
-		year: '%b'
-	}
+
 },
-navigation: {
-	menuStyle: {
-		background: '#eee',
-		padding: '5px'
-	},
-	menuItemStyle:{
-		padding:'5px 2px'
-	}
-},
+
 credits: {
 	enabled: false
 },
@@ -100,5 +91,14 @@ yAxis: {
 		}]
 	}
 };
+$.ajax({
+	url:'/ajax/charts/daily',
+	success:function(data){
 
-charts = new Highcharts.Chart(options)
+		$.each(data, function(key, form){
+			options.series.push(form)
+		});
+		charts = new Highcharts.Chart(options);
+	}
+})
+$('.')

@@ -27,13 +27,12 @@
 		mathiasbynens.be/notes/touch-icons -->
 		<!-- CSS -->
 		<?php
-		echo Asset::css(array(
-			'960gs/fluid.css', 
+		Casset::add_group('css', 'login_css', array(
+
 			'h5bp/normalize.css', 
-			'h5bp/non-semantic.helper.classes.css', 
+			// 'h5bp/non-semantic.helper.classes.css', 
 			'h5bp/print.styles.css', 
 			'sprites.css',
-			'header.css',
 			'navigation.css',
 			'typographics.css',
 			'content.css',
@@ -43,14 +42,15 @@
 			'font-awesome.css',
 			'special-page.css'
 			));
-		echo isset($css) ? html_entity_decode($css) : '';
+		echo Casset::render_css();
+
 			?>
 		<?php
 		echo Asset::js(array(
 			'libs/modernizr-2.0.6.min.js',
 			
 			));
-		echo isset($less) ? html_entity_decode($less) : '';
+		
 		?>
 	</head>
 	<body class='<?php echo Request::active()->controller; ?> <?php echo isset($custom_class) ? $custom_class : ''; ?> <?php echo Request::active()->action; ?>
@@ -78,18 +78,16 @@
 			<!-- Grab Google CDN's jQuery + jQueryUI, with a protocol relative URL; fall back to local -->		
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
 			<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.js"><\/script>')</script>
-			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-			<script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.16.min.js"><\/script>')</script>
 
 			<?php 
-			echo Asset::js(array(
+			Casset::add_group('js', 'login_js',array(
 				'plugins.js',
 				'mylibs/jquery.validate.js',
-				'mylibs/jquery.jgrowl.js',
 				'mylibs/jquery.checkbox.js',
 				'script.js',
 				'login.js',
 			));
+			echo Casset::render_js();
 			 ?>
 				<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to
 			support IE 6.

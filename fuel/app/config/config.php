@@ -53,13 +53,13 @@ return array(
 	/**
 	 * Setttings for the file finder cache (the Cache class has it's own config!)
 	 */
-	'caching'         => false,
+	'caching'         => true,
 	'cache_lifetime'  => 3600, // In Seconds
 
 	/**
 	 * Callback to use with ob_start(), set this to 'ob_gzhandler' for gzip encoding of output
 	 */
-	'ob_callback'  => null,
+	'ob_callback'  => 'ob_gzhandler',
 
 	'errors'  => array(
 		// Which errors should we show, but continue execution?
@@ -199,6 +199,7 @@ return array(
 	/**************************************************************************/
 	'always_load'  => array(
 		'packages' => array(
+			'casset'
 		),
 		/**
 		 * These packages are loaded on Fuel's startup.  You can specify them in
@@ -215,6 +216,7 @@ return array(
 			'orm',
 			'sentry',
 			'less',
+			'casset',
 		),
 
 		/**

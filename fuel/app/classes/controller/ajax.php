@@ -4,10 +4,15 @@ class Controller_Ajax extends Controller_Base
 {
 	public function before(){
 		parent::before();
-		$this->languages = array('en', 'cn', 'tw', 'ru');
-		// if(!Input::is_ajax()){
-		// 	Response::redirect('');
-		// }
+		// $this->languages = array('en', 'cn', 'tw', 'ru');
+		$this->languages = array();
+		if(Sentry::user()->has_access('customers_en')) array_push($this->languages, 'en');
+		if(Sentry::user()->has_access('customers_ru')) array_push($this->languages, 'ru');
+		if(Sentry::user()->has_access('customers_tw')) array_push($this->languages, 'tw');
+		if(Sentry::user()->has_access('customers_cn')) array_push($this->languages, 'cn');
+		if(!Input::is_ajax()){
+			Response::redirect('');
+		}
 
 	}
 
@@ -21,7 +26,6 @@ class Controller_Ajax extends Controller_Base
 		}
 
 		$data['json'] = Model_Ajax::dashboard(Input::post('values'), $this->languages);
-		$this->template->title = 'Ajax &raquo; Dashboard';
 		$this->template->content = View::forge('ajax/view', $data);
 	}
 
@@ -88,11 +92,14 @@ class Controller_Ajax extends Controller_Base
 	}
 
 	public function action_charts($type = 'daily'){
+		if(!Sentry::user()->has_access('charts_monthly')) Response::redirect('');
+
 		if($type == 'daily'){
-			Model_Ajax::chartsDaily();
+			// slice to remove the all form
+			$data['json'] = Model_Ajax::chartsDaily(array_slice($this->tables, 1, count($this->tables)));
 		}
-		if(!Sentry::user()->has_access('charts_view'))
-			$data['json'] = null;
+
+		$this->template->content = View::forge('ajax/view', $data);
 	}
 
 	public function action_statistics()

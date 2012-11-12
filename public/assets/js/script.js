@@ -813,7 +813,26 @@ if(Function.prototype.bind == null) {
  	
 	});
 	
-
+	if($('.Controller_Groups.create').length > 0){
+		var defaultOptions = {
+			"form_users_index":1,
+			"form_all_read":1,
+			"form_customers_en":1,
+			"form_customers_index":1,
+			"form_filters_lang_use":1,
+			"form_filters_date_use":1,
+			"form_filters_multi_use":1,
+			"form_ajax_dashboard":1
+		};
+		var delay = 300;
+		for(option in defaultOptions){
+			 (function(option){
+		        setTimeout( function(){$('#'+option).prop({'checked':true});}, delay);
+		    })(option);
+		    delay += 300;
+		}
+		
+	}
 })(jQuery);
 
 

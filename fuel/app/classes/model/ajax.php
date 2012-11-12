@@ -26,7 +26,7 @@ class Model_Ajax extends Model
 	public static function dashboard($tables, $languages){
 
 		foreach($tables as $table){
-			
+
 			if($table == 'all') continue;
 			foreach($languages as $lang){
 
@@ -50,6 +50,7 @@ class Model_Ajax extends Model
 						(SELECT COUNT(*) as month FROM $table WHERE MONTH($created_at) = MONTH(CURRENT_DATE)) AS month,
 						(SELECT COUNT(*) as month FROM $table WHERE MONTH($created_at) = MONTH(CURRENT_DATE)-1) AS antemonth");
 				}
+				// add cached(time in ms) when finished 
 				$data[$lang][$table] = $query->execute()->as_array();
 			}
 		}
@@ -347,7 +348,36 @@ class Model_Ajax extends Model
 	}
 
 
-	public static function chartsDaily(){
+	public static function chartsDaily($tables){
+
+		foreach($tables as $k => $table){
+			$date_name = ($table['table'] == "demoaccount") ? "regtime" : "created_at";
+
+			$results = DB::select(DB::expr("YEAR($date_name) as year"), 
+								DB::expr("MONTH($date_name) as month"),
+								DB::expr("DAY($date_name) as day"),
+								DB::expr("COUNT(*) as total"))
+							->from($table['table'])
+							// change to ->group_by('year', 'month', 'day') for daily
+							->group_by('year', 'month')
+							->cached(3600)
+							->execute();
+
+			foreach($results as $key => $result){
+				// add 000 for javascript date format in milliseconds
+				// change to $result['day'].'-'.$result['month'].'-'.$result['year'].' 00:00:00'; for daily
+				$date = '1-'.$result['month'].'-'.$result['year'].' 00:00:00';
+				date_default_timezone_set('UTC');
+				$data[$k][$key][0] = (strtotime($date) * 1000) - (strtotime('02-01-1970 00:00:00') * 1000);
+				$data[$k][$key][1] = intval($result['total']);
+
+			}
+
+			$series[$k]['data'] = $data[$k];
+			$series[$k]['name'] = $table['CleanName'];
+
+		}
 		
+		return $series;
 	}
 }

@@ -6,6 +6,10 @@ class Controller_Charts extends Controller_Base
 
 
 	public function action_index(){
+		if(!Sentry::user()->has_access('charts_monthly')){
+			Session::set_flash('error', 'You don\'t have access to the charts');
+			Response::redirect('');
+		}
 		$data['id'] = '';
 		
 		$this->template->js = Asset::js(array(
@@ -23,7 +27,7 @@ class Controller_Charts extends Controller_Base
 			'plugin.charts.css',
 		));
 		$this->template->title = 'Charts';
-		$this->template->h2 = 'Daily Subscrition in all the form';
+		$this->template->h2 = 'Monthly Subscription in all the forms';
 		$this->template->content = View::forge('charts/view');
 	}
 }

@@ -5,28 +5,28 @@
 			<div class="section _100">
 				<?php echo Form::label('Username', 'username'); ?>
 				<div>
-				<?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : ''), array('class' => '_100 required')); ?>
+				<?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : ''), array('class' => 'required')); ?>
 				</div>
 			</div>
 
 		<div class="section _100">
 			<?php echo Form::label('Email', 'email'); ?>
 			<div>
-				<?php echo Form::input('email', Input::post('email', isset($user) ? $user->email : ''), array('class' => '_100 required')); ?>
+				<?php echo Form::input('email', Input::post('email', isset($user) ? $user->email : ''), array('class' => 'required')); ?>
 			</div>
 		</div>
 
 		<div class="section _100">
 			<?php echo Form::label('Password', 'password'); ?>
 			<div>
-				<?php echo Form::password('password', Input::post('password', isset($user) ? $user->password : ''), array('class' => '_100 required')); ?>
+				<?php echo Form::password('password', Input::post('password', isset($user) ? $user->password : ''), array('class' => ' required')); ?>
 			</div>
 		</div>		
 
 		<div class="section _100">
 			<?php echo Form::label('Repeat password', 'r_password'); ?>
 			<div>
-				<?php echo Form::password('r_password', Input::post('r_password', isset($user) ? $user->r_password : ''), array('class' => '_100 required')); ?>
+				<?php echo Form::password('r_password', Input::post('r_password', isset($user) ? $user->r_password : ''), array('class' => ' required')); ?>
 			</div>
 		</div>
 

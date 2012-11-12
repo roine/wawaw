@@ -118,7 +118,7 @@ var fs = function(){
 if(document.mozFullScreenEnabled || document.webkitFullscreenEnabled || document.fullScreenEnabled){
 	$.jGrowl("<a href='#' onclick='fs(); return false;'>Fullscreen</a>", {
 				theme : 'information',
-				life: 10000
+				life: 3000
 	});
 }
 	

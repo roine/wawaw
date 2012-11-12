@@ -6,7 +6,13 @@ class Controller_Welcome extends Controller_Base
 	
 	public function action_index()
 	{
-			
+		if(Sentry::user()->has_access('customers_en')) $data['lang']['en'] = 'English';
+		if(Sentry::user()->has_access('customers_ru')) $data['lang']['ru'] = 'Russian';
+		if(Sentry::user()->has_access('customers_tw')) $data['lang']['tw'] = 'Taiwanese';
+		if(Sentry::user()->has_access('customers_cn')) $data['lang']['cn'] = 'Chinese';
+
+		
+		$lang = array("en" => "English", "cn" => "Chinese", "ru" => "Russian", "tw" => "Taiwanese"); 
 		$this->template->less = Asset::less('customic.less');
 		$this->template = \View::forge('dashboard');
 		$this->template->title = $data['data']['title'] = 'Welcome to IKON backoffice';
@@ -65,7 +71,6 @@ class Controller_Welcome extends Controller_Base
 
 		}
 		$this->template->title = $data['title'] = 'Welcome to IKON backoffice';
-		$this->template->less = Asset::less('customic.less');
 		$this->template->custom_class = 'special_page';
 		$this->template->content = View::forge('welcome/login', $data);
 	}

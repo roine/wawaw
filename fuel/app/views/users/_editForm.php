@@ -10,7 +10,7 @@
 	<div class="section _100">
 		<?php echo Form::label('Email', 'email'); ?>
 		<div>
-			<?php echo Form::input('email', Input::post('email', isset($user) ? $user->email : ''), array('class' => '_100')); ?>
+			<?php echo Form::input('email', Input::post('email', isset($user) ? $user->email : ''), array('class' => 'required')); ?>
 		</div>
 	</div>
 	<?php if(Sentry::user()->has_access('change_acl')): ?>

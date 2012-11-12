@@ -77,7 +77,7 @@ $(document).ready(function(){
 	$(window).resize();
 	toPull = new Array();
 
-	$('#stats_container .en .stats-list a').each(function(){
+	$('#stats_container .stats-list a').each(function(){
 		if(typeof $(this).attr('id') != 'undefined'){
 			toPull.push($(this).attr('id'));
 		}

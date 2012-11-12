@@ -5,7 +5,7 @@ class Controller_Groups extends Controller_Base
 	public function before(){
 		parent::before();
 
-		$this->template->js = Asset::js(array('plugins.js', 'mylibs/jquery.checkbox.js', 'mylibs/jquery.chosen.js', 'script.js', 'mylibs/jquery.ui.touch-punch.js'));
+		$this->template->js = Asset::js(array('plugins.js', 'mylibs/jquery.checkbox.js', 'mylibs/jquery.chosen.js', 'mylibs/jquery.ui.touch-punch.js'));
 
 		$this->current_user = self::current_user();
 	}
@@ -21,7 +21,7 @@ class Controller_Groups extends Controller_Base
 		} 
 		$data['total'] = count(Config::get('sentry.permissions.rules'));
 
-		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js'));
+		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js', 'script.js'));
 		$this->template->css = Asset::css(array('sprite.tables.css'));
 
 		$data['groups'] = Sentry::group()->all();
@@ -39,6 +39,7 @@ class Controller_Groups extends Controller_Base
 		$data['group'] = Sentry::group(intval($id))->get(array('name', 'permissions'));
 		$data['users'] = Sentry::group(intval($id))->users();
 		$this->template->h2 = ucwords($data['group']['name']).' Group';
+		$this->template->js .= Asset::js(array('script.js'));
 		$this->template->title = 'Groups &raquo; view';
 		$this->template->content = View::forge('groups/view', $data);
 	}
@@ -124,6 +125,7 @@ class Controller_Groups extends Controller_Base
 			View::set_global('group',$group);
 			$this->template->h2 = 'Edit Group';
 			$this->template->title = 'Groups &raquo; Edit';
+			$this->template->js .= Asset::js(array('mylibs/jquery.validate.js', 'script.js'));
 			$this->template->content = View::forge('groups/edit');
 		}
 
@@ -148,6 +150,11 @@ class Controller_Groups extends Controller_Base
 			// customers view control
 			$var[] = array('access' => 'full_view', 'text' => 'Can read all the informations about customers', 'start' => array('is_start' => 1, 'text' => 'Customers View Control'));
 			$var[] = array('access' => 'all_read', 'text' => 'Can read all the tables');
+			$var[] = array('access' => 'customers_en', 'text' => 'Can read the english customers');
+			$var[] = array('access' => 'customers_ru', 'text' => 'Can read the russian customers');
+			$var[] = array('access' => 'customers_tw', 'text' => 'Can read the taiwanese customers');
+			$var[] = array('access' => 'customers_cn', 'text' => 'Can read the chinese customers', 'separate' => 1);
+
 			$var[] = array('access' => 'ib_read', 'text' => 'can read Introducing Brokers');
 			$var[] = array('access' => 'franchisescheme_read', 'text' => 'can read Franchise Scheme');
 			$var[] = array('access' => 'whitelabel_read', 'text' => 'can read white label');
@@ -161,20 +168,24 @@ class Controller_Groups extends Controller_Base
 			$var[] = array('access' => 'demoaccount_read', 'text' => 'can read demo account');
 			$var[] = array('access' => 'fb_home_read', 'text' => 'can read facebook');
 			$var[] = array('access' => 'pay_order_info_read', 'text' => 'can read Din pay');
-			$var[] = array('access' => 'cmginfo_read', 'text' => 'can read CMG');
-			$var[] = array('access' => 'customers_index', 'text' => 'Allow to see the customers menu');
+			$var[] = array('access' => 'cmginfo_read', 'text' => 'can read CMG', 'separate' => 1);
+
+			$var[] = array('access' => 'customers_index', 'text' => 'Can see the customers menu (important)');
 			$var[] = array('access' => 'customers_delete', 'text' => 'Can delete a customer');
 			$var[] = array('access' => 'customers_update', 'text' => 'can update a customer');
 			$var[] = array('access' => 'filters_lang_use', 'text' => 'Can use the language filter');
 			$var[] = array('access' => 'filters_date_use', 'text' => 'can use the date filter');
 			$var[] = array('access' => 'filters_multi_use', 'text' => 'Can use one filter by column', 'start' => array('is_start' => 0));
 
+			// charts
+			$var[] = array('access' => 'charts_index', 'text' => 'Can access the charts (important)', 'start' => array('is_start' => 1, 'text' => 'Charts Control'));
+			$var[] = array('access' => 'charts_monthly', 'text' => 'Can access the charts monthly render', 'start' => array('is_start' => 0));
 			// Others
 			$var[] = array('access' => 'ajax_dashboard', 'text' => 'Can see the stats on the dashboard', 'start' => array('is_start' => 1, 'text' => 'Others'));
 			$var[] = array('access' => 'message_send', 'text' => 'Can send messages (not yet)');
 			$var[] = array('access' => 'notifications_send', 'text' => 'Can send Live notification (not yet)');
 			$var[] = array('access' => 'notifications_receive', 'text' => 'Can receive Live notification (not yet)');
-			$var[] = array('access' => 'charts_index', 'text' => 'Can access the charts (not yet)');
+
 			$var[] = array('access' => 'speed_loading_read', 'text' => 'Can see the loading speed', 'start' => array('is_start' => 0));
 			return $var;
 		}

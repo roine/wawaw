@@ -81,8 +81,10 @@
 			
 			<div id='content-wrapper' class='container_12' role='main'>
 				<div id="main_content" >
-				<h1 class="grid_12"><?php echo isset($h2) ? $h2 : ''; ?></h1>
-				<div class="clean"></div>
+				<?php if(isset($h2)): ?>
+				<h1 class="grid_12"><?php echo $h2; ?></h1>
+				<div class="clear"></div>
+				<?php endif; ?>
 					<?php echo $content; ?>
 				</div>
 				<div class='clear'></div>

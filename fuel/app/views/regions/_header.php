@@ -104,20 +104,9 @@
 								Charts</a>
 								<ul>
 									<li>
-										<?php echo Html::anchor('charts', 'Daily Subscription'); ?>
+										<?php echo Html::anchor('charts', 'Monthly Subscription'); ?>
 									</li>
-									<li>
-										<a href="calendar.html">Calendar</a>
-									</li>
-									<li>
-										<a href="explorer.html">Explorer</a>
-									</li>
-									<li>
-										<a href="editor.html">Rich Text Editor</a>
-									</li>
-									<li>
-										<a href="tooltips.html">Tooltips</a>
-									</li>
+									
 								</ul>
 							</li>
 							<?php endif; ?>

@@ -516,6 +516,7 @@ div.jGrowl div.saved .jGrowl-message { background-image: url("../img/icons/packs
     -webkit-background-clip: padding;
     -moz-background-clip: padding;
     -o-background-clip: padding-box; 
+    background-clip:padding-box;
     border: 1px solid rgba(0, 0, 0, .25);
     -webkit-border-radius: 3px; 
     -moz-border-radius: 3px; 
