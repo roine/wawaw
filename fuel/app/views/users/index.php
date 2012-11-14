@@ -39,7 +39,7 @@
 					
 					<td class='department'><?php echo $meta->get('metadata.department')  ?></td>
 
-					<td class='group'><?php echo $group[0]['name'] ?></td>
+					<td class='group'><?php echo isset($group[0]['name']) ? $group[0]['name'] : '<b class="no_group">No group</b>' ?></td>
 
 					<td class='created_at'>
 						<abbr title='<?php echo !empty($user['created_at']) ? Date::forge($user['created_at'])->format("%A %d %B %Y") : ""; ?>'>
@@ -47,7 +47,7 @@
 						</abbr>
 					</td>
 
-					<td class='las_login'>
+					<td class='last_login'>
 						<abbr title='<?php echo !empty($user['last_login']) ? Date::forge($user['last_login'])->format("%A %d %B %Y") : ""; ?>'>
 						<?php echo !empty($user['last_login']) ? Date::time_ago($user['last_login']) : "Never"; ?>
 						</abbr>

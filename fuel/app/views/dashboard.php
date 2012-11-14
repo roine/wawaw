@@ -27,7 +27,14 @@
 		mathiasbynens.be/notes/touch-icons -->
 		<!-- CSS -->
 		<?php
-
+		$options = array(
+		    'enabled' => true,
+		    'min' => false,
+		    'combine' => false,
+		    'inline' => false,
+		    'attr' => array(),
+		    'deps' => array(),
+		);
 		Casset::add_group('css', 'dashboard_css', array(
 			'960gs/fluid.css', 
 			'h5bp/normalize.css', 
@@ -43,8 +50,8 @@
 			'font-awesome.css',
 			'sidebar.css',
 			'sprite.lists.css',
-			));
-
+			), $options);
+		
 		echo Casset::render_css();
 		echo isset($less) ? $less : '';
 			?>
@@ -109,6 +116,14 @@
 						</p>
 						<p>Time in USA:<br /> <?php echo Date::time('America/Mexico_City')->format("<span class='time running us'>%a, %d %b %Y <span>%H</span><span>%M</span><span>%S</span></span>"); ?><br />
 						</p>
+						<?php if(Sentry::user()->has_access('notifications_send')): ?>
+
+						<h2>Send Notification to the back-office users</h2>
+						<div class='notificationsSend'>
+							<p><textarea></textarea></p>
+							<p><input type='submit' class='over color blue button' value='send notification'></p>
+						</div>
+						<?php endif; ?>
 					</div>
 				</aside><!-- End of the sidebar-->
 			
@@ -162,12 +177,13 @@
 			'mylibs/jquery.ui.touch-punch.js',
 			'mylibs/jquery.validate.js',
 			'mylibs/jquery.jgrowl.js',
+			'live-notification.js',
 			'dashboard.js',
 			'mylibs/jquery.scrollTo-min.js',
 			'sprintf.js',
 			'script.js',
-			'live-notification.js'
-			));
+			
+			), $options);
 		echo Casset::render_js();
 			?>
 		<!-- end scripts -->

@@ -10,6 +10,7 @@ var options = {
 		plotBackgroundColor: '#FFFFFF',
 		plotShadow: true,
 		zoomType: 'x',
+		plotBorderWidth: 0,
 		height: 700,
 		animation: {
 			duration: 1000
@@ -36,25 +37,26 @@ var options = {
 	},
 	plotOptions: {
 		series: {
+			cursor:'pointer',
 			events: {
-				// legendItemClick: function(event) {
-				// 	if (!this.visible)
-				// 	return true;
+				click: function(event) {
+					if (!this.visible)
+					return true;
 
-				// 	var seriesIndex = this.index;
-				// 	var series = this.chart.series;
+					var seriesIndex = this.index;
+					var series = this.chart.series;
 
-				// 	for (var i = 0; i < series.length; i++)
-				// 	{
-				// 		if (series[i].index != seriesIndex)
-				// 		{
+					for (var i = 0; i < series.length; i++)
+					{
+						if (series[i].index != seriesIndex)
+						{
 
-				// 			series[i].visible ? series[i].hide() : series[i].show();
-				// 		}
-				// 	}
+							series[i].visible ? series[i].hide() : series[i].show();
+						}
+					}
 
-				// 	return false;
-				// }
+					return false;
+				}
 			}
 		}
 	},

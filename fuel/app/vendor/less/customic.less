@@ -212,3 +212,30 @@ a[href^='mailto']{
 	// in customers pages
 	padding:0;
 }
+
+/* users list */
+#grid .no_group{
+  color:tomato;
+  font-style: italic;
+  &:hover:after{
+  	position:absolute;
+    content:'No group means no right access. Please set a group for the user.';
+    left:70%;
+    top:50%;
+    width:200px;
+    background:rgba(0, 0, 30, .8);
+    z-index: 2;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-radius: 3px;
+	color: white;
+
+	text-shadow: none;
+  }
+}
+#grid .group{
+	position:relative;
+}
+

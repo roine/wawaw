@@ -226,4 +226,7 @@ aside nav ul.sub a.current {
 	padding: 0 0 10px 10px;
 	background: url(../img/sprites/userinfo/links-divider.png) no-repeat bottom left;
 }
-
+aside .notificationsSend textarea{
+	width:100%;
+	height: 70px;
+}

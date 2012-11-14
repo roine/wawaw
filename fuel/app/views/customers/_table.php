@@ -5,10 +5,28 @@
 <div class='grid_2'>
 	<select class='chosen_lang' data-placeholder='Language Filter...' id='langFilter'>
 		<option></option>
-		<option value='en'>English</option>
-		<option value='cn'>Chinese</option>
-		<option value='tw'>Taiwanese</option>
-		<option value='ru'>Russian</option>
+		<?php foreach($language as $lang): ?>
+		<option value='<?php echo $lang; ?>'>
+		<?php
+		switch($lang){
+			case 'en':
+			echo 'English';
+			break;
+			case 'ru':
+			echo 'Russian';
+			break;
+			case 'tw':
+			echo 'Taiwanese';
+			break;
+			case 'cn':
+			echo 'Chinese';
+			break;
+			default:
+			echo 'error';
+		}
+		?>
+		</option>
+		<?php endforeach; ?>
 		<option value=''>All</option>
 	</select>
 </div>

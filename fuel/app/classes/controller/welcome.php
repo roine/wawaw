@@ -13,7 +13,7 @@ class Controller_Welcome extends Controller_Base
 
 		
 		$lang = array("en" => "English", "cn" => "Chinese", "ru" => "Russian", "tw" => "Taiwanese"); 
-		$this->template->less = Asset::less('customic.less');
+		// $this->template->less = Asset::less('customic.less');
 		$this->template = \View::forge('dashboard');
 		$this->template->title = $data['data']['title'] = 'Welcome to IKON backoffice';
 

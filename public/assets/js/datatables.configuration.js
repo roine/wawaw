@@ -264,7 +264,7 @@ $(document).ready(function (){
 		for(i = 0; i < row_data.length-1; i++){
 			formatted += "<div><span class='modal_head'>"+row_head[i]+"</span>";
 			formatted += "<span class='modal_data'>";
-			if(row_head[i] == 'E-mail')
+			if(row_head[i] == 'E-mail' || row_head[i] == 'Email')
 				formatted += "<a href='mailto:"+row_data[i]+"'>"+row_data[i]+"</a>";
 			else if($.inArray(row_head[i], phones) != -1)
 				formatted += "<a href='tel:"+row_data[i]+"'>"+row_data[i]+"</a>";

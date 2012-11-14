@@ -118,6 +118,24 @@ $(document).ready(function(){
 	});
 });
 
-
+$('.notificationsSend input[type=submit]').click(function(){
+	if(ws){
+		var data = {
+			name:$('.toolcaption span').text(),
+			text:$('.notificationsSend textarea').val()
+		};
+		var msg = JSON.stringify(data);
+		ws.send(msg);
+			
+	}
+	else{
+		$.jGrowl('no connection to the web socket server', {
+			theme : 'information',
+			life: 3000
+		});
+	}
+	$('.notificationsSend textarea').val('');
+	
+});
 
 

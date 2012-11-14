@@ -26,7 +26,10 @@ else{
 	}
 	
 	ws.onclose = function(){
-		$.jGrowl('Connection to websocket server closed', {theme : 'information'});
+		$.jGrowl('Connection to websocket server closed', {
+			theme : 'information',
+			life:1000
+		});
 	}
 	// if Notification not supported ask to switch to chrome
 	if(!window.webkitNotifications){
@@ -42,6 +45,9 @@ else{
 			var msg = jQuery.parseJSON(e.data);
 			if(msg.text && msg.url && msg.form)
 				text = sprintf(msg.text, msg.form)+' <a href="'+msg.url+'">Click here</a>';
+			else if(msg.name && msg.text){
+				text = msg.name+' sent a notification: '+msg.text;
+			}
 			else
 				text = '';
 			$.jGrowl(text, {
@@ -51,36 +57,49 @@ else{
 		}
 
 	}
+	// notifications are supported
 	else{
 		// notification allowed = 0
 		if(wn.checkPermission() == 0) {
 			ws.onmessage = function(e){
-
 				var msg = jQuery.parseJSON(e.data);
+				// new form
 				if(msg.text && msg.form){
 					text = sprintf(msg.text, msg.form);
-				}
-				else
-					text = '';
-				var notification =  wn.createNotification(
+					var notification =  wn.createNotification(
 					'http://192.168.1.214:3000/assets/img/icons/25x25/dark/user.png', 
 					'Notification From the IKON backoffice', 
 					text);
+				}
+				else if(msg.name && msg.text){
+					var notification =  wn.createNotification(
+					'http://192.168.1.214:3000/assets/img/icons/25x25/dark/computer-imac.png', 
+					'Notification From '+msg.name, 
+					msg.text);
+					
+				}
+				
 				notification.show();
-				window.setTimeout(function(){notification.close()}, 10000)
+				window.setTimeout(function(){notification.close()}, 5000)
 			}	
 		}
+		// notification are supported but not allowed
 		else{
-			$.jGrowl("<a href='#' onclick=allowNotification(); return false;>Allow the notification on your browser</a>", {
-				theme : 'information',
-				life: 10000
-			});
-			ws.onmessage = function(e){
+			if(still > 0){
+				$.jGrowl("<a href='#' onclick=allowNotification(); return false;>Allow the webkitNotification on your browser</a>", {
+					theme : 'information',
+					life: 10000
+				});
+			}
 			
+			ws.onmessage = function(e){
 				var msg = jQuery.parseJSON(e.data);
 				if(msg.text && msg.url && msg.form)
-				var text = sprintf(msg.text, msg.form)+' <a href="'+msg.url+'">Click here</a>';
-				$.jGrowl(e.data, {
+					var text = sprintf(msg.text, msg.form)+' <a href="'+msg.url+'">Click here</a>';
+				else if(msg.name && msg.text){
+					text = msg.name+' sent a notification: '+msg.text;
+				}
+				$.jGrowl(text, {
 					theme : 'information',
 					life: 10000
 				});

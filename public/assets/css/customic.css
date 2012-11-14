@@ -197,3 +197,26 @@ a[href^='mailto']:before {
 .ui-dialog .ui-dialog-content {
   padding: 0;
 }
+#grid .no_group {
+  color: tomato;
+  font-style: italic;
+}
+#grid .no_group:hover:after {
+  position: absolute;
+  content: 'No group means no right access. Please set a group for the user.';
+  left: 70%;
+  top: 50%;
+  width: 200px;
+  background: rgba(0,0,30,0.8);
+  z-index: 2;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 3px;
+  color: white;
+  text-shadow: none;
+}
+#grid .group {
+  position: relative;
+}
