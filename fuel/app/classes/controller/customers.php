@@ -12,6 +12,14 @@ class Controller_Customers extends Controller_Base
 		// inherit parent
 		parent::before();
 
+		$this->languages = array();
+		if(Sentry::user()->has_access('customers_en')) array_push($this->languages, 'en');
+		if(Sentry::user()->has_access('customers_ru')) array_push($this->languages, 'ru');
+		if(Sentry::user()->has_access('customers_tw')) array_push($this->languages, 'tw');
+		if(Sentry::user()->has_access('customers_cn')) array_push($this->languages, 'cn');
+
+
+		View::set_global('language', $this->languages);
 		// assets
 		$this->template->js = Asset::js(array(
 			'mylibs/jquery.chosen.js', 

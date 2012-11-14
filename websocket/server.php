@@ -15,7 +15,9 @@
 	    public function onOpen(ConnectionInterface $conn) {
 	        // Store the new connection to send messages to later
 	        $this->clients->attach($conn);
+
 	    }
+
 
 	    public function onMessage(ConnectionInterface $from, $msg) {
 	        foreach ($this->clients as $client) {
@@ -37,7 +39,7 @@
 	        $conn->close();
 	    }
 	}
-	   
+
 	use Ratchet\Server\IoServer;
 	use Ratchet\WebSocket\WsServer;
 	use Live\Form;
@@ -51,3 +53,5 @@
 
     $server->run();
     echo 'server running';
+ 
+    

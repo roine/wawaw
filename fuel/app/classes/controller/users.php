@@ -97,7 +97,7 @@ class Controller_Users extends Controller_Base
 	public function action_edit($id = null){
 		// redirect if no right access
 		if(!Sentry::user()->has_access('users_edit') && $this->current_user->id != $id){
-			Session::set_flash('warning', 'You don\'t have the right to edit a user');
+			Session::set_flash('error', 'You don\'t have the right to edit a user');
 			Response::redirect('users');
 		}
 

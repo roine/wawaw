@@ -17,15 +17,14 @@ $(document).ready(function (){
 			whitelabel:{country:3,website:13,date:14,hide:[0,8,9,10,11,12]},
 			small_registration:{country:4,website:10,date:9,hide:[0]},
 			forexblog_ib_registration:{country:"none",website:"none",date:7,hide:[0]},
-			promotions:{country:"none",website:"none",date:13,hide:[0,1,2,14]},
+			promotions:{country:"none",website:12,date:13,hide:[0,1,2,14]},
 			videoconference:{country:4,website:13,date:16,hide:[0,1,2,10,11,12,]},
 			demoaccount:{country:10,website:13,date:15,hide:[0,2,3,4,5,6,7,14]},
-			fb_home:{country:"none", website:"none", date:10, hide:[0,3,8]},
+			fb_home:{country:"none", website:6, date:10, hide:[0,3,8]},
 			pay_order_info:{country:"none",website:"none",date:12,hide:[0,11]},
-			cmginfo:{country:"none",website:"none",date:9,hide:[0,8]}
+			cmginfo:{country:"none",website:7,date:9,hide:[0,8]}
 
 		};
-
 
 
 	/* ==================================================
@@ -72,6 +71,8 @@ $(document).ready(function (){
 		"fnServerParams": function (aoData, fnCallback) {
 			aoData.push(  {"name": "min", "value":  $('#min').val() } );
 			aoData.push(  {"name": "max", "value":  $('#max').val() } );
+			aoData.push( {"name": "language", "value": languages} );
+			aoData.push({"name":"langPosition", "value":col[table].website})
 		},
 		fnDrawCallback: function(nRow, aData, iDisplayIndex ) {
         },
@@ -91,7 +92,7 @@ $(document).ready(function (){
 	/* ==================================================
 	 * Fix header for table
 	 * ================================================== */
-	new FixedHeader( oTable ); 
+	// new FixedHeader( oTable ); 
 
 
 	/* ==================================================

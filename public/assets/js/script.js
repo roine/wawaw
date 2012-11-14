@@ -814,23 +814,37 @@ if(Function.prototype.bind == null) {
 	});
 	
 	if($('.Controller_Groups.create').length > 0){
-		var defaultOptions = {
-			"form_users_index":1,
-			"form_all_read":1,
-			"form_customers_en":1,
-			"form_customers_index":1,
-			"form_filters_lang_use":1,
-			"form_filters_date_use":1,
-			"form_filters_multi_use":1,
-			"form_ajax_dashboard":1
-		};
+		var defaultOptions = [
+			"form_users_index",
+			"form_all_read",
+			"form_customers_en",
+			"form_customers_index",
+			"form_filters_lang_use",
+			"form_filters_date_use",
+			"form_filters_multi_use",
+			"form_ajax_dashboard"
+		];
 		var delay = 300;
+		var last = defaultOptions[defaultOptions.length-1];
 		for(option in defaultOptions){
+
 			 (function(option){
-		        setTimeout( function(){$('#'+option).prop({'checked':true});}, delay);
+		        setTimeout( function(){
+
+		        	$('#'+defaultOptions[option]).prop({'checked':true});
+		        	 if(defaultOptions[option] == last)
+		    			$.jGrowl("A set of default options has been created", {
+							theme : 'information'
+						});
+
+		    	}, delay);
 		    })(option);
+
 		    delay += 300;
+
 		}
+		
+		
 		
 	}
 })(jQuery);

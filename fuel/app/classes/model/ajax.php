@@ -63,6 +63,9 @@ class Model_Ajax extends Model
 	 * ================================================== */
 	public static function tables($table, $post){
 		$sLimit = "";
+		$languagesCan = explode(',', $post['language']);
+		$languagesCannot = array_diff(array('en','ru','tw','cn'), $languagesCan);
+
 
 		// fix for small registration which has a different column name
 		$language = ($table == 'small_registration') ? 'language' : 'lang';
@@ -93,6 +96,7 @@ class Model_Ajax extends Model
 		$filtering = 0;
 		if ( isset($post['sSearch']) && $post['sSearch'] != "" )
 		{		
+
 			$search = '%'.$post['sSearch'].'%';
 			$query->where_open();
 			for ( $i=0 ; $i<count($columns) ; $i++ )
@@ -106,13 +110,54 @@ class Model_Ajax extends Model
 			$filtering = 1;
 		}
 
+
+		// auto filter for languages
+		$langTotal = count($languagesCan);
+		$langfiltering = 0;
+		$and = 0;
+		// if the current form as a language filter
+		if(isset($columns[$post['langPosition']])){
+			foreach($languagesCan as $k => $language){
+				$search = '%'.$language.'%';
+				// not being filtered neither lang nor others
+				if(!$filtering && !$langfiltering){
+					$query->where_open();
+				}
+				// being filtered by others but not lang yet
+				else if($filtering && !$langfiltering){
+					$query->and_where_open();
+					$and = 1;
+				}
+				// if first iteration
+				if(!$k){
+					$query->where($columns[$post['langPosition']], ' LIKE ', $search);
+				}else{
+					$query->or_where($columns[$post['langPosition']], ' LIKE ', $search);
+				}
+				// if last iteration
+				if($langTotal == intval($k)+1){
+					if($and){
+						$query->and_where_close();
+					}
+					else
+						$query->where_close();
+				}
+				$langfiltering = 1;
+			}
+		}
+		
+
+		
+
 		// filter for each columns
 		for ( $i=0 ; $i<count($columns) ; $i++ )
 		{
+
 			if ( isset($post['bSearchable_'.$i]) && $post['bSearchable_'.$i] == "true" && $post['sSearch_'.$i] != '' ){
 				$search = '%'.$post['sSearch_'.$i].'%';
-
-				if (!$filtering)
+				if(in_array($post['sSearch_'.$post['langPosition']], $languagesCannot))
+					continue;
+				else if (!$filtering)
 					$query->where($columns[$i], 'like', $search);
 				else
 					$query->and_where($columns[$i], 'like', $search);
@@ -150,7 +195,7 @@ class Model_Ajax extends Model
 		}
 
 		// extract the rows
-
+		// echo $query;
 		$result = $query->execute();
 		$row = array();
 		foreach($result as $k=>$v)
@@ -174,8 +219,12 @@ class Model_Ajax extends Model
 	 * Display data from all tables in the controller customers
 	 * ========================================================= */
 	public static function allTables($post){
-
+		// have to do the lang for all
 		$sIndexColumn = "id";
+
+		$languagesCan = explode(',', $post['language']);
+		$languagesCannot = array_diff(array('en','ru','tw','cn'), $languagesCan);
+
 		// to work each table must have same amount of columns
 		$important_data[] = array('columns' => array( 'fullname', 'country', 'state', 'telephone', 'mobile', 'email', 'lang', 'null', '"Introducing Brokers"', 'created_at'), 'table' => 'ib');
 		$important_data[] = array('columns' => array('fullname', 'country', 'state', 'telephone', 'mphone', 'email', 'lang', 'null', '"White Label"', 'created_at'), 'table' => 'whitelabel');
@@ -245,11 +294,30 @@ class Model_Ajax extends Model
 					$where .= ' OR';
 			}
 		}
+
+		foreach($languagesCan as $language){
+			if($where != '' && !$filtering){
+					$where .= ' AND (';
+			}
+			else if($where != '' && $filtering){
+				$where .= ' OR';
+			}
+			else{
+				$where .= ' WHERE (';
+			}
+			$filtering = 1;
+			$where .= ' t.'.$aColumns[$post['langPosition']].' LIKE \'%'.$language.'%\'';
+		}
+		if(count($languagesCan) > 0)
+			$where .= ' )';
+
 		// filter by columns
 		for ( $i=0 ; $i<count($aColumns) ; $i++ )
 		{
 			if ( isset($post['bSearchable_'.$i]) && $post['bSearchable_'.$i] == "true" && $post['sSearch_'.$i] != '' ){
 				$search = '%'.$post['sSearch_'.$i].'%';
+				if(count($languagesCannot) > 0 && in_array($post['sSearch_'.$post['langPosition']], $languagesCannot))
+					continue;
 				if($where != ''){
 					$where .= ' AND';
 				}
@@ -258,6 +326,7 @@ class Model_Ajax extends Model
 				}
 				$where .= ' t.'.$aColumns[$i].' LIKE \''.$search.'\'';
 			}
+
 		}
 
 		// order
@@ -299,6 +368,7 @@ class Model_Ajax extends Model
 		}
 		// echo DB::query($query);
 		$total = DB::query($query)->execute()->as_array();
+		// echo $query;
 
 		$response['sEcho'] = intval($post['sEcho']);
 		$response['aaData'] = $row;

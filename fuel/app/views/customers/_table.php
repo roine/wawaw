@@ -58,4 +58,7 @@
 	var canEdit = '<?php echo Sentry::user()->has_access("customers_update"); ?>';
 	var canDelete = '<?php echo Sentry::user()->has_access("customers_delete"); ?>'
 	var table = '<?php echo $current_table["table"]; ?>';
+	var languages = JSON.parse('<?php echo json_encode($language); ?>');
+	
+
 </script>
