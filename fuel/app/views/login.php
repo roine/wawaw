@@ -27,6 +27,16 @@
 		mathiasbynens.be/notes/touch-icons -->
 		<!-- CSS -->
 		<?php
+
+		$options = array(
+		    'enabled' => true,
+		    'min' => false,
+		    'combine' => false,
+		    'inline' => false,
+		    'attr' => array(),
+		    'deps' => array(),
+		);
+
 		Casset::add_group('css', 'login_css', array(
 
 			'h5bp/normalize.css', 
@@ -41,7 +51,7 @@
 			'ie.fixes.css',
 			'font-awesome.css',
 			'special-page.css'
-			));
+			), $options);
 		echo Casset::render_css();
 
 			?>
