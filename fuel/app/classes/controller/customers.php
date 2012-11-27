@@ -62,7 +62,7 @@ class Controller_Customers extends Controller_Base
 	}
 
 	public function action_all(){
-		if(!Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'Full Name', 'Country', 'City', 'Telephone', 'Mobile Phone', 'E-mail', 'Language', 'platform', 'type','created_at'));
 		$this->template->title = 'All the customers';
@@ -71,7 +71,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_introducing_brokers()
 	{
-		if(!Sentry::user()->has_access('ib_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_ib_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'Full Name', 'Gender', 'Country', 'State', 'Telephone', 'Mobile Phone', 'E-mail', 'Clients', 'Position', 'Interested In', 'business website', 'referer', 'language spoken', 'question', 'from', 'website', 'created_at', 'ip'));
 
@@ -81,7 +81,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_franchise_scheme()
 	{
-		if(!Sentry::user()->has_access('franchisescheme_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_franchisescheme_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'full name', 'company', 'country', 'state', 'telephone', 'mobile phone', 'e-mail', 'position', 'business website', 'question', 'from', 'website', 'created_at', 'ip'));
 
@@ -91,7 +91,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_white_label()
 	{
-		if(!Sentry::user()->has_access('whitelabel_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_whitelabel_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'full name', 'company', 'country', 'state', 'telephone', 'mobile phone', 'e-mail', 'clients', 'position', 'business website', 'question', 'from', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; White label';
@@ -100,7 +100,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_senior_partners()
 	{
-		if(!Sentry::user()->has_access('seniorpartner_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_seniorpartner_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'full name', 'company', 'country', 'state', 'telephone', 'mobile phone', 'e-mail', 'position', 'business website', 'question', 'from', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; Senior partners';
@@ -109,7 +109,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_callback()
 	{
-		if(!Sentry::user()->has_access('callback_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_callback_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'send to', 'first name', 'lastname', 'country', 'state', 'city', 'telephone', 'mobile phone', 'e-mail', 'language spoken', 'previous visit', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; Callback';
@@ -118,7 +118,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_inquiry()
 	{
-		if(!Sentry::user()->has_access('inquiry_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_inquiry_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array('id', 'send to', 'full name', 'e-mail', 'country', 'state', 'city', 'mobile phone', 'telephone', 'inquiry', 'from', 'website', 'created_at', 'ip'));
 		$this->template->title = 'Customers &raquo; Inquiry';
@@ -127,7 +127,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_small_registration()
 	{
-		if(!Sentry::user()->has_access('small_registration_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_small_registration_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 		
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('small_registration')));
 		$this->template->title = 'Customers &raquo; Small registration';
@@ -136,7 +136,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_forexblog()
 	{
-		if(!Sentry::user()->has_access('forexblog_ib_registration_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_forexblog_ib_registration_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('forexblog_ib_registration')));
 		$this->template->title = 'Customers &raquo; Forexblog';
@@ -145,7 +145,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_promotions()
 	{
-		if(!Sentry::user()->has_access('promotions_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_promotions_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('promotions')));
 		$this->template->title = 'Customers &raquo; Promotions';
@@ -154,7 +154,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_video_conference()
 	{
-		if(!Sentry::user()->has_access('videoconference_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_videoconference_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('videoconference')));
 		$this->template->title = 'Customers &raquo; Video conference';
@@ -163,7 +163,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_demo_account()
 	{
-		if(!Sentry::user()->has_access('demoaccount_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_demoaccount_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('demoaccount')));
 		$this->template->title = 'Customers &raquo; Demo accounts';
@@ -172,7 +172,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_facebook()
 	{
-		if(!Sentry::user()->has_access('fb_home_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_fb_home_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('fb_home')));
 		$this->template->title = 'Customers &raquo; Facebook';
@@ -181,7 +181,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_pay_order()
 	{
-		if(!Sentry::user()->has_access('pay_order_info_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_pay_order_info_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('pay_order_info')));
 		$this->template->title = 'Customers &raquo; Pay order';
@@ -190,7 +190,7 @@ class Controller_Customers extends Controller_Base
 
 	public function action_cmg()
 	{
-		if(!Sentry::user()->has_access('cmginfo_read') && !Sentry::user()->has_access('all_read')) self::no_access();
+		if(!Sentry::user()->has_access('customers_cmginfo_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
 
 		View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns('cmginfo')));
 		$this->template->title = 'Customers &raquo; Cmg';

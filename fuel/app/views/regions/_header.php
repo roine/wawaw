@@ -54,7 +54,7 @@
 								Customers</a>
 								<ul>
 									<?php foreach($tables as $k => $v): ?>
-										<?php if(Sentry::user()->has_access('customers_'.$v['table'].'_read') || Sentry::user()->has_access('all_read')): ?>
+										<?php if(Sentry::user()->has_access('customers_'.$v['table'].'_read') || Sentry::user()->has_access('customers_all_read')): ?>
 										<li class='<?php echo $v['url']; ?>'>
 											<?php echo Html::anchor('customers/'.$v['url'], $v['CleanName']); ?>
 										</li>
