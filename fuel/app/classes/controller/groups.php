@@ -155,20 +155,20 @@ class Controller_Groups extends Controller_Base
 			$var[] = array('access' => 'customers_tw', 'text' => 'Can read the taiwanese customers');
 			$var[] = array('access' => 'customers_cn', 'text' => 'Can read the chinese customers', 'separate' => 1);
 
-			$var[] = array('access' => 'ib_read', 'text' => 'can read Introducing Brokers');
-			$var[] = array('access' => 'franchisescheme_read', 'text' => 'can read Franchise Scheme');
-			$var[] = array('access' => 'whitelabel_read', 'text' => 'can read white label');
-			$var[] = array('access' => 'seniorpartner_read', 'text' => 'can read senior partners');
+			$var[] = array('access' => 'customers_ib_read', 'text' => 'can read Introducing Brokers');
+			$var[] = array('access' => 'customers_franchisescheme_read', 'text' => 'can read Franchise Scheme');
+			$var[] = array('access' => 'customers_whitelabel_read', 'text' => 'can read white label');
+			$var[] = array('access' => 'customers_seniorpartner_read', 'text' => 'can read senior partners');
 			$var[] = array('access' => 'callback_read', 'text' => 'can read callback');
-			$var[] = array('access' => 'inquiry_read', 'text' => 'can read inquiry');
-			$var[] = array('access' => 'small_registration_read', 'text' => 'can read small registration');
-			$var[] = array('access' => 'forexblog_ib_registration_read', 'text' => 'can read forexblog');
-			$var[] = array('access' => 'promotions_read', 'text' => 'can read promotions');
-			$var[] = array('access' => 'videoconference_read', 'text' => 'can read video conference');
-			$var[] = array('access' => 'demoaccount_read', 'text' => 'can read demo account');
-			$var[] = array('access' => 'fb_home_read', 'text' => 'can read facebook');
-			$var[] = array('access' => 'pay_order_info_read', 'text' => 'can read Din pay');
-			$var[] = array('access' => 'cmginfo_read', 'text' => 'can read CMG', 'separate' => 1);
+			$var[] = array('access' => 'customers_inquiry_read', 'text' => 'can read inquiry');
+			$var[] = array('access' => 'customers_small_registration_read', 'text' => 'can read small registration');
+			$var[] = array('access' => 'customers_forexblog_ib_registration_read', 'text' => 'can read forexblog');
+			$var[] = array('access' => 'customers_promotions_read', 'text' => 'can read promotions');
+			$var[] = array('access' => 'customers_videoconference_read', 'text' => 'can read video conference');
+			$var[] = array('access' => 'customers_demoaccount_read', 'text' => 'can read demo account');
+			$var[] = array('access' => 'customers_fb_home_read', 'text' => 'can read facebook');
+			$var[] = array('access' => 'customers_pay_order_info_read', 'text' => 'can read Din pay');
+			$var[] = array('access' => 'customers_cmginfo_read', 'text' => 'can read CMG', 'separate' => 1);
 
 			$var[] = array('access' => 'customers_index', 'text' => 'Can see the customers menu (important)');
 			$var[] = array('access' => 'customers_delete', 'text' => 'Can delete a customer');

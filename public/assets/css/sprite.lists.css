@@ -43,9 +43,9 @@
 .stats-list span {
 	display: inline-block;
 	background: url(../img/sprites/stats-list/divider.png) bottom left no-repeat;
-	padding:0 10px;
+
 	width: 75px;
-	text-align: right;
+	text-align: center;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;

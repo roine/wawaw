@@ -578,7 +578,7 @@ select.styled{
 	-o-transition:all 1s ease-in-out 0s;
 	transition:all 1s ease-in-out 0s;
 }
-.stats-list li a:hover:{background:blue;}
+
 .time{font-weight:bold;}
 .time span{
 	color:white;
@@ -606,7 +606,7 @@ select.styled{
 #stats_container .stats-list .equal{color:rgba(255,105,0,.6)}
 #stats_container .stats-list .equal:before{content:"\2261 ";}
 
-#stats_container .stats-list span:before{padding:0 10px;}
+#stats_container .stats-list span:before{padding:0 5px;}
 #stats_container .stats-list span small{font-size:10px;}
 #top-link  { 
 	display:none; 

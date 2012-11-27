@@ -13,7 +13,9 @@ class Model_Ajax extends Model
 		$query = DB::select('column_name')->from('information_schema.columns')->where_open()
 		->where('table_schema', 'fuel_dev')
 		->and_where('table_name', $table)
-		->where_close()->execute()->as_array();
+		->where_close()
+		->execute()->as_array();
+
 		foreach($query as $k=>$v)
 			$columns[$k] = $v['column_name'];
 		return $columns;
@@ -430,7 +432,7 @@ class Model_Ajax extends Model
 							->from($table['table'])
 							// change to ->group_by('year', 'month', 'day') for daily
 							->group_by('year', 'month')
-							->cached(3600)
+							// ->cached(3600)
 							->execute();
 
 			foreach($results as $key => $result){
