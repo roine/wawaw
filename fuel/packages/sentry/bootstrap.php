@@ -4,10 +4,10 @@
  * Part of the Sentry package for FuelPHP.
  *
  * @package    Sentry
- * @version    1.0
+ * @version    2.0
  * @author     Cartalyst LLC
  * @license    MIT License
- * @copyright  2011 Cartalyst LLC
+ * @copyright  2011 - 2012 Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -19,15 +19,21 @@ Autoloader::add_classes(array(
 	'Sentry\\SentryAuthUserNotActivatedException' => __DIR__.'/classes/sentry.php',
 	'Sentry\\SentryAuthConfigException'           => __DIR__.'/classes/sentry.php',
 
+	// attempts
 	'Sentry\\Sentry_Attempts'                     => __DIR__.'/classes/sentry/attempts.php',
 	'Sentry\\SentryAttemptsException'             => __DIR__.'/classes/sentry/attempts/php',
 	'Sentry\\SentryUserSuspendedException'        => __DIR__.'/classes/sentry/attempts.php',
 
+	// user
 	'Sentry\\Sentry_User'                         => __DIR__.'/classes/sentry/user.php',
 	'Sentry\\SentryUserException'                 => __DIR__.'/classes/sentry/user.php',
 	'Sentry\\SentryUserNotFoundException'         => __DIR__.'/classes/sentry/user.php',
 
+	// groups
 	'Sentry\\Sentry_Group'                        => __DIR__.'/classes/sentry/group.php',
 	'Sentry\\SentryGroupException'                => __DIR__.'/classes/sentry/group.php',
 	'Sentry\\SentryGroupNotFoundException'        => __DIR__.'/classes/sentry/group.php',
+
+	// hashing
+	'Sentry\\Sentry_Hash_Driver'                         => __DIR__.'/classes/sentry/hash/driver.php',
 ));

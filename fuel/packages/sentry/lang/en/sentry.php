@@ -35,9 +35,20 @@ return array(
 	'user_already_enabled'            => 'The user is already enabled',
 	'user_already_disabled'           => 'The user is already disabled',
 	'user_not_found'                  => 'The user does not exist.',
+	'username_already_in_use'         => 'That username is already in use.',
 
 	/** Attempts Exception Messages **/
     'login_ip_required'    => 'Login Id and IP Adress are required to add a login attempt.',
     'single_user_required' => 'Attempts can only be added to a single user, an array was given.',
     'user_suspended'       => 'You have been suspended from trying to login into account ":account" for :time minutes.',
+
+    /** Hashing **/
+    'hash_strategy_null'      => 'Hashing strategy is null or empty. A hashing strategy must be set.',
+    'hash_strategy_not_exist' => 'Hashing strategy file does not exist.',
+
+	/** Permissions Messages **/
+	'no_rules_added'    => 'Oops, you forgot to specify any rules to be added.',
+	'rule_not_found'    => 'The rule :rule, does not exist in your configured rules. Please check your rules in the sentry config.',
+	'permission_denied' => 'Oops, you do not have permission to access :resource'
+
 );

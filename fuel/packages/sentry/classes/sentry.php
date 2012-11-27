@@ -4,10 +4,10 @@
  * Part of the Sentry package for FuelPHP.
  *
  * @package    Sentry
- * @version    1.0
+ * @version    2.0
  * @author     Cartalyst LLC
  * @license    MIT License
- * @copyright  2011 Cartalyst LLC
+ * @copyright  2011 - 2012 Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -315,7 +315,7 @@ class Sentry
 	 *
 	 * @param   string  Encoded Login Column value
 	 * @param   string  User's activation code
-	 * @return  bool
+	 * @return  bool|array
 	 * @throws  SentryAuthException
 	 */
 	public static function activate_user($login_column_value, $code, $decode = true)
@@ -568,16 +568,6 @@ class Sentry
 		// get user
 		$user = static::user($login_column_value);
 
-		// check password
-		if ( ! $user->check_password($password, $field))
-		{
-			if (static::$suspend and ($field == 'password' or $field == 'password_reset_hash'))
-			{
-				static::attempts($login_column_value, \Input::real_ip())->add();
-			}
-			return false;
-		}
-
 		// check activation status
 		if ($user->activated != 1 and $field != 'activation_hash')
 		{
@@ -588,6 +578,16 @@ class Sentry
 		if ($user->status != 1)
 		{
 			throw new \SentryAuthException(__('sentry.account_is_disabled'));
+		}
+
+		// check password
+		if ( ! $user->check_password($password, $field))
+		{
+			if (static::$suspend and ($field == 'password' or $field == 'password_reset_hash'))
+			{
+				static::attempts($login_column_value, \Input::real_ip())->add();
+			}
+			return false;
 		}
 
 		return $user;

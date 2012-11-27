@@ -14,4 +14,4 @@ nbproject/
 .idea
 
 /fuel/app/config/crypt.php
-public/assets/cache
+public/assets/cache/*

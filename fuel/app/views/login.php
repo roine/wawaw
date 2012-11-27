@@ -27,7 +27,8 @@
 		mathiasbynens.be/notes/touch-icons -->
 		<!-- CSS -->
 		<?php
-
+		// Casset::clear_css_cache();
+		//  Casset::clear_js_cache();
 		$options = array(
 		    'enabled' => true,
 		    'min' => false,
@@ -96,7 +97,7 @@
 				'mylibs/jquery.checkbox.js',
 				'script.js',
 				'login.js',
-			));
+			), $options);
 			echo Casset::render_js();
 			 ?>
 				<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to

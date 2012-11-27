@@ -199,7 +199,8 @@ return array(
 	/**************************************************************************/
 	'always_load'  => array(
 		'packages' => array(
-			'casset'
+			'casset',
+			'sentry'
 		),
 		/**
 		 * These packages are loaded on Fuel's startup.  You can specify them in
