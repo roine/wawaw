@@ -39,12 +39,3 @@ $(window).load(function(){
 	$('.beforeLoading').removeClass('beforeLoading');
 	$('.enrolled').removeClass('enrolled').addClass('derolled')
 });
-$('input').click(function(){
-	$.ajax({
-		url:'/404',
-		success:function (data) {
-			document.write(data)
-
-		}
-	});
-})
