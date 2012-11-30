@@ -2,7 +2,17 @@
  * Function.prototype.bind for IE
  * @see http://webreflection.blogspot.com/2010/02/functionprototypebind.html
  */
-// add the ability to save an object
+
+// add the ability to save an object and add storage polyfill
+if (!('localStorage' in window)) {
+		window.localStorage = {
+		_data       : {},
+	    setItem     : function(id, val) { return this._data[id] = String(val); },
+	    getItem     : function(id) { return this._data.hasOwnProperty(id) ? this._data[id] : undefined; },
+	    removeItem  : function(id) { return delete this._data[id]; },
+	    clear       : function() { return this._data = {}; }
+	};
+}
 if(localStorage){
 	
 	Storage.prototype.setObj = function(key, obj) {
@@ -669,36 +679,10 @@ if(Function.prototype.bind == null) {
 		/* ==================================================
 		 * Current for menu
 		 * ================================================== */
-		 // Users
-		if($('.Controller_Users, .Controller_Groups').length > 0){
-			$('#nav_main .users').addClass('current').find('ul').show();
-			if($('.Controller_Users.index').length > 0)
-				$('#nav_main .users ul li.users_index').addClass('current');
-			if($('.Controller_Users.create').length > 0)
-				$('#nav_main .users ul li.users_create').addClass('current');
-			// Groups
-			if($('.Controller_Groups.index').length > 0)
-				$('#nav_main .users ul li.groups_index').addClass('current');
-			if($('.Controller_Groups.create').length > 0)
-				$('#nav_main .users ul .groups_create').addClass('current');
-		}
-		// Dashboard
-		else if($('.Controller_Welcome ').length > 0)
-			$('#nav_main .dashboard').addClass('current');
-		// Customers
-		else if($('.Controller_Customers').length > 0){
-			$('#nav_main .customers').addClass('current').find('ul').show();
-			var pos = $('.Controller_Customers').attr('data-view');
-			$('#nav_main ul').find("."+pos).addClass('current');
-		}
-		// Charts
-		else if($('.Controller_Charts').length > 0){
-			$('#nav_main .charts').addClass('current').find('ul').show();
-			if($('.Controller_Charts.index').length > 0)
-				$('#nav_main .charts ul li:nth-child(1)').addClass('current');
-		}
 
-		
+		$('nav a[href="'+document.location.href+'"]').parent().addClass('current')
+					.closest('ul').show()
+					.closest('li').addClass('current');
 		
 	});
 
@@ -828,8 +812,8 @@ if(Function.prototype.bind == null) {
 		var last = defaultOptions[defaultOptions.length-1];
 		for(option in defaultOptions){
 
-			 (function(option){
-		        setTimeout( function(){
+			 (function (option) {
+		        setTimeout( function() {
 
 		        	$('#'+defaultOptions[option]).prop({'checked':true});
 		        	 if(defaultOptions[option] == last)
@@ -847,6 +831,21 @@ if(Function.prototype.bind == null) {
 		
 		
 	}
+	var insertActualPage = function () {
+		var actualUrl = document.URL,
+			allUrl = [],
+			firstAndLastUrls = [];
+
+		if(localStorage.getObj('urls'))
+			allUrl = localStorage.getObj('urls', allUrl);
+
+		allUrl.push(actualUrl);
+		localStorage.setObj('urls', allUrl)
+
+		return allUrl
+	}
+	console.log(typeof JSON.stringify(insertActualPage()));
+
 })(jQuery);
 
 

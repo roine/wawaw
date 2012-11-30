@@ -42,7 +42,7 @@
 						<!-- Start of the main navigation -->
 						<ul id="nav_main">
 							<li class='dashboard'>
-								<a href="/">
+								<a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/">
 								<img src="/assets/img/icons/25x25/dark/computer-imac.png" width=25 height=25 alt="">
 								Dashboard</a>
 								
