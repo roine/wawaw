@@ -844,7 +844,7 @@ if(Function.prototype.bind == null) {
 
 		return allUrl
 	}
-	console.log(typeof JSON.stringify(insertActualPage()));
+	insertActualPage();
 
 })(jQuery);
 

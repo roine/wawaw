@@ -39,12 +39,30 @@ $(window).load(function(){
 	$('.beforeLoading').removeClass('beforeLoading');
 	$('.enrolled').removeClass('enrolled').addClass('derolled')
 });
-$('input').click(function(){
+$('form').submit(function(){
+	var username = $(this).find('#username').val();
+	var password = $(this).find('#password').val();
 	$.ajax({
-		url:'/404',
-		success:function (data) {
-			document.write(data)
+		url:'ajax/login',
+		data:{username: username, password: password},
+		type:'POST',
+		success: function (data) {
+			$.ajax({
+				url:'/',
+				success:function(data){
+					$('body').animate({top:'-'+document.height}, 'slow', function(){
+
+						document.write(data);
+						$('body').css('top', 1000).animate({top: 0}, 'slow', function(){
+							history.pushState(null, null, '/')
+						})
+						
+					})
+					
+				}
+			})
 
 		}
 	});
+	return false;
 })

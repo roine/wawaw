@@ -108,4 +108,37 @@ class Controller_Ajax extends Controller_Base
 		$this->template->content = View::forge('ajax/statistics');
 	}
 
+	public function action_login(){
+		if(Input::post()){
+			if(Sentry::user_exists(Input::post('username'))){
+				// User exists
+				if(Sentry::attempts()->get_limit() != Sentry::attempts(Input::post('username'))->get()){
+					// max attempts not reached
+					$valid_login = Sentry::login(Input::post('username'), Input::post('password'));
+		    
+				    if ($valid_login){
+				    	Session::set_flash('success', 'Successfuly connected');
+				    	Response::redirect('');
+				    }
+				    else{
+				       	$data['username'] = Input::post('username');
+						$data['password'] = Input::post('password');
+						Session::set_flash('error', 'Username OR/AND Password incorrects. You tried '.Sentry::attempts(Input::post('username'))->get().'/'. Sentry::attempts()->get_limit());
+				    }
+				}
+				else{
+					// max attempts reached
+					Session::set_flash('error', 'You\'ve reached your max attempts and will have to wait for '.Sentry::attempts(Input::post('username'))->get_time().' minutes');
+				}
+			}
+		    else{
+		    	// user do not exists
+		    	Session::set_flash('error', 'User do not exists');
+		    }
+			
+
+		}
+		$this->template->content = View::forge('ajax/view', $data);
+	}
+
 }
