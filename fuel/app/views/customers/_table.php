@@ -40,10 +40,10 @@
 <?php endif; ?>
 </div>
 <div class='clear'></div>
-		<div class="box effect1">
+		<div class="box effect2">
 			<div class="header">
 				<img src="/assets/img/icons/packs/fugue/16x16/shadeless/table-excel.png" width="16" height="16">
-				<h3>Datatables :: <b><?php echo $current_table['CleanName']; ?></b></h3><span></span>
+				<h3>Datatables :: <b><?php echo $current_table['cleanName']; ?></b></h3><span></span>
 			</div>
 			<div class="content">
 				<table id="grid" class="table <?php echo $current_table["table"]; ?>">

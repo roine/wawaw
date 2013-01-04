@@ -108,4 +108,12 @@ class Controller_Ajax extends Controller_Base
 		$this->template->content = View::forge('ajax/statistics');
 	}
 
+	public function action_table_exists($table = ''){
+		if($table == '')
+			$data['json'] = false;
+		else
+			$data['json'] = DBUtil::table_exists($table);
+		$this->template->content = View::forge('ajax/view', $data);
+	}
+
 }

@@ -4,7 +4,7 @@
  */
 
 // add the ability to save an object and add storage polyfill
-if (!('localStorage' in window)) {
+if (!(window.hasOwnProperty('localStorage'))) {
 		window.localStorage = {
 		_data       : {},
 	    setItem     : function(id, val) { return this._data[id] = String(val); },
@@ -120,6 +120,24 @@ if(Function.prototype.bind == null) {
 		 * Form validation
 		 */
 		if($.fn.validate) {
+
+			$.validator.addMethod("tableExists", function(value, element) {
+				isSuccess = false;
+			  	$.ajax({
+			       	url: "/ajax/table_exists/"+value,
+			       	async: false, 
+			   		success: function(msg){
+			      		isSuccess = !!msg;
+			   		}
+			 	});
+			 	return  this.optional(element) || isSuccess;
+			}, "The table doesn't exists");
+
+
+			$.validator.addMethod("uri", function(value, element) {
+				return  this.optional(element) || value.match(/^[a-zA-Z_\-]+$/);
+			}, "The URI can only be alphabetic with no space, dashes and underscores are allowed");
+
 			$('form.validate').each(function() {
 				var validator = $(this).validate({
 					ignore : 'input:hidden:not(:checkbox):not(:radio)',
@@ -161,6 +179,7 @@ if(Function.prototype.bind == null) {
 				});
 			});
 		}
+
 		/*
 		 * Error labels
 		 */
@@ -844,8 +863,35 @@ if(Function.prototype.bind == null) {
 
 		return allUrl
 	}
-	console.log(typeof JSON.stringify(insertActualPage()));
 
+	var tableIsset = function (table){
+		if(typeof table === 'undefined')
+			return;
+		var url = 'ajax/tables_exists/'+table;
+		$.ajax({
+			url:url,
+			success:function(isTable){
+				return isTable;
+			}
+		});
+	}
+
+	// $('.Controller_Forms form').on('submit', function(e){
+	// 	e.preventDefault();
+
+	// 	var table_name = $(this).find('#form_table').val(),
+	// 		url = '/ajax/table_exists/'+table_name;
+	// 	$.ajax({
+	// 		url:url,
+	// 		success:function(isTable){
+	// 			if(isTable)
+	// 				console.log('exists');
+	// 			else
+	// 				console.log('doesnt exists');
+	// 		}
+	// 	});
+	// })
+	
 })(jQuery);
 
 

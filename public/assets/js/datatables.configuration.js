@@ -6,7 +6,7 @@ $(document).ready(function (){
 	 * Define object with columns configuration
 	 * ================================================== */
 	var oTable;
-	// define crucial columns (note:country is not anymore crucial on 09.12)
+	// define crucial columns starting from 0 (note:country is not anymore crucial on 09.12)
 	var col = {
 			all:{country:2,website:7,date:10,hide:[0]},
 			callback:{country:4,website:12,date:13,hide:[0,10,11]},
@@ -23,7 +23,17 @@ $(document).ready(function (){
 			fb_home:{country:"none", website:6, date:10, hide:[0,3,8]},
 			pay_order_info:{country:"none",website:"none",date:12,hide:[0,11]},
 			cmginfo:{country:"none",website:7,date:9,hide:[0,8]}
-
+			/*
+			 * country value is the column which contains the country information
+			 * website value is the column which contains the language information
+			 * date value is the column which contains the date of creation information
+			 * hide value must be an array and contain all the hidden columns 
+			 *
+			 * exemple of new col
+			 */
+			/* delete that line to use the exemple
+			table_name:{country:"none",website:7,date:9,hide:[0,8,5,6,97,4]}
+			//*/
 		};
 
 

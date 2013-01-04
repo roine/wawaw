@@ -446,7 +446,7 @@ class Model_Ajax extends Model
 			}
 
 			$series[$k]['data'] = $data[$k];
-			$series[$k]['name'] = $table['CleanName'];
+			$series[$k]['name'] = $table['cleanName'];
 
 		}
 		

@@ -191,6 +191,10 @@ border-radius: 0 5px 5px 0;
     max-width: 300px;
     position: absolute;
     top: 80%;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
     transform: rotate(-3deg);
     width: 50%;
     z-index: -1;
@@ -198,6 +202,10 @@ border-radius: 0 5px 5px 0;
 .effect2:after {
     left: auto;
     right: 10px;
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
     transform: rotate(3deg);
 }
 .effect3 {
@@ -212,6 +220,10 @@ border-radius: 0 5px 5px 0;
     max-width: 300px;
     position: absolute;
     top: 80%;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
     transform: rotate(-3deg);
     width: 50%;
     z-index: -1;
@@ -229,6 +241,10 @@ border-radius: 0 5px 5px 0;
     position: absolute;
     right: 10px;
     top: 80%;
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
     transform: rotate(3deg);
     width: 50%;
     z-index: -1;
@@ -245,6 +261,10 @@ border-radius: 0 5px 5px 0;
     max-width: 300px;
     position: absolute;
     top: 80%;
+    -webkit-transform: rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
     transform: rotate(-8deg);
     width: 50%;
     z-index: -1;
@@ -252,6 +272,10 @@ border-radius: 0 5px 5px 0;
 .effect5:after {
     left: auto;
     right: 10px;
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
     transform: rotate(8deg);
 }
 .effect6 {
@@ -272,6 +296,10 @@ border-radius: 0 5px 5px 0;
 .effect6:after {
     left: auto;
     right: 10px;
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg);
 }
 .effect7 {
@@ -292,6 +320,10 @@ border-radius: 0 5px 5px 0;
 .effect7:after {
     left: auto;
     right: 10px;
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg);
 }
 .effect8 {
@@ -312,6 +344,10 @@ border-radius: 0 5px 5px 0;
 .effect8:after {
     left: auto;
     right: 10px;
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg);
 }
 

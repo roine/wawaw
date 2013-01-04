@@ -5,7 +5,7 @@
  * ================================================== */
 
 var wn = window.webkitNotifications;
-
+var domain = document.domain;
 var maxDisplay = 10;
 if(typeof localStorage.view == 'undefined') localStorage.view = 0;
 localStorage.view++;
@@ -19,7 +19,7 @@ if(!window.WebSocket){
 		});
 }
 else{
-	var ws = new WebSocket('ws://192.168.1.214:8000/server.php');
+	var ws = new WebSocket('ws://'+domain+':8000/server.php');
 
 	ws.onerror = function(){
 		console.log('error');
@@ -67,20 +67,35 @@ else{
 				if(msg.text && msg.form){
 					text = sprintf(msg.text, msg.form);
 					var notification =  wn.createNotification(
-					'http://192.168.1.214:3000/assets/img/icons/25x25/dark/user.png', 
+					'http://'+domain+':3000/assets/img/icons/25x25/dark/user.png', 
 					'Notification From the IKON backoffice', 
 					text);
 				}
+				else if(msg.form)
+					var notification =  wn.createNotification(
+					'http://'+domain+':3000/assets/img/icons/25x25/dark/computer-imac.png', 
+					'A new form have been submitted', 
+					'A user just have submitted a new form in '+msg.form);
 				else if(msg.name && msg.text){
 					var notification =  wn.createNotification(
-					'http://192.168.1.214:3000/assets/img/icons/25x25/dark/computer-imac.png', 
+					'http://'+domain+':3000/assets/img/icons/25x25/dark/computer-imac.png', 
 					'Notification From '+msg.name, 
 					msg.text);
 					
 				}
-				
+				window.not = notification;
 				notification.show();
-				window.setTimeout(function(){notification.close()}, 5000)
+
+
+				window.setTimeout(function(){notification.cancel()}, 5000);
+
+				if(notification.hasOwnProperty('onclick')){
+					notification.onclick = function () {
+						this.cancel();
+					}
+				}
+				
+				
 			}	
 		}
 		// notification are supported but not allowed
@@ -94,8 +109,12 @@ else{
 			
 			ws.onmessage = function(e){
 				var msg = jQuery.parseJSON(e.data);
+				var text = '';
 				if(msg.text && msg.url && msg.form)
-					var text = sprintf(msg.text, msg.form)+' <a href="'+msg.url+'">Click here</a>';
+					text = sprintf(msg.text, msg.form)+' <a href="'+msg.url+'">Click here</a>';
+				// forms
+				else if(msg.form && msg.url)
+					text = 'New registration in the <a href="'+msg.url+'">'+msg.form+'</a> form';
 				else if(msg.name && msg.text){
 					text = msg.name+' sent a notification: '+msg.text;
 				}

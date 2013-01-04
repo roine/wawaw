@@ -50,9 +50,35 @@ class Controller_Customers extends Controller_Base
 			));
 		$this->template->less = Asset::less(array('customic.less'));
 		// set the global to get the table url, name, clean name
-		View::set_global('current_table',$this->current_table(Request::active()->action));
-		$current_table = $this->current_table(Request::active()->action);
-		$this->template->h2 = $current_table['CleanName'];
+
+		// View::set_global('current_table',$this->current_table(Request::active()->action));
+		// $this->current_table = $this->current_table(Request::active()->action);
+
+		if(!empty(Request::active()->method_params)){
+			View::set_global('current_table',$this->current_table(Request::active()->method_params[0]));
+			$this->current_table = $this->current_table(Request::active()->method_params[0]);
+		}
+		else{
+			View::set_global('current_table',$this->current_table(Request::active()->action));
+			$this->current_table = $this->current_table(Request::active()->action);
+		}
+		
+		$this->template->h2 = $this->current_table['cleanName'];
+		
+	}
+
+	public function action_i($form){
+		if(empty($form)){
+			self::no_access();
+		}
+		if($this->current_table){
+			if(!Sentry::user()->has_access('customers_'.$this->current_table['table'].'_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
+			View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns($this->current_table['table'])));
+			$this->template->title = 'Customers &raquo; '.$this->current_table['cleanName'];
+			$this->template->content = View::forge('customers/view');
+		}
+		else
+			Response::redirect('/404');
 		
 	}
 

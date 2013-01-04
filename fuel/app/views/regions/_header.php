@@ -1,4 +1,4 @@
-<header>
+<header class='effect6'>
 				<!-- Begin of the header toolbar -->
 				<div id="header_toolbar">
 					<div class="container_12">
@@ -47,6 +47,7 @@
 								Dashboard</a>
 								
 							</li>
+
 							<?php if(Sentry::user(null, true)->has_access('customers_index')): ?>
 							<li class='customers'>
 								<a href="#">
@@ -56,7 +57,7 @@
 									<?php foreach($tables as $k => $v): ?>
 										<?php if(Sentry::user()->has_access('customers_'.$v['table'].'_read') || Sentry::user()->has_access('customers_all_read')): ?>
 										<li class='<?php echo $v['url']; ?>'>
-											<?php echo Html::anchor('customers/'.$v['url'], $v['CleanName']); ?>
+											<?php echo Html::anchor('customers/i/'.$v['url'], $v['cleanName']); ?>
 										</li>
 										<?php endif; ?>
 									<?php endforeach; ?>
@@ -105,6 +106,19 @@
 								<ul>
 									<li>
 										<?php echo Html::anchor('charts', 'Monthly Subscription'); ?>
+									</li>
+									
+								</ul>
+							</li>
+							<?php endif; ?>
+							<?php if(Sentry::user()->has_access('forms_index')): ?>
+							<li class='options'>
+								<a href="#">
+								<img src="/assets/img/icons/25x25/dark/strategy.png" width=25 height=25 alt="">
+								Options</a>
+								<ul>
+									<li>
+										<?php echo Html::anchor('forms', 'Edit the forms'); ?>
 									</li>
 									
 								</ul>

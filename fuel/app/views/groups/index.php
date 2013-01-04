@@ -1,5 +1,5 @@
 <div class="grid_12" >
-	<div class="box effect1">
+	<div class="box effect4">
 		<div class="header">
 			<img width="16" height="16" alt="" src="/assets/img/icons/packs/fugue/16x16/ui-text-field-format.png">
 			<h3>List of Groups(<?php echo count($groups)?>)</h3>
