@@ -986,6 +986,14 @@ select.styled{
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) inset;
   box-shadow: 0 0 1px rgba(0, 0, 0, .2) inset, 5px 0 5px -3px rgba(0, 0, 0, .2) inset;
 }
+
+:-webkit-full-screen {
+  background: white;
+}
+:-moz-full-screen {
+  background: white;
+}
+
 .columns{
 
 	-webkit-column-count:3;

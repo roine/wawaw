@@ -149,7 +149,7 @@ class Controller_Groups extends Controller_Base
 
 			// customers view control
 			$var[] = array('access' => 'full_view', 'text' => 'Can read all the informations about customers', 'start' => array('is_start' => 1, 'text' => 'Customers View Control'));
-			$var[] = array('access' => 'all_read', 'text' => 'Can read all the tables');
+			$var[] = array('access' => 'customers_all_read', 'text' => 'Can read all the tables');
 			$var[] = array('access' => 'customers_en', 'text' => 'Can read the english customers');
 			$var[] = array('access' => 'customers_ru', 'text' => 'Can read the russian customers');
 			$var[] = array('access' => 'customers_tw', 'text' => 'Can read the taiwanese customers');

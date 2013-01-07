@@ -10,8 +10,10 @@
 			
 		</div>
 		<div class="content">
+
 			<div id='daily'>
 			</div>
+			<a class='fs labels label-info' style='text-align:center;margin:10px 35%;'>Fullscreen mode (only on chrome and firefox)</a>
 		</div>
 	</div> <!-- End of .box -->
 </div>

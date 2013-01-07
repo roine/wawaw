@@ -891,7 +891,21 @@ if(Function.prototype.bind == null) {
 	// 		}
 	// 	});
 	// })
-	
+	$('.fs').on('click', function(){
+		launchFullScreen($("#daily")[0])
+		return false;
+	})
+
+
+	function launchFullScreen(element) {
+	  if(element.requestFullScreen) {
+	    element.requestFullScreen();
+	  } else if(element.mozRequestFullScreen) {
+	    element.mozRequestFullScreen();
+	  } else if(element.webkitRequestFullScreen) {
+	    element.webkitRequestFullScreen();
+	  }
+	}
 })(jQuery);
 
 
