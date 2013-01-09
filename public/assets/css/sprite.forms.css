@@ -446,6 +446,12 @@ input[type=color] {
   box-shadow        : 0 4px 5px rgba(0,0,0,.15);
   z-index: 999;
 }
+
+.chzn-drop{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
 /* @end */
 
 /* @group Single Chosen */
@@ -488,11 +494,12 @@ input[type=color] {
   display: block;
   position: absolute;
   right: 26px;
-  top: 8px;
+  top: 7px;
   width: 12px;
   height: 13px;
   font-size: 1px;
   background: url(../img/external/chosen/chosen-sprite.png) right top no-repeat;
+  cursor:pointer;
 }
 .chzn-container-single .chzn-single abbr:hover {
   background-position: right -11px;

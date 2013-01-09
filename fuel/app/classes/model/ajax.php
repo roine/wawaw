@@ -184,10 +184,16 @@ class Model_Ajax extends Model
 			}
 			// echo $post['min'];
 			// range
-			if(isset($post['min']) && isset($post['max']) && $post['min'] != '' && $post['max'] != ''){
-				$extreme = array($post['min'], $post['max']);
+			if(isset($post['min']) && isset($post['max']) && $post['min'] != '' && $post['max'] != '' && $post['min'] != $post['max']){
+				$extreme = array($post['min'], date('Y-m-d', strtotime($post['max'] . ' + 1 day')));
 				$mesure = 'between';
 			}
+			else if(isset($post['min']) && isset($post['max']) && $post['min'] != '' && $post['max'] != '' && $post['min'] == $post['max']){
+				$extreme = array($post['min'], date('Y-m-d', strtotime($post['min'] . ' + 1 day')));
+				$mesure = 'between';
+
+			}
+
 
 			if (!$filtering)
 				$query->where($created_at, $mesure, $extreme);

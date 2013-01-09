@@ -157,7 +157,7 @@ $(document).ready(function (){
 	/* ==================================================
 	 * Pretty select tag for language
 	 * ================================================== */
-	$('.chosen_lang').chosen({allow_single_deselect: true}).change(function(el){
+	$('.chosen_lang').change(function(el){
 		var lang = el.target.value;
 		if(col[table].website != "none")
 			oTable.fnFilter(lang, col[table].website);
@@ -296,6 +296,8 @@ $(document).ready(function (){
 	/* ==================================================
 	 * datepicker configuration
 	 * ================================================== */
+
+	 // today button
 	 $(document).on('focus', '#min:not(.hasDatepicker), #max:not(.hasDatepicker)', function(){
 	 	$.datepicker._gotoToday = function(id) {
 			var target = $(id);
@@ -318,6 +320,7 @@ $(document).ready(function (){
 		}
 	 });
 
+	// max and min dates
 	$(document).on('focus', '#min:not(.hasDatepicker)', function(){
 		$('#min').datepicker({
 			dateFormat: 'yy-mm-dd', 
@@ -354,5 +357,57 @@ $(document).ready(function (){
 			$("#ui-datepicker-div").css({"z-index":"1001"});
 		});
 	});
+
+	$('.chosen_date').on('change', function(a,b,c){
+		var value = b ? b.selected : 0,
+			today = Date.today().toString('yyyy-MM-dd');
+			yesterday = Date.parse('yesterday').toString('yyyy-MM-dd'),
+			firstOfCurrentWeek = Date.today().is().monday() ? today : Date.today().last().monday().toString('yyyy-MM-dd'),
+			firstOfLastWeek = Date.today().is().monday() ? Date.today().last().monday() : Date.today().last().monday().add(-7).days().toString('yyyy-MM-dd'),
+			lastOfLastWeek = Date.today().last().sunday().toString('yyyy-MM-dd'),
+			firstOfCurrentMonth = Date.today().clearTime().moveToFirstDayOfMonth().toString('yyyy-MM-dd'),
+			firstOfLastMonth = Date.today().clearTime().moveToFirstDayOfMonth().add(-1).months().toString('yyyy-MM-dd'),
+			lastOfLastMonth = Date.today().clearTime().moveToLastDayOfMonth().add(-1).months().toString('yyyy-MM-dd'),
+			firstOfCurrentYear = Date.parse('1st january').toString('yyyy-MM-dd'),
+			firstOfLastYear = Date.parse('1st january').add(-1).year().toString('yyyy-MM-dd'),
+			lastOfLastYear = Date.parse('31st december').add(-1).year().toString('yyyy-MM-dd');
+
+		switch(value){
+			case 'today':
+				$( "#min, #max" ).val(today);
+				break;
+			case 'yesterday':
+				$( "#min, #max" ).val(yesterday);
+				break;
+			case 'week':
+				$("#min").val(firstOfCurrentWeek);
+				$("#max").val(today);
+				break;
+			case 'lastWeek':
+				$("#min").val(firstOfLastWeek);
+				$('#max').val(lastOfLastWeek);
+				break;
+			case 'month':
+				$("#min").val(firstOfCurrentMonth);
+				$('#max').val(today);
+				break;
+			case 'lastMonth':
+				$("#min").val(firstOfLastMonth);
+				$('#max').val(lastOfLastMonth);
+				break;
+			case 'year':
+				$("#min").val(firstOfCurrentMonth);
+				$('#max').val(today);
+				break;
+			case 'lastYear':
+				$("#min").val(firstOfLastYear);
+				$('#max').val(lastOfLastYear);
+				break;
+			default:
+				$( "#min, #max" ).val('');
+		}
+		oTable.fnDraw();
+	})
+
 
 });

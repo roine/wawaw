@@ -38,6 +38,7 @@ class Controller_Customers extends Controller_Base
 			'mylibs/dataTables/ZeroClipboard.js',
 			'mylibs/dataTables/TableTools.min.js',
 			'mylibs/dataTables/FixedHeader.min.js',
+			'libs/date.js',
 			'datatables.configuration.js',
 
 			));

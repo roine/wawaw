@@ -203,13 +203,15 @@ if(Function.prototype.bind == null) {
 		 * Select Box
 		 */
 		if($.fn.chosen) {
-			$('select').chosen();
+			$('select.deselect').chosen({allow_single_deselect:true});
+			$('select:not[.deselect]').chosen();
 			$('.chzn-container').addClass('_100');
+			
 			$(window).resize(function(){
 				$('.chzn-container').each(function(){
 					var $chzn = $(this), $select = $('#' + $chzn.attr('id').replace('_chzn', ''));
 					$chzn.css('width', parseFloat($select.show().css('widthExact')) + 3 + 'px');
-					
+
 					$select.hide();
 				});
 			});
@@ -906,6 +908,7 @@ if(Function.prototype.bind == null) {
 	    element.webkitRequestFullScreen();
 	  }
 	}
+
 })(jQuery);
 
 

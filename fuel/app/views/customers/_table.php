@@ -3,8 +3,8 @@
 <div id="Filter" class='grid_12'>
 <?php if(Sentry::user()->has_access('filters_lang_use')): ?>
 <div class='grid_2'>
-	<select class='chosen_lang' data-placeholder='Language Filter...' id='langFilter'>
-		<option></option>
+	<select class='chosen_lang deselect' data-placeholder='Language Filter...' id='langFilter'>
+		<option value=""></option>
 		<?php foreach($language as $lang): ?>
 		<option value='<?php echo $lang; ?>'>
 		<?php
@@ -36,6 +36,17 @@
 <div class='grid_10'>
 	<input id="min" type="text"  name='min' class='datepicker grid_4' data-date-relative="now" placeholder="Min Date Range" value='' />
 	<input  id="max" name='max' type="text" class='datepicker grid_4' placeholder="Max Date Range" value='' />
+	<select class='chosen_date grid_3 deselect' data-placeholder='Date Preset' id='datePreset'>
+		<option></option>
+		<option value='today'>Today</option>
+		<option value='yesterday'>Yesterday</option>
+		<option value='week'>This Week</option>
+		<option value='lastWeek'>Last Week</option>
+		<option value='month'>This Month</option>
+		<option value='lastMonth'>Last Month</option>
+		<option value='year'>This Year</option>
+		<option value='lastYear'>Last Year</option>
+	</select>
 </div>
 <?php endif; ?>
 </div>
