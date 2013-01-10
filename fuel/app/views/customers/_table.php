@@ -34,19 +34,23 @@
 
 <?php if(Sentry::user()->has_access('filters_date_use')): ?>
 <div class='grid_10'>
-	<input id="min" type="text"  name='min' class='datepicker grid_4' data-date-relative="now" placeholder="Min Date Range" value='' />
-	<input  id="max" name='max' type="text" class='datepicker grid_4' placeholder="Max Date Range" value='' />
 	<select class='chosen_date grid_3 deselect' data-placeholder='Date Preset' id='datePreset'>
 		<option></option>
-		<option value='today'>Today</option>
-		<option value='yesterday'>Yesterday</option>
-		<option value='week'>This Week</option>
-		<option value='lastWeek'>Last Week</option>
-		<option value='month'>This Month</option>
-		<option value='lastMonth'>Last Month</option>
-		<option value='year'>This Year</option>
-		<option value='lastYear'>Last Year</option>
+		<optgroup label='Current'>
+			<option value='today'>Today</option>
+			<option value='week'>This Week</option>
+			<option value='month'>This Month</option>
+			<option value='year'>This Year</option>
+		</optgroup>
+		<optgroup label='Previous'>
+			<option value='yesterday'>Yesterday</option>
+			<option value='lastWeek'>Last Week</option>
+			<option value='lastMonth'>Last Month</option>
+			<option value='lastYear'>Last Year</option>
+		</optgroup>
 	</select>
+	<input id="min" type="text"  name='min' class='datepicker grid_4' data-date-relative="now" placeholder="Min Date Range" value='' />
+	<input  id="max" name='max' type="text" class='datepicker grid_4' placeholder="Max Date Range" value='' />
 </div>
 <?php endif; ?>
 </div>
@@ -60,6 +64,7 @@
 				<table id="grid" class="table <?php echo $current_table["table"]; ?>">
 					<thead>
 						<tr>
+
 							<?php foreach($columns as $column): ?>
 							<th><?php echo ucwords($column); ?></th>
 							<?php endforeach; ?>

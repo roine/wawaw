@@ -17,6 +17,7 @@ class Controller_Charts extends Controller_Base
 			'mylibs/jquery.ba-resize.js',
 			'mylibs/jquery.easing.1.3.js',
 			'mylibs/jquery.ui.touch-punch.js',
+			'libs/date.js',
 			'script.js',
 			'mylibs/highcharts.js',
 			'mylibs/HighCharts/exporting.js',

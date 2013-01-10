@@ -31,7 +31,7 @@ class Controller_Ajax extends Controller_Base
 
 	public function action_tables($table = null)
 	{	
-		if(!Input::post() || !Sentry::user()->has_access($table.'_read') && !Sentry::user()->has_access('all_tables_read')) Response::redirect('');
+		if(!Input::post() || !Sentry::user()->has_access('customers_'.$table.'_read') && !Sentry::user()->has_access('customers_all_read')) Response::redirect('');
 
 		$data['table'] = $table;
 		$data['json'] = Model_Ajax::tables($table, Input::post());
@@ -40,6 +40,7 @@ class Controller_Ajax extends Controller_Base
 	}
 
 	public function action_allTables(){
+		if(!Sentry::user()->has_access('customers_all_read')) Response::redirect('');
 		$data['json'] = Model_Ajax::allTables(Input::post());
 
 		$this->template->content = View::forge('ajax/view', $data);
@@ -116,4 +117,8 @@ class Controller_Ajax extends Controller_Base
 		$this->template->content = View::forge('ajax/view', $data);
 	}
 
+	public function action_session_up(){
+		$data['json'] = Sentry::check();
+		$this->template->content = View::forge('ajax/view', $data);
+	}
 }

@@ -63,7 +63,7 @@ var options = {
 	tooltip: {
 		formatter: function() {
 			return '<b>'+ this.series.name +'</b><br/>'+
-			Highcharts.dateFormat('%e. %b %Y', this.x) +': '+ this.y +' registrations';
+			Date.parse(Highcharts.dateFormat('%B %Y', this.x)).add(1).month().toString('MMMM yyyy') +': '+ this.y +' registrations';
 		}
 	},
 	series:[],

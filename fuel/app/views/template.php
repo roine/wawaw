@@ -123,11 +123,12 @@
 			<script>window.jQuery.ui || document.write('<script src="js/libs/jquery-ui-1.8.16.min.js"><\/script>')</script>
 
 			
-			<?php echo Asset::js(array('mylibs/jquery.scrollTo-min.js')); ?>
-			<?php echo Asset::js(array('mylibs/jquery.jgrowl.js')); ?>
-			<?php echo Asset::js(array('sprintf.js')); ?>
-			<?php echo Asset::js(array('live-notification.js')); ?>
-			<?php  echo isset($js) ? html_entity_decode($js) : ''; ?>
+<?php echo Asset::js(array('mylibs/jquery.scrollTo-min.js')); ?>
+<?php echo Asset::js(array('mylibs/jquery.jgrowl.js')); ?>
+<?php echo Asset::js(array('sprintf.js')); ?>
+<?php echo Asset::js(array('live-notification.js')); ?>
+<?php echo Asset::js(array('mylibs/jquery.pageVisibility.js')); ?>
+<?php  echo isset($js) ? html_entity_decode($js) : ''; ?>
 			<script>
 			$(window).load(function() {
 				$('#accordion').accordion();

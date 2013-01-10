@@ -119,7 +119,7 @@ class Model_Ajax extends Model
 		$and = 0;
 		// if the current form as a language filter
 		if(isset($columns[$post['langPosition']])){
-			foreach($languagesCan as $k => $language){
+			foreach($languagesCannot as $k => $language){
 				$search = '%'.$language.'%';
 				// not being filtered neither lang nor others
 				if(!$filtering && !$langfiltering){
@@ -132,9 +132,9 @@ class Model_Ajax extends Model
 				}
 				// if first iteration
 				if(!$k){
-					$query->where($columns[$post['langPosition']], ' LIKE ', $search);
+					$query->where($columns[$post['langPosition']], ' NOT LIKE ', $search);
 				}else{
-					$query->or_where($columns[$post['langPosition']], ' LIKE ', $search);
+					$query->and_where($columns[$post['langPosition']], ' NOT LIKE ', $search);
 				}
 				// if last iteration
 				if($langTotal == intval($k)+1){
@@ -282,8 +282,11 @@ class Model_Ajax extends Model
 				$where .= ' t.created_at <= "'.$post['max'].'"';
 			}
 			// range
-			if(isset($post['min']) && isset($post['max']) && $post['min'] != '' && $post['max'] != ''){
+			if(isset($post['min']) && isset($post['max']) && $post['min'] != '' && $post['max'] != '' && $post['min'] != $post['max']){
 				$where .= ' t.created_at BETWEEN "'.$post['min'].'" AND "'.$post['max'].'"';
+			}
+			else if(isset($post['min']) && isset($post['max']) && $post['min'] != '' && $post['max'] != '' && $post['min'] == $post['max']){
+				$where .= ' t.created_at BETWEEN "'.$post['min'].'" AND "'.date('Y-m-d', strtotime($post['min'] . ' + 1 day')).'"';
 			}
 		}
 
@@ -303,20 +306,20 @@ class Model_Ajax extends Model
 			}
 		}
 
-		foreach($languagesCan as $language){
-			if($where != '' && !$filtering){
+		foreach($languagesCannot as $language){
+			if($where != '' && !isset($filtering)){
 					$where .= ' AND (';
 			}
 			else if($where != '' && $filtering){
-				$where .= ' OR';
+				$where .= ' AND';
 			}
 			else{
 				$where .= ' WHERE (';
 			}
 			$filtering = 1;
-			$where .= ' t.'.$aColumns[$post['langPosition']].' LIKE \'%'.$language.'%\'';
+			$where .= ' t.'.$aColumns[$post['langPosition']].' NOT LIKE \'%'.$language.'%\'';
 		}
-		if(count($languagesCan) > 0)
+		if(count($languagesCannot) > 0)
 			$where .= ' )';
 
 		// filter by columns
@@ -357,6 +360,7 @@ class Model_Ajax extends Model
 		// get all data
 		$row = array();
 		$result = DB::query($query.$where.$order.$limit, \DB::SELECT)->execute()->as_array();
+
 		foreach($result as $k=>$v)
 			foreach($v as $key=>$value)
 				$row[$k][] = $value;
@@ -374,7 +378,7 @@ class Model_Ajax extends Model
 			if($k != count($aTables) - 1)
 				$query .= ' ,';
 		}
-		// echo DB::query($query);
+		
 		$total = DB::query($query)->execute()->as_array();
 		// echo $query;
 

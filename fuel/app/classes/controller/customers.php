@@ -72,9 +72,15 @@ class Controller_Customers extends Controller_Base
 		if(empty($form)){
 			self::no_access();
 		}
+
 		if($this->current_table){
 			if(!Sentry::user()->has_access('customers_'.$this->current_table['table'].'_read') && !Sentry::user()->has_access('customers_all_read')) self::no_access();
-			View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns($this->current_table['table'])));
+
+			if($this->current_table['cleanName'] == 'All'){
+				View::set_global('columns', array('id', 'Full Name', 'Country', 'City', 'Telephone', 'Mobile Phone', 'E-mail', 'Language', 'platform', 'type','created_at'));
+			}else{
+				View::set_global('columns', array_map('Inflector::humanize', Model_Ajax::getColumns($this->current_table['table'])));
+			}
 			$this->template->title = 'Customers &raquo; '.$this->current_table['cleanName'];
 			$this->template->content = View::forge('customers/view');
 		}

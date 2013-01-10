@@ -4,10 +4,11 @@ class Controller_Base extends Controller_Template{
 
 	public function before(){
 		parent::before();
-
-		if(Request::active()->action != 'login' && !Sentry::check() && Request::active()->action != '404')
+		// if user not connected and not on the login, 404 or session_up pages then redirect to login page
+		if(Request::active()->action != 'login' && !Sentry::check() && Request::active()->action != '404' && Request::active()->action != 'session_up'){
+			Session::set(array('redirect' => Request::active()->route->translation));
 			Response::redirect('login');
-
+		}
 		$this->current_user = self::current_user();
 
 		View::set_global('current_user', self::current_user());

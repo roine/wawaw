@@ -312,11 +312,8 @@ Copyright (c) 2011 by Harvest
       }
       return this.each(function(input_field) {
         var $this;
-
         $this = $(this);
-        console.log($this)
         if (!$this.hasClass("chzn-done")) {
-    
           return $this.data('chosen', new Chosen(this, options));
         }
       });

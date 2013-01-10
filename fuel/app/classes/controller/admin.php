@@ -30,9 +30,11 @@ class Controller_Admin extends Controller_Template
 			Session::set_flash('success', 'successfuly logged out');
 			Sentry::logout();
 		}
-		else
+		else{
 			Session::set_flash('warning', 'You\'re not logged in');
-		Response::redirect('');
+			Response::redirect('');
+		}
+			
 	}
 
 }

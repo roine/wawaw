@@ -61,6 +61,7 @@ $(document).ready(function (){
 		"aaSorting": [[ col[table].date, "desc" ]],
 		"oLanguage": {
 			"sSearch": "Search all columns:",
+			"sInfoFiltered": " - filtering from <b>_MAX_</b> records",
 			"sProcessing": "Processing on table "+table+"<span id='s1'>.</span><span id='s2'>.</span><span id='s3'>.</span>",
 			"sLengthMenu": "_MENU_",
 		},

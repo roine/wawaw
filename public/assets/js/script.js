@@ -908,6 +908,22 @@ if(Function.prototype.bind == null) {
 	    element.webkitRequestFullScreen();
 	  }
 	}
+	// refresh page if not login
+	$(document).on('show', function(){
+		if($('body.login').length < 1){
+			$.ajax({
+				url:'/ajax/session_up',
+				success: function(data){
+					if(!data){
+						location.reload();
+					}
+					
+				}
+			});
+		}
+		
+	});
+	
 
 })(jQuery);
 

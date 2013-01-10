@@ -95,6 +95,7 @@
 				'plugins.js',
 				'mylibs/jquery.validate.js',
 				'mylibs/jquery.checkbox.js',
+				'mylibs/jquery.pageVisibility.js',
 				'script.js',
 				'login.js',
 			), $options);

@@ -178,6 +178,7 @@
 			'mylibs/jquery.validate.js',
 			'mylibs/jquery.jgrowl.js',
 			'live-notification.js',
+			'mylibs/jquery.pageVisibility.js',
 			'dashboard.js',
 			'mylibs/jquery.scrollTo-min.js',
 			'sprintf.js',

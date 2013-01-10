@@ -22,7 +22,7 @@ class Controller_Welcome extends Controller_Base
 
 	public function action_login(){
 		
-		
+		$redirect = Session::get('redirect');
 		$vars = array(
     	'email'    => 'jonathan@ikonfx.com',
     	'password' => '123456',
@@ -37,7 +37,7 @@ class Controller_Welcome extends Controller_Base
     // $user_id = Sentry::user()->create($vars, true);
 
 		if(Sentry::check())
-			Response::redirect('');
+			Response::redirect($redirect);
 
 		$this->template = \View::forge('login');
 
@@ -49,8 +49,8 @@ class Controller_Welcome extends Controller_Base
 					$valid_login = Sentry::login(Input::post('username'), Input::post('password'));
 		    
 				    if ($valid_login){
-				    	Session::set_flash('success', 'Successfuly connected');
-				    	Response::redirect('');
+				    	Session::set_flash('success', 'Welcome back '.ucwords(Input::post('username')));
+				    	Response::redirect($redirect);
 				    }
 				    else{
 				       	$data['username'] = Input::post('username');
