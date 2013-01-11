@@ -175,7 +175,7 @@
 			'mylibs/jquery.ba-resize.js',
 			'mylibs/jquery.easing.1.3.js',
 			'mylibs/jquery.ui.touch-punch.js',
-			'mylibs/jquery.validate.js',
+			// 'mylibs/jquery.validate.js',
 			'mylibs/jquery.jgrowl.js',
 			'live-notification.js',
 			'mylibs/jquery.pageVisibility.js',

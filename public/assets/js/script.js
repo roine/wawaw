@@ -445,7 +445,7 @@ if(Function.prototype.bind == null) {
 				// }
 			}
 			resizeContentWrapper();
-			$(window).bind('resize orientationchange', resizeContentWrapper);
+			$(window).on('resize orientationchange', resizeContentWrapper);
 			$(document).resize(resizeContentWrapper);
 
 			if($.resize) {
@@ -565,6 +565,8 @@ if(Function.prototype.bind == null) {
 			if($li.contains("ul")) {
 				$li.children("ul").fadeIn(150)
 			}
+			var height = $this.siblings('ul').outerHeight()
+			$('#nav_sub').css('height', height)
 
 			return false;
 		});
@@ -739,42 +741,38 @@ if(Function.prototype.bind == null) {
     $.scrollTo(0,500);
   });
 
-
-	/* ==================================================
-	 * ban and unban with ajax
-	 * ================================================== */
-	$('.Controller_Users #grid input[type=checkbox]').change(function(e){
-		block = e.currentTarget.checked;
-		var $username = $(this).parent().parent().find('.username');
-		if(block){
-			// block the user
-			$username.wrapInner('<span class="blocked" title="user blocked" />')
+	$('.suspend input[type=checkbox]').on('change', function(){
+		var username = $(this).parent().siblings('.username').find('a').text();
+		$that = $(this)
+		if($(this).is(':checked')){
+			// call php to block the user
 			$.ajax({
-				url:'ajax/block',
-				data:{username:$username.find('.blocked').text()},
+				url:'/ajax/block',
+				data: {user_id:username},
 				type:'POST',
-				success:function(d){
-					$.jGrowl("User <b>"+$username.find('.blocked').text()+"</b> has been successfuly blocked", {
+				success: function(time){
+					$that.parent().siblings('.username').find('a').addClass('blocked')
+					$.jGrowl("User <b>"+username+"</b> has been successfuly blocked for "+time+" minutes", {
 						theme : 'success'
 					});
 				}
-			});
+			})
 		}
-		else{
-			// unblock the user
-			$username.find('.blocked').contents().unwrap();
+		else{	
+			// call php to unblock the user
 			$.ajax({
 				url:'ajax/unblock',
-				data:{username:$username.text()},
+				data:{user_id:username},
 				type:'POST',
-				success:function(d){
-					$.jGrowl("User <b>"+$username.text()+"</b> has been successfuly unblocked", {
+				success:function(time){
+					$that.parent().siblings('.username').find('a').removeClass('blocked');
+					$.jGrowl("User <b>"+username+"</b> has been successfuly unblocked", {
 						theme : 'success'
 					});
 				}
 			});
 		}
-	});
+	})
 
 
 	/* ==================================================
@@ -923,7 +921,19 @@ if(Function.prototype.bind == null) {
 		}
 		
 	});
-	
+
+	$(document).ready(function(){
+		var height = $('#nav_main > li.current ul').outerHeight();
+		$('#nav_sub').css('height', height);
+		
+
+	});
+	$('.taskList li').click(function(){
+		if($(this).hasClass('checked')) 
+			$(this).removeClass('checked')
+		else 
+			$(this).addClass('checked')
+	})
 
 })(jQuery);
 

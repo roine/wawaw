@@ -1022,3 +1022,34 @@ form .name{
 } 
 
 .Controller_Groups label{text-transform:capitalize;}
+
+.stats-list .name{
+	float: left;
+	width: 70px;
+	overflow: hidden;
+	height: 35px;
+	font-size:10px;
+	line-height: 15px;
+}
+
+.stats-list a:hover div{
+	color:#5785B7;
+}
+
+.taskList{
+	cursor:pointer;
+}
+.taskList .checked{
+	color:gray;
+	font-style:italic;
+	text-decoration: line-through;
+	position:relative;
+}
+.taskList .checked:after{
+	content:'done';
+	position:absolute;
+	right:0;
+	bottom:0;
+	color:#1B751B;
+	font-style:initial;
+}

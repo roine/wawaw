@@ -44,7 +44,7 @@ class Controller_Welcome extends Controller_Base
 		if(Input::post()){
 			if(Sentry::user_exists(Input::post('username'))){
 				// User exists
-				if(Sentry::attempts()->get_limit() != Sentry::attempts(Input::post('username'))->get()){
+				if(Sentry::attempts()->get_limit() > Sentry::attempts(Input::post('username'))->get()){
 					// max attempts not reached
 					$valid_login = Sentry::login(Input::post('username'), Input::post('password'));
 		    

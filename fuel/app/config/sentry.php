@@ -74,12 +74,12 @@ return array(
 		/**
 		 * number of attempts before suspensions
 		 */
-		'attempts' => 5,
+		'attempts' => 3,
 
 		/**
 		 * suspension length - minutes
 		 */
-		'time' => 15,
+		'time' => 30,
 	),
 
 	/**

@@ -22,9 +22,13 @@
 	position: relative;
 }
 
-#nav_main li {
+#nav_main > li {
 	display: inline-block;
 	margin-right: 2px;
+
+}
+#nav_main li ul{
+
 }
 /* ==================================================
  * 1a) Main Navigation: Buttons
@@ -80,7 +84,7 @@
 	width: 104%;
 	position: absolute;
 	line-height: 38px;
-	left: -10px;
+	left: -20px;
 	display: none; /* Initially hidden */
 }
 
@@ -94,13 +98,14 @@
 
 #nav_main li ul li {
 	display: inline-block;
-	padding: 0 5px;
+	padding: 0 10px;
 	background: url(../img/navigation/sub/seperator.png) no-repeat right;
-	float: left;
+	/*float: left;*/
+	
 }
 
 .ie7 #nav_main li ul li {
-	zoom: 1
+	zoom: 1;
 	display: inline;
 }
 
@@ -112,3 +117,25 @@
 #nav_main li ul li:last-child, #nav_main ul li.last-child {
 	background: none;
 }
+.arrow-nav{
+	height:0;
+	color:#5E5656;
+	position: absolute;
+	cursor:pointer;
+}
+.arrow-nav.left{
+	
+	left: -28px;
+	bottom: -7px;
+}
+.arrow-nav.right{
+	right:-28px;
+	bottom:-7px;
+}
+
+.hide_nav{
+	width:0!important;
+	padding:0!important;
+	overflow: hidden;
+}
+

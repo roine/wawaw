@@ -53,6 +53,7 @@
 								<a href="#">
 								<img src="/assets/img/icons/25x25/dark/blocks---images.png" width=25 height=25 alt="">
 								Customers</a>
+								
 								<ul>
 									<?php foreach($tables as $k => $v): ?>
 										<?php if(Sentry::user()->has_access('customers_'.$v['table'].'_read') || Sentry::user()->has_access('customers_all_read')): ?>
@@ -62,6 +63,7 @@
 										<?php endif; ?>
 									<?php endforeach; ?>
 								</ul>
+
 							</li>
 							<?php endif; ?>
 

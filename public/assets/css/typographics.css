@@ -125,7 +125,7 @@ header a:hover {
  * ================================================== */
 
 aside, aside h2 {
-	font-size: 13px;
+	font-size: 12px;
 }
 
 /* ==================================================
@@ -530,7 +530,7 @@ input.datepicker{
 	text-shadow:0 1px white;
 }
 
-.Controller_Users #grid .blocked a{
+.suspend + td a.blocked{
 	color:red;
 	font-style: italic;
 	text-decoration: line-through;

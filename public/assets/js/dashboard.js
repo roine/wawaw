@@ -51,11 +51,8 @@ var run = function(){
 $(document).ready(function(){
 
 	run();
-
-	
-
-	var height =  $("div.grid_6").height();
-	$("#stats_container").css({"height":parseInt(height)+5, "overflow":"hidden"});
+	var height =  $("div.grid_6").outerHeight();
+	$("#stats_container").css({"height":parseInt(height), "overflow":"hidden"});
 	$(document).keydown(function(e){
 	
 	el = $("div.en, div.cn");
@@ -137,5 +134,4 @@ $('.notificationsSend input[type=submit]').click(function(){
 	$('.notificationsSend textarea').val('');
 	
 });
-
 

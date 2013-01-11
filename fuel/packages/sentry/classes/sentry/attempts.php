@@ -255,9 +255,45 @@ class Sentry_Attempts
 			->where('unsuspend_at', null)
 			->or_where('unsuspend_at', 0)
 			->execute(static::$db_instance);
-
 		throw new \SentryUserSuspendedException(
 			__('sentry.user_suspended', array('account' => $this->login_id, 'time' => static::$limit['time']))
 		);
+	}
+
+	public function get_time(){
+		return static::$limit['time'];
+	}
+
+
+	public function block(){
+		// if user dont have attempt
+		if(!$this->attempts){
+			$result = \DB::insert(static::$table_suspend)
+			->set(array(
+				'suspended_at' => time(),
+				'last_attempt_at' => time(),
+				'unsuspend_at' => time()+(static::$limit['time'] * 60),
+				'login_id' => $this->login_id,
+				'attempts' => $this->get_limit(),
+			))
+			->execute(static::$db_instance);
+		}
+		else{
+			$result = \DB::update(static::$table_suspend)
+			->set(array(
+				'suspended_at' => time(),
+				'unsuspend_at' => time()+(static::$limit['time'] * 60),
+				'attempts' => $this->get_limit()
+			))
+			->where('login_id', $this->login_id)
+			->execute(static::$db_instance);
+		}
+
+		return $this->get_time();
+	}
+
+	public function check(){
+		$user_id = Sentry::user()['username'];
+		return Sentry::attempts()->get_limit() > Sentry::attempts($user_id)->get();
 	}
 }

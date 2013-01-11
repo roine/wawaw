@@ -30,7 +30,7 @@
 
 					<?php if(Sentry::user()->has_access('users_view')): ?>
 					<td class='username'><?php 
-						echo (Sentry::attempts()->get_limit() <= $attempts) ?  "<span title='user blocked' class='blocked'>".Html::anchor('users/view/'.$user['id'], $user['username'])."</span>" :  Html::anchor('users/view/'.$user['id'], $user['username']); ?></td>
+						echo (Sentry::attempts()->get_limit() <= $attempts) ?  Html::anchor('users/view/'.$user['id'], $user['username'], array('class' => 'blocked')) :  Html::anchor('users/view/'.$user['id'], $user['username']); ?></td>
 					<?php else: ?>
 					<td class='username'><?php echo $user['username']; ?></td>
 					<?php endif; ?>
