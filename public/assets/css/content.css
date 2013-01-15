@@ -182,31 +182,36 @@ border-radius: 0 5px 5px 0;
 .effect2 {
     position: relative;
 }
-.effect2:before, .effect2:after {
-    background: none repeat scroll 0 0 #777777;
-    bottom: 15px;
-    box-shadow: 0 15px 10px #777777;
-    content: "";
-    left: 10px;
-    max-width: 300px;
-    position: absolute;
-    top: 80%;
-    -webkit-transform: rotate(-3deg);
-    -moz-transform: rotate(-3deg);
-    -ms-transform: rotate(-3deg);
-    -o-transform: rotate(-3deg);
-    transform: rotate(-3deg);
-    width: 50%;
-    z-index: -1;
+.effect2:before,.effect2:after {
+	background: none repeat scroll 0 0 #777777;
+	bottom: 15px;
+
+	-webkit-box-shadow: 0 15px 10px #777777;
+	box-shadow: 0 15px 10px #777777;
+	content: "";
+	left: 10px;
+	max-width: 300px;
+	position: absolute;
+	top: 80%;
+
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg);
+	-o-transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+	width: 50%;
+	z-index: -1;
 }
+
 .effect2:after {
-    left: auto;
-    right: 10px;
-    -webkit-transform: rotate(3deg);
-    -moz-transform: rotate(3deg);
-    -ms-transform: rotate(3deg);
-    -o-transform: rotate(3deg);
-    transform: rotate(3deg);
+	left: auto;
+	right: 10px;
+
+	-webkit-transform: rotate(3deg);
+	-moz-transform: rotate(3deg);
+	-o-transform: rotate(3deg);
+	-ms-transform: rotate(3deg);
+	transform: rotate(3deg);
 }
 .effect3 {
     position: relative;

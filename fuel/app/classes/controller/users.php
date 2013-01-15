@@ -20,7 +20,7 @@ class Controller_Users extends Controller_Base
 			Response::redirect('');
 		} 
 		$this->template->less = Asset::less(array('customic.less'));
-		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js'));
+		$this->template->js .= Asset::js(array('mylibs/jquery.dataTables.js', 'mylibs/jquery-fallr-1.2.js'));
 		$this->template->css = Asset::css(array('sprite.tables.css'));
 
 		$data['users'] = Sentry::user()->all();

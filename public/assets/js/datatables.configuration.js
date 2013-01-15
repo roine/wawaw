@@ -247,7 +247,7 @@ $(document).ready(function (){
 		// alert message
 		$.fallr('show', {
 			buttons : {
-			button1 : {text: 'Yes', danger: true, onclick: clicked},
+			button1 : {text: 'Delete', danger: true, onclick: clicked},
 			button2 : {text: 'Cancel', onclick: function(){$.fallr('hide')}}
 			},
 			content : '<p>You are going to delete user #'+data.id+'?</p>',
