@@ -293,7 +293,8 @@ class Sentry_Attempts
 	}
 
 	public function check(){
-		$user_id = Sentry::user()['username'];
+		$user = Sentry::user();
+		$user_id = $user['username'];
 		return Sentry::attempts()->get_limit() > Sentry::attempts($user_id)->get();
 	}
 }
