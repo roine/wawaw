@@ -218,12 +218,15 @@ $(document).ready(function (){
 		// bug auto add row_selected to the parent
 		$(this).addClass('row_selected').parent().removeClass('row_selected');
 		$(this).next().addClass('row_selected');
+		if($(this).closest('#contextMenu').data('id'))
+			selected_data = oTable.fnGetData($('#'+$(this).closest('#contextMenu').data('id'))[0])
 		showInfoBox()
 	});
 
 	$('.delete').live('click', function(e){
 		e.preventDefault();
-		var data = {id:selected_data[0], table:table};
+		var id = $(this).closest('#contextMenu').data('id') ?  $(this).closest('#contextMenu').data('id') : selected_data[0]
+		var data = {id:id, table:table};
 		// bug auto add row_selected to the parent
 		$(this).addClass('row_selected').parent().removeClass('row_selected');
 		$(this).nextUntil('tr').next().addClass('row_selected');
@@ -235,7 +238,7 @@ $(document).ready(function (){
 				type:'POST',
 				success:function(data){
 					if(data == 1){
-						$.jGrowl("Row #"+selected_data[0]+" in "+table+" successfully deleted, please be careful when deleting row there is no rollback", {
+						$.jGrowl("Row #"+id+" in "+table+" successfully deleted, please be careful when deleting row there is no rollback", {
 							theme : 'information'
 						});
 					oTable.fnDraw();
@@ -250,7 +253,7 @@ $(document).ready(function (){
 			button1 : {text: 'Delete', danger: true, onclick: clicked},
 			button2 : {text: 'Cancel', onclick: function(){$.fallr('hide')}}
 			},
-			content : '<p>You are going to delete user #'+data.id+'?</p>',
+			content : '<p>You are going to delete user #'+id+'?</p>',
 			icon : 'error'
 		}); 
 
@@ -259,7 +262,10 @@ $(document).ready(function (){
 	// Event for show Box
 	$(document).keyup(function(e){
 		//68 is d
-		if(e.keyCode === 68 && $(".row_selected").length > 0) showInfoBox()
+		if(e.keyCode === 68 && $(".row_selected").length > 0) showInfoBox();
+		if(e.keyCode === 27 && $('#contextMenu').length > 0){
+			$('#contextMenu').remove();
+		}
 	});
 
 	var showInfoBox = function(){
@@ -409,6 +415,51 @@ $(document).ready(function (){
 		}
 		oTable.fnDraw();
 	})
+	
+	$('#grid tbody').on('contextmenu', 'tr td', function(e){
 
+		if($('#contextMenu').length > 0){
+			$('#contextMenu').remove();
+		}
 
+		var elem = document.elementFromPoint(e.clientX,e.clientY),
+			parent = $(elem).closest('tr'),
+			id = parent.prop('id'),
+			ncol = $(this).index(),
+			columnName = $(this).closest('tbody').siblings('thead').find('th').eq(ncol).text(),
+			infoLine = $(document.createElement('div'))
+				.html('User with '+columnName+': '+$(elem).text()),
+			deleteButton = $(document.createElement('div'))
+				.html('delete')
+				.addClass('delete'),
+			detailsButton = $(document.createElement('div'))
+				.html('details')
+				.addClass('details'),
+			contextmenu = $(document.createElement('div'))
+				.css({
+					'position':'absolute', 
+					top:e.pageY-1, 
+					left:e.pageX-1,
+					zIndex:1000
+				})
+				.prop('id', 'contextMenu')
+				.addClass('contextMenu effect1')
+				.data('id', id)
+				.append(infoLine)
+				.append(detailsButton)
+				.appendTo('body');
+		if(canDelete && table != 'all'){
+			$(contextMenu).append(deleteButton)
+		}
+		return false;
+	});
+	$(document).on('click',  function(){
+		if($('#contextMenu').length > 0){
+			$('#contextMenu').remove();
+		}
+	});
+	$("#contextMenu").on('click', function(){
+		 e.stopPropagation();
+
+	})
 });

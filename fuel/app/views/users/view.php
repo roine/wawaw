@@ -5,11 +5,11 @@ Groups:
 <?php endforeach; ?>
 
 <?php 
-	if($current_user->id == $user->id || Sentry::user()->has_access('users_update'))
-		echo Html::anchor('users/edit/'.$user->id, 'Edit');
+if($current_user->id == $user->id || Sentry::user()->has_access('users_update'))
+	echo Html::anchor('users/edit/'.$user->id, 'Edit');
 ?>
 
 <?php 
- 	if($current_user->id != $user->id && Sentry::user()->has_access('messages_send'))
- 		echo Html::anchor('message/to/'.$user->id, 'send Message');
+if($current_user->id != $user->id && Sentry::user()->has_access('messages_send'))
+	echo Html::anchor('message/to/'.$user->id, 'send Message');
 ?>
