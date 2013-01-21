@@ -14,7 +14,7 @@ if (!(window.hasOwnProperty('localStorage'))) {
 	};
 }
 if(localStorage){
-	
+
 	Storage.prototype.setObj = function(key, obj) {
 		return this.setItem(key, JSON.stringify(obj))
 	}
@@ -103,7 +103,7 @@ if(Function.prototype.bind == null) {
 			} else if ('nodeType' in el[0]) {
 				ret = $.contains($(this), el);
 			}
-			
+
 			return ret;
 		}
 	});
@@ -125,7 +125,7 @@ if(Function.prototype.bind == null) {
 				isSuccess = false;
 			  	$.ajax({
 			       	url: "/ajax/table_exists/"+value,
-			       	async: false, 
+			       	async: false,
 			   		success: function(msg){
 			      		isSuccess = !!msg;
 			   		}
@@ -168,7 +168,7 @@ if(Function.prototype.bind == null) {
 						} else {
 							error.appendTo(element.parent().parent());
 						}
-						
+
 						if ($.browser.msie) {
 							error.wrap('<div class="error-wrap" />');
 						}
@@ -206,7 +206,7 @@ if(Function.prototype.bind == null) {
 			$('select.deselect').chosen({allow_single_deselect:true});
 			$('select:not[.deselect]').chosen();
 			$('.chzn-container').addClass('_100');
-			
+
 			$(window).resize(function(){
 				$('.chzn-container').each(function(){
 					var $chzn = $(this), $select = $('#' + $chzn.attr('id').replace('_chzn', ''));
@@ -228,7 +228,7 @@ if(Function.prototype.bind == null) {
 		if($.fn.placeholder) {
 			$('input, textarea').placeholder();
 		}
-		/* 
+		/*
 		 * Date Pickers
 		 */
 		if ($.fn.datepicker && $.fn.datetimepicker && !$.browser.opera) {
@@ -236,26 +236,26 @@ if(Function.prototype.bind == null) {
 				hourGrid: 23,
 				minuteGrid: 59
 			}
-		
+
 			$('input[type=date]').datepicker($.extend(defaults, {showButtonPanel: true}));
 			$('input[type=datetime]').datetimepicker(defaults);
 			$('input[type=time]').not('[data-timeformat=12]').timepicker(defaults);
 			$('input[type=time][data-timeformat=12]').timepicker($.extend(defaults, {ampm: true}));
-			
+
 			$('input.hasDatepicker[data-date-relative]').each(function(){
 				var ids = $(this).attr('id').split(' '), id;
 				var el = this;
-				
+
 				$.each(ids, function(){
 					if (this.indexOf('dp') == 0 || $('label[for=' + this +']').length) {
 						id = this;
 					}
 				});
-				
+
 				if (!id) {
 					throw "Invalid form";
 				}
-				
+
 				if ($(this).attr('type') == 'date') {
 					$(this).datepicker( "option", "defaultDate", null );
 					$('.ui-datepicker-today', $.datepicker._getInst($('#' + id)[0]).dpDiv).click();
@@ -313,12 +313,12 @@ if(Function.prototype.bind == null) {
 			if(!$this.contains('img')) {
 				$this.addClass('no-icon');
 			}
-			
+
 		});
 		$('.box').each(function() {
 			var $this = $(this);
 			var $content = $this.find('.content');
-			
+
 			$this.contains('.actions') && $content.addClass('with-actions');
 			$this.find('.header').hasClass('grey') && $content.addClass('grey');
 			!$this.contains('.header') && $content.addClass('no-header');
@@ -353,14 +353,14 @@ if(Function.prototype.bind == null) {
 				var step = $wiz.data('step');
 				showWizPage(step + dir, $wiz);
 			};
-			
+
 			// .wizard .steps a >> The steps list
 			$('.wizard').find('.steps').find('a').click(function() {
 				var step = $(this).attr('href').replace('#step_', '');
 				var $wiz = $(this).parents('.wizard');
 				showWizPage(step, $wiz);
 			});
-			
+
 			var $actions = $('.wizard').find('.actions');
 			// .wizard .actions .prev
 			$actions.find('.prev').click(function() {
@@ -474,7 +474,7 @@ if(Function.prototype.bind == null) {
 	/* ==================================================
 	 * 6) Tables: Commented because it's not compatible with hearder plugin, has been replace by an other code in datatables.configuration.js
 	 * ================================================== */
-		
+
 	// 			(function() {
 	// 	if($.fn.dataTable) {
 	// 		$(document).data('datatables', $.fn.dataTable);
@@ -485,7 +485,7 @@ if(Function.prototype.bind == null) {
 	// 	}
 	// })();
 	// console.log()
-				
+
 
 
 	/* ==================================================
@@ -534,13 +534,13 @@ if(Function.prototype.bind == null) {
 			$img.attr('src', $img.attr('src').replace('dark', active));
 		} catch(e) {
 		};
-		
+
 		$('#nav_main').find('li').not('.current').find('ul').hide();
 
 		// #nav_main > li > a[href=#]
 		$('#nav_main').children('li').children('a[href="#"]').click(function() {
 			var $this = $(this), $li = $this.parent(), $ul = $li.parent();
-		
+
 			try {
 				// a < ul > .current img
 				var $img = $this.parents('ul').children('.current').find('img');
@@ -689,7 +689,7 @@ if(Function.prototype.bind == null) {
 			$(this).width(max);
 		});
 	})();
-	
+
 
 	/* ==================================================
 	 * Slide flash
@@ -706,7 +706,7 @@ if(Function.prototype.bind == null) {
 		$('nav a[href="'+document.location.href+'"]').parent().addClass('current')
 					.closest('ul').show()
 					.closest('li').addClass('current');
-		
+
 	});
 
 
@@ -758,7 +758,7 @@ if(Function.prototype.bind == null) {
 				}
 			})
 		}
-		else{	
+		else{
 			// call php to unblock the user
 			$.ajax({
 				url:'ajax/unblock',
@@ -793,7 +793,7 @@ if(Function.prototype.bind == null) {
 		 	var current = localStorage.getObj('message');
 
 		 	var messages = new Array();
-		 	
+
 		 	if(current != null)
 			 	messages = current;
 
@@ -813,9 +813,9 @@ if(Function.prototype.bind == null) {
 				theme : 'success'
 			});
 		}
- 	
+
 	});
-	
+
 	if($('.Controller_Groups.create').length > 0){
 		var defaultOptions = [
 			"form_users_index",
@@ -846,9 +846,9 @@ if(Function.prototype.bind == null) {
 		    delay += 300;
 
 		}
-		
-		
-		
+
+
+
 	}
 	var insertActualPage = function () {
 		var actualUrl = document.URL,
@@ -915,23 +915,23 @@ if(Function.prototype.bind == null) {
 					if(!data){
 						location.reload();
 					}
-					
+
 				}
 			});
 		}
-		
+
 	});
 
 	$(document).ready(function(){
 		var height = $('#nav_main > li.current ul').outerHeight();
 		$('#nav_sub').css('height', height);
-		
+
 
 	});
 	$('.taskList li').click(function(){
-		if($(this).hasClass('checked')) 
+		if($(this).hasClass('checked'))
 			$(this).removeClass('checked')
-		else 
+		else
 			$(this).addClass('checked')
 	})
 

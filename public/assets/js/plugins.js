@@ -51,7 +51,7 @@ window.log = function() {
 jQuery.fn.initMenu = function() {
 	return $(this).each(function() {
 		var $menu = $(this);
-		
+
 		// Set the container's height
 		$menu.find('.sub').show();
 		$menu.parent().height($menu.height() + 10);
@@ -62,12 +62,12 @@ jQuery.fn.initMenu = function() {
 			$(this).children('a').append("<span class='arrow'>&raquo;</span>");
 		});
 		$menu.find('.sub').hide();
-		
+
 		// The main part
 		$menu.find('li a').click(function(e) {
 			e.stopImmediatePropagation();
 			var $submenu = $(this).next(), $this = $(this);
-			
+
 			if($menu.hasClass('noaccordion')) {
 				if($submenu.length == 0) {
 					window.location.href = this.href;
@@ -92,7 +92,7 @@ jQuery.fn.initMenu = function() {
 			}
 		});
 	});
-}; 
+};
 /* ==================================================
  * 2) Alert Boxes by Simon Stamm
  * ================================================== */
@@ -153,9 +153,9 @@ jQuery.fn.initMenu = function() {
 (function($){
 	$.fn.createTabs = function(){
 		var container = $(this), tab_nr = 0;
-		
+
 		container.find('.tab-content').hide();
-		
+
 		// Open tab by hashtag
 		if (window.location.hash.indexOf('#tab') == 0) {
 			var hash = window.location.hash.substr(1);
@@ -164,7 +164,7 @@ jQuery.fn.initMenu = function() {
 				var tmp = parseInt(window.location.hash.substr(1), 10);
 				if (tmp > 0 && tmp < container.find('.tab-content').size()) {
 					tab_nr = tmp - 1;
-				}			
+				}
 			} else {
 				var tab_name = container.find('#' + hash.replace('tab-', '') + '.tab-content');
 				if (tab_name.size() && tab_name.not(':visible')) {
@@ -172,20 +172,20 @@ jQuery.fn.initMenu = function() {
 				}
 			}
 		}
-		
+
 		container.find(".header").find("li").eq(tab_nr).addClass("current").show();
 		container.find(".tab-content").eq(tab_nr).show();
-		
+
 		container.find(".header").find("li").click(function() {
 			container.find(".header").find("li").removeClass("current");
 			$(this).addClass("current");
 			container.find(".tab-content").hide();
-	
+
 			var activeTab = $(this).find("a").attr("href");
 			$(activeTab).fadeIn();
 			return false;
 		});
-		
+
 	};
 })(jQuery);
 

@@ -6,7 +6,7 @@ $(window).load(function(){
 		invalidHandler: function(form, validator) {
 			var errors = validator.numberOfInvalids();
 			if (errors) {
-				var message = errors == 1
+				var message = errors === 1
 				  ? 'You missed 1 field. It has been highlighted.'
 				  : 'You missed ' + errors + ' fields. They have been highlighted.';
 				$('.box .content').removeAlertBoxes();
@@ -26,8 +26,9 @@ $(window).load(function(){
 				this.defaultShowErrors();
 				var self = this;
 				$.each(errorList, function() {
-					var $input = $(this.element);
-					var $label = $input.parent().find('label.error').hide();
+					var $input = $(this.element),
+						$label = $input.parent().find('label.error').hide();
+
 					$label.addClass('red');
 					$label.css('width', '');
 					$input.trigger('labeled');
@@ -37,5 +38,5 @@ $(window).load(function(){
 	});
 
 	$('.beforeLoading').removeClass('beforeLoading');
-	$('.enrolled').removeClass('enrolled').addClass('derolled')
+	$('.enrolled').removeClass('enrolled').addClass('derolled');
 });

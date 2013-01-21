@@ -24,7 +24,7 @@ else{
 	ws.onerror = function(){
 		console.log('error');
 	}
-	
+
 	ws.onclose = function(){
 		$.jGrowl('Connection to websocket server closed', {
 			theme : 'information',
@@ -41,7 +41,7 @@ else{
 			});
 
 		ws.onmessage = function(e){
-			
+
 			var msg = jQuery.parseJSON(e.data);
 			if(msg.text && msg.url && msg.form)
 				text = sprintf(msg.text, msg.form)+' <a href="'+msg.url+'">Click here</a>';
@@ -67,21 +67,21 @@ else{
 				if(msg.text && msg.form){
 					text = sprintf(msg.text, msg.form);
 					var notification =  wn.createNotification(
-					'http://'+domain+':3000/assets/img/icons/25x25/dark/user.png', 
-					'Notification From the IKON backoffice', 
+					'http://'+domain+':3000/assets/img/icons/25x25/dark/user.png',
+					'Notification From the IKON backoffice',
 					text);
 				}
 				else if(msg.form)
 					var notification =  wn.createNotification(
-					'http://'+domain+':3000/assets/img/icons/25x25/dark/computer-imac.png', 
-					'A new form have been submitted', 
+					'http://'+domain+':3000/assets/img/icons/25x25/dark/computer-imac.png',
+					'A new form have been submitted',
 					'A user just have submitted a new form in '+msg.form);
 				else if(msg.name && msg.text){
 					var notification =  wn.createNotification(
-					'http://'+domain+':3000/assets/img/icons/25x25/dark/computer-imac.png', 
-					'Notification From '+msg.name, 
+					'http://'+domain+':3000/assets/img/icons/25x25/dark/computer-imac.png',
+					'Notification From '+msg.name,
 					msg.text);
-					
+
 				}
 				window.not = notification;
 				notification.show();
@@ -94,9 +94,9 @@ else{
 						this.cancel();
 					}
 				}
-				
-				
-			}	
+
+
+			}
 		}
 		// notification are supported but not allowed
 		else{
@@ -106,7 +106,7 @@ else{
 					life: 10000
 				});
 			}
-			
+
 			ws.onmessage = function(e){
 				var msg = jQuery.parseJSON(e.data);
 				var text = '';
@@ -159,4 +159,3 @@ if(document.mozFullScreenEnabled || document.webkitFullscreenEnabled || document
 				life: 3000
 	});
 }
-	

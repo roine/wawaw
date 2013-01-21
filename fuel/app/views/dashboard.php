@@ -91,7 +91,7 @@
 					<div id="sidebar_top">
 						<div class="userinfo">
 							<div class="info">
-								<div class="avatar">
+								<div class="avatar fold">
 									<img src="/assets/img/sprites/userinfo/avatar.png" width="80" height="80" alt="">
 								</div>
 								<?php echo Html::anchor('users/view/'.$current_user->id, e(ucwords($current_user->username))); ?>
