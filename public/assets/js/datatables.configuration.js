@@ -22,12 +22,13 @@ $(document).ready(function (){
 			demoaccount:{country:10,website:13,date:15,hide:[0,2,3,4,5,6,7,14]},
 			fb_home:{country:"none", website:6, date:10, hide:[0,3,8]},
 			pay_order_info:{country:"none",website:"none",date:12,hide:[0,11]},
-			cmginfo:{country:"none",website:7,date:9,hide:[0,8]}
+			cmginfo:{country:"none",website:7,date:9,hide:[0,8]},
+			pay_nab_record:{country:"none",website:"none",date:7,hide:[0]}
 			/*
 			 * country value is the column which contains the country information
 			 * website value is the column which contains the language information
 			 * date value is the column which contains the date of creation information
-			 * hide value must be an array and contain all the hidden columns 
+			 * hide value must be an array and contain all the hidden columns
 			 *
 			 * exemple of new col
 			 */
@@ -66,10 +67,10 @@ $(document).ready(function (){
 			"sLengthMenu": "_MENU_",
 		},
 		"oColReorder": {
-			"iFixedColumns": 0	
+			"iFixedColumns": 0
 		},
-		"aLengthMenu": [[5, 10, 25, 50, 100, 200], [5, 10, 25, 50, 100, 200]], 
-		"iDisplayLength": 10, 
+		"aLengthMenu": [[5, 10, 25, 50, 100, 200], [5, 10, 25, 50, 100, 200]],
+		"iDisplayLength": 10,
 		"sPaginationType": "full_numbers",
 		// "bJQueryUI":true,
 		"oTableTools": {
@@ -88,9 +89,9 @@ $(document).ready(function (){
 		fnDrawCallback: function(nRow, aData, iDisplayIndex ) {
         },
         fnInitComplete: function ( oSettings ){
-    		
+
 		}
-        
+
 	});
 
 
@@ -103,7 +104,7 @@ $(document).ready(function (){
 	/* ==================================================
 	 * Fix header for table
 	 * ================================================== */
-	// new FixedHeader( oTable ); 
+	// new FixedHeader( oTable );
 
 
 	/* ==================================================
@@ -112,9 +113,9 @@ $(document).ready(function (){
 	 if(canEdit && table != 'all'){
 	 	oTable.makeEditable({
 	 	sUpdateURL: "/ajax/updateData/"+table,
-	 	fnOnEditing: function(jInput, oEditableSettings, sOriginalText, id){       
+	 	fnOnEditing: function(jInput, oEditableSettings, sOriginalText, id){
                   var sNewText = $(jInput).val()
-                  
+
                   if(sNewText != sOriginalText && !isNaN(id)){
                   	$.jGrowl("Editing row #"+id+" from "+sOriginalText+" to "+sNewText, {
 						theme : 'information'
@@ -128,17 +129,17 @@ $(document).ready(function (){
 					});
 	              	return false;
 	              }
-	              
+
 	              else if(isNaN(id)){
 	              	$.jGrowl("Error with the id, please contact the administrator: jonathan@ikonfx.com", {
 						theme : 'warning'
 					});
 	              	return false;
 	              }
-	              	
+
         },
 	 	fnOnEdited: function(result, sOldValue, sNewValue, iRowIndex, iColumnIndex, iRealColumnIndex){
-	 		
+
 	 		if(result == 'failure'){
 	 			$.jGrowl("Fail editing", {
 						theme : 'error'
@@ -152,9 +153,9 @@ $(document).ready(function (){
         }
 	});
 	 }
-	 
 
-	
+
+
 	/* ==================================================
 	 * Pretty select tag for language
 	 * ================================================== */
@@ -174,11 +175,11 @@ $(document).ready(function (){
 		/* Filter on the column (the index) of this element */
 		oTable.fnFilter( this.value, $(this).attr('data-p') );
 	} );
-	
+
 	$("tfoot input").each( function (i) {
 		asInitVals[i] = this.value;
 	} );
-	
+
 	$("tfoot input").focus( function () {
 		if ( this.className == "search_init" )
 		{
@@ -186,7 +187,7 @@ $(document).ready(function (){
 			this.value = "";
 		}
 	} );
-	
+
 	$("tfoot input").blur( function (i) {
 		if ( this.value == "" )
 		{
@@ -230,7 +231,7 @@ $(document).ready(function (){
 		// bug auto add row_selected to the parent
 		$(this).addClass('row_selected').parent().removeClass('row_selected');
 		$(this).nextUntil('tr').next().addClass('row_selected');
-		
+
 		var clicked = function(){
 			$.ajax({
 				url:'/ajax/deleteData',
@@ -255,7 +256,7 @@ $(document).ready(function (){
 			},
 			content : '<p>You are going to delete user #'+id+'?</p>',
 			icon : 'error'
-		}); 
+		});
 
 	});
 
@@ -289,11 +290,11 @@ $(document).ready(function (){
 				formatted += row_data[i];
 			formatted += "</span></div>";
 		}
-		formatted += "</div>"; 
+		formatted += "</div>";
 
 		$("#modal").html(formatted).dialog({
-			modal:true, 
-			title:"Informations user #"+row_data[0], 
+			modal:true,
+			title:"Informations user #"+row_data[0],
 			hide:{ effect: 'drop', direction: "right"},
 			minWidth:700,
 			show: { effect: 'drop', direction: "left"}
@@ -330,7 +331,7 @@ $(document).ready(function (){
 	// max and min dates
 	$(document).on('focus', '#min:not(.hasDatepicker)', function(){
 		$('#min').datepicker({
-			dateFormat: 'yy-mm-dd', 
+			dateFormat: 'yy-mm-dd',
 			showButtonPanel:true,
 			firstDay:1,
 			showAnim:'slide',
@@ -348,7 +349,7 @@ $(document).ready(function (){
 
 	$(document).on('focus', '#max:not(.hasDatepicker)', function(){
 		$('#max').datepicker({
-			dateFormat: 'yy-mm-dd', 
+			dateFormat: 'yy-mm-dd',
 			showButtonPanel:true,
 			firstDay:1,
 			showAnim:'slide',
@@ -415,7 +416,7 @@ $(document).ready(function (){
 		}
 		oTable.fnDraw();
 	})
-	
+
 	$('#grid tbody').on('contextmenu', 'tr td', function(e){
 
 		if($('#contextMenu').length > 0){
@@ -437,8 +438,8 @@ $(document).ready(function (){
 				.addClass('details'),
 			contextmenu = $(document.createElement('div'))
 				.css({
-					'position':'absolute', 
-					top:e.pageY-1, 
+					'position':'absolute',
+					top:e.pageY-1,
 					left:e.pageX-1,
 					zIndex:1000
 				})

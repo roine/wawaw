@@ -34,7 +34,7 @@ class Model_Ajax extends Model
 
 				$language = ($table == 'small_registration') ? 'language' : 'lang';
 				$created_at = ($table == 'demoaccount') ? 'regtime' : 'created_at';
-				if($table != 'forexblog_ib_registration' && $table != 'fb_home' && $table != 'pay_order_info'){
+				if($table != 'forexblog_ib_registration' && $table != 'fb_home' && $table != 'pay_order_info' && $table != 'pay_nab_record'){
 					$query = DB::query("SELECT
 						(SELECT COUNT(*) FROM $table WHERE $language='$lang' AND $created_at >= CURRENT_DATE AND $created_at < CURRENT_DATE + INTERVAL 1 DAY) as day,
 						(SELECT COUNT(*) FROM $table WHERE $language='$lang' AND $created_at >= CURRENT_DATE - INTERVAL 1 DAY AND $created_at < CURRENT_DATE) as anteday,
@@ -46,13 +46,13 @@ class Model_Ajax extends Model
 				else{
 					$query = DB::query("SELECT
 						(SELECT COUNT(*) FROM $table WHERE $created_at >= CURRENT_DATE AND $created_at < CURRENT_DATE + INTERVAL 1 DAY) as day,
-						(SELECT COUNT(*) FROM $table WHERE $created_at >= CURRENT_DATE - INTERVAL 1 DAY AND $created_at < CURRENT_DATE) as anteday, 
+						(SELECT COUNT(*) FROM $table WHERE $created_at >= CURRENT_DATE - INTERVAL 1 DAY AND $created_at < CURRENT_DATE) as anteday,
 						(SELECT COUNT(*)  FROM $table WHERE WEEK($created_at) = WEEK(CURRENT_DATE)) AS week,
 						(SELECT COUNT(*)  FROM $table WHERE WEEK($created_at) = WEEK(CURRENT_DATE)-1) AS anteweek,
 						(SELECT COUNT(*) as month FROM $table WHERE MONTH($created_at) = MONTH(CURRENT_DATE)) AS month,
 						(SELECT COUNT(*) as month FROM $table WHERE MONTH($created_at) = MONTH(CURRENT_DATE)-1) AS antemonth");
 				}
-				// add cached(time in ms) when finished 
+				// add cached(time in ms) when finished
 				$data[$lang][$table] = $query->execute()->as_array();
 			}
 		}
@@ -72,7 +72,7 @@ class Model_Ajax extends Model
 		// fix for small registration which has a different column name
 		$language = ($table == 'small_registration') ? 'language' : 'lang';
 		$created_at = ($table == 'demoaccount') ? 'regtime' : 'created_at';
-		
+
 		$columns = self::getColumns($table);
 		// Start fetching the data
 		$query = DB::select(DB::expr('SQL_CALC_FOUND_ROWS *'))->from($table);
@@ -80,7 +80,7 @@ class Model_Ajax extends Model
 		// LIMIT
 		if (isset($post['iDisplayStart'] ) && $post['iDisplayLength'] != '-1'){
 			$query->limit($post['iDisplayLength'])->offset($post['iDisplayStart']);
-		}	
+		}
 
 		// ORDER
 		if (isset($post['iSortCol_0'])){
@@ -92,20 +92,20 @@ class Model_Ajax extends Model
 				}
 			}
 		}
-		
+
 		// Filters
 		// global filter
 		$filtering = 0;
 		if ( isset($post['sSearch']) && $post['sSearch'] != "" )
-		{		
+		{
 
 			$search = '%'.$post['sSearch'].'%';
 			$query->where_open();
 			for ( $i=0 ; $i<count($columns) ; $i++ )
 			{
-				if($i == 0) 
+				if($i == 0)
 					$query->where($columns[$i], ' LIKE ', $search);
-				else 
+				else
 					$query->or_where($columns[$i], ' LIKE ', $search);
 			}
 			$query->where_close();
@@ -147,9 +147,7 @@ class Model_Ajax extends Model
 				$langfiltering = 1;
 			}
 		}
-		
 
-		
 
 		// filter for each columns
 		for ( $i=0 ; $i<count($columns) ; $i++ )
@@ -157,7 +155,7 @@ class Model_Ajax extends Model
 
 			if ( isset($post['bSearchable_'.$i]) && $post['bSearchable_'.$i] == "true" && $post['sSearch_'.$i] != '' ){
 				$search = '%'.$post['sSearch_'.$i].'%';
-				if(in_array($post['sSearch_'.$post['langPosition']], $languagesCannot))
+				if($post['langPosition'] !== "none" && in_array($post['sSearch_'.$post['langPosition']], $languagesCannot))
 					continue;
 				else if (!$filtering)
 					$query->where($columns[$i], 'like', $search);
@@ -218,7 +216,7 @@ class Model_Ajax extends Model
 		$response['iTotalDisplayRecords'] = $filtered[0]['total'];
 		$response['sColumns'] = implode(', ', $columns);
 		$response['aaData'] = $row;
-		
+
 		return $response;
 	}
 
@@ -248,6 +246,7 @@ class Model_Ajax extends Model
 		$important_data[] = array('columns' => array('name', 'null', 'location', 'phone', 'null', 'email', '"en"', 'null', '"Facebook"', 'created_at'), 'table' => 'fb_home');
 		$important_data[] = array('columns' => array('name', 'null', 'null', 'telephone', 'null', 'email', '"cn"', 'null', '"Pay Order"', 'created_at'), 'table' => 'pay_order_info');
 		$important_data[] = array('columns' => array('name', 'null', 'null', 'null', 'mphone', 'email', 'lang', 'null', '"CMG"', 'created_at'), 'table' => 'cmginfo');
+		$important_data[] = array('columns' => array('name', 'null', 'address', 'telephone', 'null', 'email', 'null', 'null', '"NAB"', 'created_at'), 'table' => 'pay_nab_record');
 
 		$aColumns = array('id', 'fullName', 'country', 'city', 'telephone', 'mobile', 'email', 'language', 'platform', 'type', 'created_at');
 
@@ -260,7 +259,7 @@ class Model_Ajax extends Model
 					if(count($v['columns']) - 1 != $key)
 						$query .= ', ';
 				}
-					
+
 				$query .= ' FROM '.$v['table'].'';
 			if($k != count($important_data)-1)
 				$query .= ' UNION';
@@ -378,7 +377,7 @@ class Model_Ajax extends Model
 			if($k != count($aTables) - 1)
 				$query .= ' ,';
 		}
-		
+
 		$total = DB::query($query)->execute()->as_array();
 		// echo $query;
 
@@ -395,7 +394,7 @@ class Model_Ajax extends Model
 	 * Delete the data in the controller customers
 	 * ================================================== */
 	public static function deleteData($row){
-	
+
 		$result = DB::delete($row['table'])->where('id', $row['id'])->execute();
 		return 1;
 
@@ -413,7 +412,7 @@ class Model_Ajax extends Model
 		$id = $details['id'];
 		$query = DB::update($table)->set(array($columnName => $value))->where('id', $id)->execute();
 		if($query)
-			return $value;	
+			return $value;
 	}
 
 
@@ -435,7 +434,7 @@ class Model_Ajax extends Model
 		foreach($tables as $k => $table){
 			$date_name = ($table['table'] == "demoaccount") ? "regtime" : "created_at";
 
-			$results = DB::select(DB::expr("YEAR($date_name) as year"), 
+			$results = DB::select(DB::expr("YEAR($date_name) as year"),
 								DB::expr("MONTH($date_name) as month"),
 								DB::expr("DAY($date_name) as day"),
 								DB::expr("COUNT(*) as total"))
@@ -459,7 +458,7 @@ class Model_Ajax extends Model
 			$series[$k]['name'] = $table['cleanName'];
 
 		}
-		
+
 		return $series;
 	}
 }
