@@ -176,7 +176,7 @@ html, body {
 	box-shadow: 0 10px -6px -6px #777777;
 }
 .fold {
-  position:relative;
+	position:relative;
 }
 
 .fold:before{
@@ -1148,12 +1148,31 @@ form .name{
 }
 .contextMenu div.details:hover{
 	background: #7db9e8; /* Old browsers */
-background: -moz-linear-gradient(top, #7db9e8 0%, #1e5799 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(100%,#1e5799)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #7db9e8 0%,#1e5799 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #7db9e8 0%,#1e5799 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #7db9e8 0%,#1e5799 100%); /* IE10+ */
-background: linear-gradient(to bottom, #7db9e8 0%,#1e5799 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */
-box-shadow: inset 0 -15px 4px #1e5799;
+	background: -moz-linear-gradient(top, #7db9e8 0%, #1e5799 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(100%,#1e5799)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #7db9e8 0%,#1e5799 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #7db9e8 0%,#1e5799 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #7db9e8 0%,#1e5799 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #7db9e8 0%,#1e5799 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */
+	box-shadow: inset 0 -15px 4px #1e5799;
+}
+kbd {
+	padding: 0.1em 0.6em;
+	border: 1px solid #ccc;
+	font-size: 11px;
+	font-family: Arial,Helvetica,sans-serif;
+	background-color: #f7f7f7;
+	color: #333;
+	-moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	-webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	display: inline-block;
+	margin: 0 0.1em;
+	text-shadow: 0 1px 0 #fff;
+	line-height: 1.4;
+	white-space: nowrap;
 }
